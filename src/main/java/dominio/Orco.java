@@ -1,5 +1,8 @@
 package dominio;
 
+/**
+ * La clase Orco es un Personaje que posee dos habilidades de raza Golpe Defensa y Mordisco de Vida.
+ */
 public class Orco extends Personaje {
 
 	public Orco(String nombre, Casta casta, int id) {
@@ -24,6 +27,14 @@ public class Orco extends Personaje {
 		habilidadesRaza[1] = "Mordisco de Vida";
 	}
 
+	/**
+	 * El método implementa la habilidad Golpe Defensa. La misma gasta energía para atacar con el doble de su defensa.
+	 * Si el daño causado es mayor a cero, devuelve verdadero.
+	 * 
+	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
+	 * @return        true si el Orco tiene energía mayor a diez y el daño causado es mayor a cero;
+	 *                false en caso contrario.
+	 */
 	// Golpe Defensa
 	public boolean habilidadRaza1(Peleable atacado) {
 		if (this.getEnergia() > 10) {
@@ -34,6 +45,14 @@ public class Orco extends Personaje {
 		return false;
 	}
 
+	/**
+	 * El método implementa la habilidad Mordisco de Vida. La misma gasta energía para atacar con la fuerza del personaje.
+	 * Si el daño causado es mayor a cero, el personaje recibe el mismo número en salud y devuelve verdadero.
+	 * 
+	 * @param atacado un objeto que implementa la inferfaz Peleable, es aquel a ser atacado
+	 * @return        true si el Orco tiene energía mayor a diez y el daño causado es mayor a cero;
+	 *                false en caso contrario.
+	 */
 	// Mordisco de Vida
 	public boolean habilidadRaza2(Peleable atacado) {
 		if (this.getEnergia() > 10) {

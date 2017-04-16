@@ -1,5 +1,9 @@
 package dominio;
 
+/**
+ * La clase NonPlayableCharacter representa a los personajes no no jugables (también llamados NPC o PNJ)
+ */
+
 public class NonPlayableCharacter implements Peleable {
 
 	private int salud;
@@ -9,6 +13,14 @@ public class NonPlayableCharacter implements Peleable {
 	private int nivel;
 	private static final int dificultadAleatoria = -1;
 
+	/**
+	 * Constructor de la clase NonPlayableCharacter. La dificultad del NPC depende de si es aleatoria o no.
+	 * La dificultad del NPC es la que determina su fuerza, salud y defensa. 
+	 * 
+	 * @param nombre nombre inicial del NPC
+	 * @param nivel nivel inicial del NPC
+	 * @param dificultadNPC dificultad asignada, de este alor depende la fuerza, salud y defensa del NPC
+	 */
 	public NonPlayableCharacter(String nombre, int nivel, int dificultadNPC) {
 		this.nombre = nombre;
 		this.nivel = nivel;
@@ -86,6 +98,13 @@ public class NonPlayableCharacter implements Peleable {
 		this.salud = salud;
 	}
 
+	/**
+	 * Método que devuelve el daño causado al personaje.
+	 * El golpe realizado depende del ataque y de si dio un golpe crítico.
+	 * 
+	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
+	 * @return        daño causado.
+	 */
 	public int atacar(Peleable atacado) {
 		if (MyRandom.nextDouble() <= 0.15) {// los NPC tienen 15% de golpes criticos
 			return atacado.serAtacado((int) (this.getAtaque() * 1.5));
@@ -93,6 +112,13 @@ public class NonPlayableCharacter implements Peleable {
 			return atacado.serAtacado(this.getAtaque());
 	}
 
+	/**
+	 * Método que devuelve el daño recibido por el personaje.
+	 * El mismo depende de la defensa y de la probabilidad de esquivar el golpe.
+	 * 
+	 * @param daño daño inicial que el atacado sufrirá, puede verse modificado
+	 * @return     daño sufrido, es equivalente a cuánto disminuyó su salud
+	 */
 	public int serAtacado(int daño) {
 		if (MyRandom.nextDouble() >= 0.15) {
 			daño -= this.getDefensa() / 2;
