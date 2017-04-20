@@ -21,9 +21,8 @@ public class Hechicero extends Casta {
 	}
 
 	/**
-	 * Método que implementa la habilidad Bola de Fuego. El personaje gasta energía para atacar según los puntos de magia (dependen de la inteligencia). 
-	 * Si el daño es mayor a cero, devuelve verdadero.
-	 * Si la energía es menor a diez o el daño es menor o igual a cero, devuelve falso. 
+	 * Se implementa la habilidad Bola de Fuego. 
+	 * El personaje gasta energía para atacar según sus puntos de magia, que varían según la inteligencia.  
 	 * 
 	 * @param caster Personaje que va a atacar
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
@@ -41,8 +40,8 @@ public class Hechicero extends Casta {
 	}
 
 	/**
-	 * Método que implementa la habilidad Curar Aliado. El personaje gasta energía para curar a un personaje aliado según sus puntos de magia.
-	 * Si el aliado no es un Personaje o si la energía es menor o igual a diez, no cura al aliado y devuelve falso.
+	 * Se implementa la habilidad Curar Aliado. 
+	 * El personaje gasta energía para curar a un personaje aliado según sus puntos de magia.
 	 * 
 	 * @param caster Personaje que va a curar
 	 * @param aliado un objeto que implementa la interfaz Peleable, es aquel a ser curado
@@ -62,9 +61,9 @@ public class Hechicero extends Casta {
 	}
 
 	/**
-	 * Método que implementa la habilidad Robar Energía y Salud. El personaje gasta energía para reducir la energía y la salud del personaje atacado según sus puntos de magia.
+	 * Se implementa la habilidad Robar Energía y Salud. 
+	 * El personaje gasta energía para reducir la energía y la salud del personaje atacado según sus puntos de magia.
 	 * La energía y la salud quitada, la toma el Hechicero. 
-	 * Si la energía es menor o igual a cero o si el atacado no es un personaje, no roba energía y salud y devuelve falso.
 	 * 
 	 * @param caster Personaje que va a robar energía y salud
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado

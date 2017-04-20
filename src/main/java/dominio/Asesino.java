@@ -20,9 +20,8 @@ public class Asesino extends Casta {
 	}
 
 	/**
-	 * Método que implementa la habilidad Golpe Crítico. El personaje gasta energía para atacar con un golpe crítico.
-	 * Si el daño es mayor a cero, devuelve verdadero.
-	 * Si la energía es menor o igual a diez o si el daño no fue mayor a cero, devuelve falso.
+	 * Se implementa la habilidad Golpe Crítico.
+	 * El personaje gasta energía para atacar con la potencia de un golpe crítico.
 	 * 
 	 * @param caster Personaje que va a atacar
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
@@ -40,8 +39,8 @@ public class Asesino extends Casta {
 	}
 
 	/**
-	 * Método que implementa la habilidad Aumentar Evasión. El personaje gasta energía para aumentar su probabilidad de evitar el daño (tiene un límite de 0.5)
-	 * Si la energía es menor o igual a diez, devuelve falso y no se modifica la evasión.
+	 * Se implementa la habilidad Aumentar Evasión. 
+	 * El personaje gasta energía para aumentar su probabilidad de evitar el daño (tiene un límite de 0.5)
 	 * 
 	 * @param caster Personaje que va a atacar
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado

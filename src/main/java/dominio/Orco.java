@@ -28,8 +28,8 @@ public class Orco extends Personaje {
 	}
 
 	/**
-	 * El método implementa la habilidad Golpe Defensa. La misma gasta energía para atacar con el doble de su defensa.
-	 * Si el daño causado es mayor a cero, devuelve verdadero.
+	 * Se implementa la habilidad Golpe Defensa. 
+	 * El personaje gasta energía para atacar con el doble de su defensa.
 	 * 
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        true si el Orco tiene energía mayor a diez y el daño causado es mayor a cero;
@@ -46,8 +46,8 @@ public class Orco extends Personaje {
 	}
 
 	/**
-	 * El método implementa la habilidad Mordisco de Vida. La misma gasta energía para atacar con la fuerza del personaje.
-	 * Si el daño causado es mayor a cero, el personaje recibe el mismo número en salud y devuelve verdadero.
+	 * Se implementa la habilidad Mordisco de Vida. 
+	 * El personaje gasta energía para atacar con su fuerza. Adicionalmente, recibe de salud el mismo valor que el daño causado.
 	 * 
 	 * @param atacado un objeto que implementa la inferfaz Peleable, es aquel a ser atacado
 	 * @return        true si el Orco tiene energía mayor a diez y el daño causado es mayor a cero;

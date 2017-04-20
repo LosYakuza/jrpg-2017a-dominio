@@ -21,9 +21,8 @@ public class Guerrero extends Casta {
 	}
 
 	/**
-	 * Método que implementa la habilidad Ataque Doble. El personaje gasta energía para atacar con el doble de su propio ataque.
-	 * Si el daño causado es mayor a cero, devuelve verdadero.
-	 * Si la energía es menor o igual a diez, no ataca y devuelve falso.
+	 * Se implementa la habilidad Ataque Doble. 
+	 * El personaje gasta energía para atacar con el doble de su propio ataque.
 	 * 
 	 * @param caster Personaje que va a atacar
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
@@ -41,8 +40,8 @@ public class Guerrero extends Casta {
 	}
 	
 	/**
-	 * Método que implementa la habilidad Aumentar Defensa. El personaje gasta energía para aumentar la defensa según su magia.
-	 * Si la energía es menor o igual a diez, no sube su defensa y devuelve falso.
+	 * Se implementa la habilidad Aumentar Defensa. 
+	 * El personaje gasta energía para aumentar la defensa según su magia.
 	 * 
 	 * @param caster Personaje que va a aumentar su defensa
 	 * @param atacado un objeto que implementa la interfaz Peleable, no es utilizado en este método (podría ser nulo)
@@ -60,9 +59,8 @@ public class Guerrero extends Casta {
 	}
 
 	/**
-	 * Método que implementa la habilidad Ignorar Defensa. El personaje gasta energía para atacar sin tener en cuenta la defensa del atacado (pasa a ser cero durante el ataque).
-	 * Si el atacado es un Personaje y y el daño es mayor a cero, devuelve verdadero.
-	 * Si la energía es menor o igual a diez, si el atacado no es un Personaje o si el daño es menor o igual a cero, devuelve falso.
+	 * Se implementa la habilidad Ignorar Defensa. 
+	 * El personaje gasta energía para atacar sin tener en cuenta la defensa del atacado.
 	 * 
 	 * @param caster Personaje que va a atacar
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado

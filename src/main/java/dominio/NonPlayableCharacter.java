@@ -19,7 +19,7 @@ public class NonPlayableCharacter implements Peleable {
 	 * 
 	 * @param nombre nombre inicial del NPC
 	 * @param nivel nivel inicial del NPC
-	 * @param dificultadNPC dificultad asignada, de este alor depende la fuerza, salud y defensa del NPC
+	 * @param dificultadNPC dificultad asignada, de este valor depende la fuerza, salud y defensa del NPC 
 	 */
 	public NonPlayableCharacter(String nombre, int nivel, int dificultadNPC) {
 		this.nombre = nombre;
@@ -99,8 +99,7 @@ public class NonPlayableCharacter implements Peleable {
 	}
 
 	/**
-	 * Método que devuelve el daño causado al personaje.
-	 * El golpe realizado depende del ataque y de si dio un golpe crítico.
+	 * Causar daño al atacado evaluando la probabilidad de golpe crítico y su ataque.
 	 * 
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        daño causado.
@@ -113,8 +112,7 @@ public class NonPlayableCharacter implements Peleable {
 	}
 
 	/**
-	 * Método que devuelve el daño recibido por el personaje.
-	 * El mismo depende de la defensa y de la probabilidad de esquivar el golpe.
+	 * Recibir daño evaluando probabilidad de evasión y defensa
 	 * 
 	 * @param daño daño inicial que el atacado sufrirá, puede verse modificado
 	 * @return     daño sufrido, es equivalente a cuánto disminuyó su salud

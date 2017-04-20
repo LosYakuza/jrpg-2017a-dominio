@@ -31,8 +31,8 @@ public class Elfo extends Personaje {
 	}
 
 	/**
-	 * Método que implementa la habilidad Golpe Level. La misma gasta energía para atacar con la intensidad de la fuerza y el nivel del personaje multiplicado por diez.
-	 * Si el daño causado es mayor a cero, devuelve verdadero.
+	 * Se implementa la habilidad Golpe Level. 
+	 * El personaje gasta energía para atacar con la intensidad de la fuerza y el nivel del personaje multiplicado por diez.
 	 * 
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        true si el Elfo tiene energía mayor a diez y el daño causado es mayor a cero;
@@ -49,8 +49,8 @@ public class Elfo extends Personaje {
 	}
 
 	/**
-	 * Método que implementa la habilidad Ataque Bosque. La misma gasta energía para atacar con el poder de su magia.
-	 * Si el daño causado es mayor a cero, devuelve verdadero.
+	 * Se implementa la habilidad Ataque Bosque. 
+	 * El personaje gasta energía para atacar con el poder de su magia.
 	 * 
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        true si el Elfo tiene energía mayor a diez y el daño causado es mayor a cero;

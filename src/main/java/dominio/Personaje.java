@@ -245,8 +245,8 @@ public abstract class Personaje implements Peleable, Serializable {
 	}
 
 	/**
-	 * Método que devuelve el daño que sufrió el personaje atacado.
-	 * La probabilidad de que mi personaje de un golpe crítico depende de su destreza y de la casta.
+	 * Causar daño al atacado evaluando la probabilidad de golpe crítico y su ataque.
+	 * La probabilidad del daño crítico aumenta si el personaje posee gran destreza.
 	 * 
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        el daño que sufrió el personaje atacado
@@ -307,8 +307,7 @@ public abstract class Personaje implements Peleable, Serializable {
 	}
 
 	/**
-	 * Método que devuelve el daño que sufrió el personaje, en otras palabras, cuanto disminuyó su salud. 
-	 * El daño sufrido depende de la probabilidad de la casta del personaje de evitar el daño, y de la salud restante de mi personaje al momento de ser atacado.
+	 * Recibir daño evaluando probabilidad de evasión de la casta y su defensa.
 	 * 
 	 * @param daño daño inicial que el atacado sufrirá, puede verse modificado
 	 * @return     daño sufrido, es equivalente a cuánto disminuyó su salud

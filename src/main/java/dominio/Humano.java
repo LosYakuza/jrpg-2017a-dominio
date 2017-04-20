@@ -26,7 +26,8 @@ public class Humano extends Personaje {
 	}
 
 	/**
-	 * Método que implementa la habilidad Incentivar. La misma gasta energía para aumentar el ataque del personaje atacado según la magia de mi humano.
+	 * Se implementa la habilidad Incentivar. 
+	 * El personaje gasta energía para aumentar el ataque del personaje atacado según la magia de mi humano.
 	 * 
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        true si el Humano tiene energía mayor a diez;
@@ -43,8 +44,8 @@ public class Humano extends Personaje {
 	}
 
 	/**
-	 * Método que implementa la habilidad Golpe Fatal. 
-	 * El humano golpea con la intensidad correspondiente a la mitad de la vida del personaje atacado. Si el daño causado es mayor a cero, el humano pierde el 50% de su energía.
+	 * Se implementa la habilidad Golpe Fatal. 
+	 * El humano golpea con la intensidad correspondiente a la mitad de la vida del personaje atacado.
 	 * Advertencia: si el humano no supera los 10 de energía, solo perderá energía y no atacará.
 	 * 
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado

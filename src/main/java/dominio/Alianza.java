@@ -32,18 +32,18 @@ public class Alianza {
 	}
 	
 	/**
-	 * Método que elimina un personaje de la alianza
+	 * Se elimina un personaje de la alianza.
 	 * 
-	 * @param pj Personaje a eliminar de la lista de aliados.
+	 * @param pj Personaje a remover de la lista de aliados.
 	 */
 	public void eliminarPersonaje(Personaje pj){
 		aliados.remove(pj);
 	}
 	
 	/**
-	 * Método que añade un personaje a la alianza
+	 * Se añade un personaje a la alianza.
 	 * 
-	 * @param pj Personaje a añadir en la lista de aliados.
+	 * @param pj Personaje a agregar en la lista de aliados.
 	 */
 	public void añadirPersonaje(Personaje pj){
 		aliados.add(pj);
