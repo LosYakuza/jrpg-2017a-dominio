@@ -1,5 +1,8 @@
 package dominio;
 
+/**
+ * La clase Asesino es una Casta que implementa las habilidades Golpe Crítico, Aumentar Evasión y Robar. 
+ */
 public class Asesino extends Casta {
 
 	public Asesino(double prob_crit, double evasion, double daño_crit) {
@@ -16,6 +19,15 @@ public class Asesino extends Casta {
 		habilidadesCasta[2] = "Robar";
 	}
 
+	/**
+	 * Se implementa la habilidad Golpe Crítico.
+	 * El personaje gasta energía para atacar con la potencia de un golpe crítico.
+	 * 
+	 * @param caster Personaje que va a atacar
+	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
+	 * @return        true si caster tiene energía mayor a diez y el daño causado es mayor a cero;
+	 *                false en caso contrario.
+	 */
 	// Golpe Crítico
 	public boolean habilidad1(Personaje caster, Peleable atacado) {
 		if (caster.getEnergia() > 10) {
@@ -26,6 +38,15 @@ public class Asesino extends Casta {
 		return false;
 	}
 
+	/**
+	 * Se implementa la habilidad Aumentar Evasión. 
+	 * El personaje gasta energía para aumentar su probabilidad de evitar el daño (tiene un límite de 0.5)
+	 * 
+	 * @param caster Personaje que va a atacar
+	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
+	 * @return        true si caster tiene energía mayor a diez y el daño causado es mayor a cero;
+	 *                false en caso contrario.
+	 */
 	// Aumentar Evasion
 	public boolean habilidad2(Personaje caster, Peleable atacado) {
 		if (caster.getEnergia() > 10) {

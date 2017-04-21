@@ -1,5 +1,9 @@
 package dominio;
 
+/**
+ * La clase Hechicero es una Casta que posee como habilidades Bola de Fuego, Curar Aliado y Robar Energía y Salud.
+ *
+ */
 public class Hechicero extends Casta {
 
 	public Hechicero(double prob_crit, double evasion, double daño_crit) {
@@ -16,6 +20,15 @@ public class Hechicero extends Casta {
 		habilidadesCasta[2] = "Robar Energia y Salud";
 	}
 
+	/**
+	 * Se implementa la habilidad Bola de Fuego. 
+	 * El personaje gasta energía para atacar según sus puntos de magia, que varían según la inteligencia.  
+	 * 
+	 * @param caster Personaje que va a atacar
+	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
+	 * @return        true si el Personaje tiene energía mayor a diez y el daño causado es mayor a cero;
+	 *                false en caso contrario.
+	 */
 	// Bola de Fuego
 	public boolean habilidad1(Personaje caster, Peleable atacado) {
 		if (caster.getEnergia() > 10) {
@@ -26,6 +39,15 @@ public class Hechicero extends Casta {
 		return false;
 	}
 
+	/**
+	 * Se implementa la habilidad Curar Aliado. 
+	 * El personaje gasta energía para curar a un personaje aliado según sus puntos de magia.
+	 * 
+	 * @param caster Personaje que va a curar
+	 * @param aliado un objeto que implementa la interfaz Peleable, es aquel a ser curado
+	 * @return       true si caster tiene energía mayor a diez y el aliado es un Personaje;
+	 *               false en caso contrario.
+	 */
 	// Curar Aliado
 	public boolean habilidad2(Personaje caster, Peleable aliado) {
 		if (caster.getEnergia() > 10) {
@@ -38,6 +60,16 @@ public class Hechicero extends Casta {
 		return false;
 	}
 
+	/**
+	 * Se implementa la habilidad Robar Energía y Salud. 
+	 * El personaje gasta energía para reducir la energía y la salud del personaje atacado según sus puntos de magia.
+	 * La energía y la salud quitada, la toma el Hechicero. 
+	 * 
+	 * @param caster Personaje que va a robar energía y salud
+	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
+	 * @return        true en caso de que caster tenga energía mayor a diez y el atacado es Personaje;
+	 *                false en caso contrario.
+	 */
 	// Robar Energia y Salud
 	public boolean habilidad3(Personaje caster, Peleable atacado) {
 		if (caster.getEnergia() > 10) {

@@ -2,6 +2,12 @@ package dominio;
 
 import java.io.Serializable;
 
+/**
+ * La clase Personaje está desarrollada para que las clases que la hereden posean todos los atributos y métodos 
+ * necesarios para atacar y ser atacados dependiendo de sus atributos (salud, energía, defensa, etc.), de su casta,
+ * de su nivel, experiencia y habilidades.
+ */
+
 public abstract class Personaje implements Peleable, Serializable {
 
 	protected int salud;
@@ -238,6 +244,13 @@ public abstract class Personaje implements Peleable, Serializable {
 		this.energiaTope = energiaTope;
 	}
 
+	/**
+	 * Causar daño al atacado evaluando la probabilidad de golpe crítico y su ataque.
+	 * La probabilidad del daño crítico aumenta si el personaje posee gran destreza.
+	 * 
+	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
+	 * @return        el daño que sufrió el personaje atacado
+	 */
 	public int atacar(Peleable atacado) {
 		if (salud == 0)
 			return 0;
@@ -293,6 +306,12 @@ public abstract class Personaje implements Peleable, Serializable {
 		return salud > 0;
 	}
 
+	/**
+	 * Recibir daño evaluando probabilidad de evasión de la casta y su defensa.
+	 * 
+	 * @param daño daño inicial que el atacado sufrirá, puede verse modificado
+	 * @return     daño sufrido, es equivalente a cuánto disminuyó su salud
+	 */	
 	public int serAtacado(int daño) {
 		if (MyRandom.nextDouble() >= this.getCasta().getProbabilidadEvitarDaño()) {
 			daño -= this.defensa;

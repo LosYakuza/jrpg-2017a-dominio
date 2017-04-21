@@ -2,6 +2,10 @@ package dominio;
 
 import java.io.Serializable;
 
+/**
+ * La clase Casta posee los atributos necesarios para acceder al daño crítico y a las probabilidades de esquivar ataques y de hacer un golpe crítico.
+ */
+
 public abstract class Casta implements Serializable {
 	protected double probabilidadGolpeCritico;
 	protected double probabilidadEvitarDaño;
@@ -10,12 +14,22 @@ public abstract class Casta implements Serializable {
 
 	protected String[] habilidadesCasta;
 
+	/**
+	 * Constructor con valores defecto de la clase Casta
+	 */
 	public Casta() {
 		this.probabilidadGolpeCritico = 0.2;
 		this.probabilidadEvitarDaño = 0.2;
 		this.dañoCritico = 1.5;
 	}
 
+	/**
+	 * Constructor de la clase Casta. Se asignan los valores pasados por parámetros a su atributo correspondiente.
+	 * 
+	 * @param prob_crit probabilidad de golpe crítico.
+	 * @param evasion probabilidad de evitar daño.
+	 * @param daño_crit daño crítico.
+	 */
 	public Casta(double prob_crit, double evasion, double daño_crit) {
 		this.probabilidadGolpeCritico = prob_crit;
 		this.probabilidadEvitarDaño = evasion;
