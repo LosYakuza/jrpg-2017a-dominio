@@ -8,22 +8,36 @@ public class Humano extends Personaje {
 
 	public Humano(String nombre, Casta casta, int id) {
 		super(nombre, casta, id);
-		saludTope += 5;
-		energiaTope += 5;
-		salud = saludTope;
-		energia = energiaTope;
-		nombreRaza = "Humano";
 	}
-
+	
 	public Humano(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
 			int experiencia, int nivel, int idPersonaje) {
 		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje);
-		nombreRaza = "Humano";
-
+	}
+	
+	@Override
+	protected String nombreRazaInicial() {
+		return "Humano";
+	}
+	
+	@Override
+	protected void inicializarHabilidadesSegunRaza() {
 		habilidadesRaza = new String[2];
 		habilidadesRaza[0] = "Incentivar";
 		habilidadesRaza[1] = "Golpe Fatal";
 	}
+	
+	@Override
+	protected int saludTopeInicial() {
+		return super.saludTopeInicial() + 5;
+	}
+	
+	@Override
+	protected int energiaTopeInicial() {
+		return super.energiaTopeInicial() + 5;
+	}
+
+
 
 	/**
 	 * Se implementa la habilidad Incentivar. 

@@ -39,6 +39,8 @@ public abstract class Personaje implements Peleable, Serializable {
 	public static int tablaDeNiveles[];
 
 	protected String[] habilidadesRaza;
+	
+	protected abstract void inicializarHabilidadesSegunRaza();
 
 	public String[] getHabilidadesRaza() {
 		return habilidadesRaza;
@@ -60,6 +62,8 @@ public abstract class Personaje implements Peleable, Serializable {
 		this.nombre = nombre;
 		this.casta = casta;
 		this.idPersonaje = id;
+		nombreRaza = nombreRazaInicial();
+		inicializarHabilidadesSegunRaza();		
 		experiencia = 0;
 		nivel = 1;
 		fuerza = 10;
@@ -74,8 +78,10 @@ public abstract class Personaje implements Peleable, Serializable {
 
 		x = 0;
 		y = 0;
-		saludTope = 100;
-		energiaTope = 100;
+		saludTope = saludTopeInicial();
+		salud = saludTope;
+		energiaTope = energiaTopeInicial();
+		energia = energiaTope;
 
 		ataque = this.calcularPuntosDeAtaque();
 		defensa = this.calcularPuntosDeDefensa();
@@ -107,6 +113,8 @@ public abstract class Personaje implements Peleable, Serializable {
 		this.magia = this.calcularPuntosDeMagia();
 	}
 
+	protected abstract String nombreRazaInicial();
+	
 	public String getNombreRaza() {
 		return nombreRaza;
 	}
@@ -227,6 +235,10 @@ public abstract class Personaje implements Peleable, Serializable {
 	public void setDefensa(int defensa) {
 		this.defensa = defensa;
 	}
+	
+	protected int saludTopeInicial() {
+		return 100;
+	}
 
 	public int getSaludTope() {
 		return saludTope;
@@ -234,6 +246,10 @@ public abstract class Personaje implements Peleable, Serializable {
 
 	public void setSaludTope(int saludTope) {
 		this.saludTope = saludTope;
+	}
+	
+	protected int energiaTopeInicial(){
+		return 100;
 	}
 
 	public int getEnergiaTope() {

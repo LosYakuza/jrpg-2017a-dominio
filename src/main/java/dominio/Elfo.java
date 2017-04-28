@@ -8,26 +8,28 @@ public class Elfo extends Personaje {
 
 	public Elfo(String nombre, Casta casta, int id) {
 		super(nombre, casta, id);
-		energiaTope += 10;
-		salud = saludTope;
-		energia = energiaTope;
-		nombreRaza = "Elfo";
+	}
 
+	public Elfo(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
+			int experiencia, int nivel, int idPersonaje) {
+		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje);
+	}
+
+	@Override
+	protected String nombreRazaInicial() {
+		return "Elfo";
+	}
+
+	@Override
+	protected void inicializarHabilidadesSegunRaza() {
 		habilidadesRaza = new String[2];
 		habilidadesRaza[0] = "Golpe Level";
 		habilidadesRaza[1] = "Ataque Bosque";
 	}
 
-	public Elfo(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
-			int experiencia, int nivel,
-			int idPersonaje) {
-		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta,
-				experiencia, nivel, idPersonaje);
-		nombreRaza = "Elfo";
-
-		habilidadesRaza = new String[2];
-		habilidadesRaza[0] = "Golpe Level";
-		habilidadesRaza[1] = "Ataque Bosque";
+	@Override
+	protected int energiaTopeInicial() {
+		return super.energiaTopeInicial() + 10;
 	}
 
 	/**
