@@ -401,7 +401,7 @@ public abstract class Personaje extends Peleador implements Peleable, Serializab
 
 	@Override
 	protected boolean puedoAtacar(final boolean atacadoEstaVivo){
-		return (getSalud() == 0) && atacadoEstaVivo;
+		return this.estaVivo() && atacadoEstaVivo;
 	}
 
 	@Override
