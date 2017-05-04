@@ -28,10 +28,11 @@ public class TestHechicero {
 		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1);
 
 		Assert.assertTrue(e.getSalud() == 100);
-		if (h.habilidadCasta1(e))
+		if (h.habilidadCasta1(e)) {
 			Assert.assertTrue(e.getSalud() < 100);
-		else
+		} else {
 			Assert.assertTrue(e.getSalud() == 100);
+		}
 	}
 
 	@Test

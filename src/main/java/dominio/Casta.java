@@ -30,7 +30,7 @@ public abstract class Casta implements Serializable {
 	 * @param evasion probabilidad de evitar daño.
 	 * @param daño_crit daño crítico.
 	 */
-	public Casta(double prob_crit, double evasion, double daño_crit) {
+	public Casta(final double prob_crit, final double evasion, final double daño_crit) {
 		this.probabilidadGolpeCritico = prob_crit;
 		this.probabilidadEvitarDaño = evasion;
 		this.dañoCritico = daño_crit;

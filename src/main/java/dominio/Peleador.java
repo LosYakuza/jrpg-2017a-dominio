@@ -65,9 +65,8 @@ public abstract class Peleador implements Peleable, Serializable {
 
 	/**
 	 * Recibir daño evaluando probabilidad de evasión y defensa
-	 * 
-	 * @param daño
-	 *            daño inicial que el atacado sufrirá, puede verse modificado
+	 *
+	 * @param daño daño inicial que el atacado sufrirá, puede verse modificado
 	 * @return daño sufrido, es equivalente a cuánto disminuyó su salud
 	 */
 	public int serAtacado(int daño) {
@@ -90,14 +89,13 @@ public abstract class Peleador implements Peleable, Serializable {
 		return daño;
 	};
 
-	
 	/**
 	 * Causar daño al atacado evaluando la probabilidad de golpe crítico y su ataque.
-	 * 
+	 *
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        daño causado.
 	 */
-	public int atacar(Peleable atacado) {
+	public int atacar(final Peleable atacado) {
 		if (puedoAtacar(atacado.estaVivo())) {
 			if (MyRandom.nextDouble() <= probabilidadGolpeCritico()) {
 				return atacado.serAtacado(this.golpe_critico());
@@ -109,10 +107,10 @@ public abstract class Peleador implements Peleable, Serializable {
 	}
 
 	protected abstract int golpe_critico();
-	
+
 	protected abstract double probabilidadGolpeCritico();
 
-	protected boolean puedoAtacar(boolean atacadoEstaVivo) {
+	protected boolean puedoAtacar(final boolean atacadoEstaVivo) {
 		return true;
 	}
 

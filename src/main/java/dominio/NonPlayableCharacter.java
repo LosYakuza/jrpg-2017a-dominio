@@ -10,20 +10,21 @@ public class NonPlayableCharacter extends Peleador implements Peleable {
 
 	/**
 	 * Constructor de la clase NonPlayableCharacter. La dificultad del NPC depende de si es aleatoria o no.
-	 * La dificultad del NPC es la que determina su fuerza, salud y defensa. 
-	 * 
+	 * La dificultad del NPC es la que determina su fuerza, salud y defensa.
+	 *
 	 * @param nombre nombre inicial del NPC
 	 * @param nivel nivel inicial del NPC
-	 * @param dificultadNPC dificultad asignada, de este valor depende la fuerza, salud y defensa del NPC 
+	 * @param dificultadNPC dificultad asignada, de este valor depende la fuerza, salud y defensa del NPC
 	 */
 	public NonPlayableCharacter(String nombre, int nivel, int dificultadNPC) {
 		setNombre(nombre);
 		setNivel(nivel);
 		int dificultad;
-		if (dificultadNPC == dificultadAleatoria)
+		if (dificultadNPC == dificultadAleatoria) {
 			dificultad = MyRandom.nextInt(3);
-		else
+		} else {
 			dificultad = dificultadNPC;
+		}
 
 		switch (dificultad) {
 		case 0:
@@ -41,6 +42,8 @@ public class NonPlayableCharacter extends Peleador implements Peleable {
 			setSalud(50 + (nivel - 1) * 25);
 			setDefensa(4 + (nivel - 1) * 4);
 			break;
+		default:
+			break;
 
 		}
 	}
@@ -56,11 +59,11 @@ public class NonPlayableCharacter extends Peleador implements Peleable {
 	}
 
 	@Override
-	public void setAtaque(int ataque) {
+	public void setAtaque(final int ataque) {
 		setFuerza(ataque);
 	}
 
-	public void ganarExperiencia(int exp) {	}
+	public void ganarExperiencia(final int exp) {	}
 
 	@Override
 	protected double probabilidadEvitarDañoEnAtaque() {
@@ -80,7 +83,6 @@ public class NonPlayableCharacter extends Peleador implements Peleable {
 	@Override
 	protected double probabilidadGolpeCritico() {
 		return 0.15;
-	}	
+	}
 
-	
 }

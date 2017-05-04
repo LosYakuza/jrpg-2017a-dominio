@@ -21,8 +21,9 @@ public class TestDaño {
 			Assert.assertTrue(o.getSalud() == 0);
 			h.atacar(o);
 			Assert.assertTrue(o.getSalud() == 0);
-		} else
+		} else {
 			Assert.assertTrue(o.getSalud() == 0);
+		}
 	}
 
 	@Test

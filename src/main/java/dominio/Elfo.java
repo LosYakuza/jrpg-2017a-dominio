@@ -33,37 +33,39 @@ public class Elfo extends Personaje {
 	}
 
 	/**
-	 * Se implementa la habilidad Golpe Level. 
+	 * Se implementa la habilidad Golpe Level.
 	 * El personaje gasta energía para atacar con la intensidad de la fuerza y el nivel del personaje multiplicado por diez.
-	 * 
+	 *
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        true si el Elfo tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
 	// Golpe Level
-	public boolean habilidadRaza1(Peleable atacado) {
+	public boolean habilidadRaza1(final Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			this.setEnergia(this.getEnergia() - 10);
-			if (atacado.serAtacado(this.getFuerza() + this.getNivel() * 10) > 0)
+			if (atacado.serAtacado(getFuerza() + getNivel() * 10) > 0) {
 				return true;
+			}
 		}
 		return false;
 	}
 
 	/**
-	 * Se implementa la habilidad Ataque Bosque. 
+	 * Se implementa la habilidad Ataque Bosque.
 	 * El personaje gasta energía para atacar con el poder de su magia.
-	 * 
+	 *
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        true si el Elfo tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
 	// Ataque Bosque
-	public boolean habilidadRaza2(Peleable atacado) {
+	public boolean habilidadRaza2(final Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			this.setEnergia(this.getEnergia() - 10);
-			if (atacado.serAtacado((int) (this.magia)) > 0)
+			if (atacado.serAtacado((int) (this.magia)) > 0) {
 				return true;
+			}
 		}
 		return false;
 	}
