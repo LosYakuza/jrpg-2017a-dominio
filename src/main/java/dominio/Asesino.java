@@ -63,4 +63,9 @@ public class Asesino extends Casta {
 	public boolean habilidad3(final Personaje caster, final Peleable atacado) {
 		return false;
 	}
+	
+	@Override
+	public int destrezaSegunCasta() {
+		return super.destrezaSegunCasta() + 5;
+	}
 }

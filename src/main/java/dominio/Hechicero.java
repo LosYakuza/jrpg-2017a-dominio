@@ -82,4 +82,9 @@ public class Hechicero extends Casta {
 		}
 		return false;
 	}
+	
+	@Override
+	public int inteligenciaSegunCasta() {
+		return super.inteligenciaSegunCasta() + 5;
+	}
 }

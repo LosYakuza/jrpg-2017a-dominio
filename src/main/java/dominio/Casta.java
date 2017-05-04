@@ -73,4 +73,16 @@ public abstract class Casta implements Serializable {
 	public void setDañoCritico(double dañoCritico) {
 		this.dañoCritico = dañoCritico;
 	}
+
+	public int fuerzaSegunCasta() {
+		return 0;
+	}
+
+	public int inteligenciaSegunCasta() {
+		return 0;
+	}
+
+	public int destrezaSegunCasta() {
+		return 0;
+	}
 }

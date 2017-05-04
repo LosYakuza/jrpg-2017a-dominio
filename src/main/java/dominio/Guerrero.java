@@ -81,4 +81,9 @@ public class Guerrero extends Casta {
 		}
 		return false;
 	}
+	
+	@Override
+	public int fuerzaSegunCasta() {
+		return super.fuerzaSegunCasta() + 5;
+	}
 }
