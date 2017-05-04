@@ -27,6 +27,27 @@ public class TestAliarCombatir {
 			Assert.assertTrue(h2.getSalud()<105);
 		else
 			Assert.assertTrue(h2.getSalud()==105);
+		
+		
+		NonPlayableCharacter npc = new NonPlayableCharacter("Agatha", 3, 1);
+		Elfo e = new Elfo("Bemille", new Guerrero(), 1);
+		
+		Assert.assertTrue(npc.getSalud()==80);
+		if (e.atacar(npc)!=0)
+			Assert.assertTrue(npc.getSalud()<80);
+		else
+			Assert.assertTrue(npc.getSalud()==80);
+		
+		NonPlayableCharacter npc2 = new NonPlayableCharacter("Nicolas", 3, 1);
+		Orco o = new Orco("Lautaro", new Hechicero(), 1);
+		
+		Assert.assertTrue(o.getSalud()==110);
+		if (npc2.atacar(o)!=0)
+			Assert.assertTrue(o.getSalud()<110);
+		else
+			Assert.assertTrue(o.getSalud()==110);
+		
+		
 	}
 	
 	@Test
