@@ -39,7 +39,6 @@ public class Orco extends Personaje {
 	 * @return        true si el Orco tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
-	// Golpe Defensa
 	public boolean habilidadRaza1(final Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			this.setEnergia(this.getEnergia() - 10);
@@ -58,7 +57,6 @@ public class Orco extends Personaje {
 	 * @return        true si el Orco tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
-	// Mordisco de Vida
 	public boolean habilidadRaza2(Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			this.setEnergia(this.getEnergia() - 10);

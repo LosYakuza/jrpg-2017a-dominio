@@ -40,7 +40,6 @@ public class Elfo extends Personaje {
 	 * @return        true si el Elfo tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
-	// Golpe Level
 	public boolean habilidadRaza1(final Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			this.setEnergia(this.getEnergia() - 10);
@@ -59,7 +58,6 @@ public class Elfo extends Personaje {
 	 * @return        true si el Elfo tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
-	// Ataque Bosque
 	public boolean habilidadRaza2(final Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			this.setEnergia(this.getEnergia() - 10);

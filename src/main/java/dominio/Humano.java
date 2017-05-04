@@ -47,7 +47,6 @@ public class Humano extends Personaje {
 	 * @return        true si el Humano tiene energía mayor a diez;
 	 *                false en caso contrario.
 	 */
-	// Incentivar
 	public boolean habilidadRaza1(final Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			this.setEnergia(this.getEnergia() - 10);
@@ -66,7 +65,6 @@ public class Humano extends Personaje {
 	 * @return        true si el Humano tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
-	// Golpe Fatal
 	public boolean habilidadRaza2(final Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			if (atacado.serAtacado(atacado.getSalud() / 2) > 0) {

@@ -11,8 +11,8 @@ import java.io.Serializable;
 public abstract class Personaje extends Peleador implements Peleable, Serializable {
 
 	protected int energia;
-	protected int ataque;// depende de la fuerza
-	protected int magia;// depende de la inteligencia
+	protected int ataque;
+	protected int magia;
 
 	protected String nombreRaza;
 
@@ -262,7 +262,7 @@ public abstract class Personaje extends Peleador implements Peleable, Serializab
 		if ((getSalud() - daño) >= 0) {
 			setSalud(getSalud() - daño);
 		} else {
-			daño = getSalud();// le queda menos salud que el daño inflingido
+			daño = getSalud();
 			setSalud(0);
 		}
 		return daño;
@@ -276,7 +276,7 @@ public abstract class Personaje extends Peleador implements Peleable, Serializab
 		if ((energia - daño) >= 0) {
 			energia -= daño;
 		} else {
-			daño = energia;// le queda menos energia que el daño inflingido
+			daño = energia;
 			energia = 0;
 		}
 		return daño;

@@ -29,7 +29,6 @@ public class Guerrero extends Casta {
 	 * @return        true si caster tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
-	// Ataque Doble
 	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
@@ -49,7 +48,6 @@ public class Guerrero extends Casta {
 	 * @return        true si caster tiene energía mayor a diez;
 	 *                false en caso contrario.
 	 */
-	// Aumentar Defensa
 	public boolean habilidad2(final Personaje caster, final Peleable atacado) { 
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
@@ -68,7 +66,6 @@ public class Guerrero extends Casta {
 	 * @return        true si caster tiene energía mayor a diez, el atacado es un Personaje y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
-	// Ignorar Defensa
 	public boolean habilidad3(final Personaje caster, final Peleable atacado) { 
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);

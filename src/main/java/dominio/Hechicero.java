@@ -29,7 +29,6 @@ public class Hechicero extends Casta {
 	 * @return        true si el Personaje tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
-	// Bola de Fuego
 	public boolean habilidad1(Personaje caster, Peleable atacado) {
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
@@ -48,7 +47,6 @@ public class Hechicero extends Casta {
 	 * @return       true si caster tiene energía mayor a diez y el aliado es un Personaje;
 	 *               false en caso contrario.
 	 */
-	// Curar Aliado
 	public boolean habilidad2(final Personaje caster, final Peleable aliado) {
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
@@ -70,7 +68,6 @@ public class Hechicero extends Casta {
 	 * @return        true en caso de que caster tenga energía mayor a diez y el atacado es Personaje;
 	 *                false en caso contrario.
 	 */
-	// Robar Energia y Salud
 	public boolean habilidad3(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
