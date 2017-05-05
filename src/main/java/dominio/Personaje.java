@@ -377,15 +377,17 @@ public abstract class Personaje extends Peleador implements Peleable, Serializab
 
 	@Override
 	protected int quitarVidaSegunDaño(int daño) {
-		if (daño > 0) {
+		if (daño >= 0) {
 			if (getSalud() <= daño) {
 				daño = getSalud();
 				setSalud(0);
 			} else {
 				super.quitarVidaSegunDaño(daño);
 			}
+			return daño;
+		} else {
+			return 0;
 		}
-		return daño;
 	}
 
 	@Override

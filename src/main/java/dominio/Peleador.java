@@ -85,8 +85,10 @@ public abstract class Peleador implements Peleable, Serializable {
 	protected int quitarVidaSegunDaño(int daño) {
 		if (daño > 0) {
 			salud -= daño;
+			return daño;
+		} else {
+			return 0;
 		}
-		return daño;
 	};
 
 	/**
