@@ -23,33 +23,32 @@ public class Guerrero extends Casta {
 	/**
 	 * Se implementa la habilidad Ataque Doble. 
 	 * El personaje gasta energía para atacar con el doble de su propio ataque.
-	 * 
+	 *
 	 * @param caster Personaje que va a atacar
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        true si caster tiene energía mayor a diez y el daño causado es mayor a cero;
-	 *                false en caso contrario. 
+	 *                false en caso contrario.
 	 */
-	// Ataque Doble
-	public boolean habilidad1(Personaje caster, Peleable atacado) { 
+	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
-			if (atacado.serAtacado(caster.ataque * 2) > 0)
+			if (atacado.serAtacado(caster.ataque * 2) > 0) {
 				return true;
+			}
 		}
 		return false;
 	}
-	
+
 	/**
-	 * Se implementa la habilidad Aumentar Defensa. 
+	 * Se implementa la habilidad Aumentar Defensa.
 	 * El personaje gasta energía para aumentar la defensa según su magia.
-	 * 
+	 *
 	 * @param caster Personaje que va a aumentar su defensa
 	 * @param atacado un objeto que implementa la interfaz Peleable, no es utilizado en este método (podría ser nulo)
 	 * @return        true si caster tiene energía mayor a diez;
 	 *                false en caso contrario.
 	 */
-	// Aumentar Defensa
-	public boolean habilidad2(Personaje caster, Peleable atacado) { 
+	public boolean habilidad2(final Personaje caster, final Peleable atacado) { 
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
 			caster.setDefensa(caster.getDefensa() + caster.magia);
@@ -59,16 +58,15 @@ public class Guerrero extends Casta {
 	}
 
 	/**
-	 * Se implementa la habilidad Ignorar Defensa. 
+	 * Se implementa la habilidad Ignorar Defensa.
 	 * El personaje gasta energía para atacar sin tener en cuenta la defensa del atacado.
-	 * 
+	 *
 	 * @param caster Personaje que va a atacar
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        true si caster tiene energía mayor a diez, el atacado es un Personaje y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
-	// Ignorar Defensa
-	public boolean habilidad3(Personaje caster, Peleable atacado) { 
+	public boolean habilidad3(final Personaje caster, final Peleable atacado) { 
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
 			if (atacado instanceof Personaje) {
@@ -82,5 +80,10 @@ public class Guerrero extends Casta {
 
 		}
 		return false;
+	}
+	
+	@Override
+	public int getFuerza() {
+		return super.getFuerza() + 5;
 	}
 }
