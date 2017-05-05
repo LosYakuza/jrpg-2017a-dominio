@@ -65,7 +65,7 @@ public class Asesino extends Casta {
 	}
 	
 	@Override
-	public int destrezaSegunCasta() {
-		return super.destrezaSegunCasta() + 5;
+	public int getDestreza() {
+		return super.getDestreza() + 5;
 	}
 }

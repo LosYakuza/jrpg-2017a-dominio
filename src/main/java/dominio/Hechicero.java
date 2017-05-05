@@ -84,7 +84,7 @@ public class Hechicero extends Casta {
 	}
 	
 	@Override
-	public int inteligenciaSegunCasta() {
-		return super.inteligenciaSegunCasta() + 5;
+	public int getInteligencia() {
+		return super.getInteligencia() + 5;
 	}
 }

@@ -61,9 +61,9 @@ public abstract class Personaje extends Peleador implements Peleable, Serializab
 		inicializarHabilidadesSegunRaza();
 		experiencia = 0;
 		setNivel(1);
-		setFuerza(10 + casta.fuerzaSegunCasta());
-		inteligencia = 10 + casta.inteligenciaSegunCasta();
-		destreza = 10 + casta.destrezaSegunCasta();
+		setFuerza(10 + casta.getFuerza());
+		inteligencia = 10 + casta.getInteligencia();
+		destreza = 10 + casta.getDestreza();
 		
 		x = 0;
 		y = 0;

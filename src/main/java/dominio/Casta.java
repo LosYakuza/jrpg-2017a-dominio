@@ -74,15 +74,15 @@ public abstract class Casta implements Serializable {
 		this.dañoCritico = dañoCritico;
 	}
 
-	public int fuerzaSegunCasta() {
+	public int getFuerza() {
 		return 0;
 	}
 
-	public int inteligenciaSegunCasta() {
+	public int getInteligencia() {
 		return 0;
 	}
 
-	public int destrezaSegunCasta() {
+	public int getDestreza() {
 		return 0;
 	}
 }
