@@ -5,11 +5,21 @@ package dominio;
  */
 public class Asesino extends Casta {
 
-	public Asesino(double prob_crit, double evasion, double daño_crit) {
+	/**
+	 * Constructor de la clase Asesino.
+	 *
+	 * @param prob_crit probabilidad de golpe crítico
+	 * @param evasion probabilidad de evitar daño.
+	 * @param daño_crit daño crítico.
+	 */
+	public Asesino(final double prob_crit, final double evasion, final double daño_crit) {
 		super(prob_crit, evasion, daño_crit);
 		this.nombreCasta = "Asesino";
 	}
 
+	/**
+	 * Constructor de la clase Asesino con habilidades de su casta y valores por defecto.
+	 */
 	public Asesino() {
 		super();
 		this.nombreCasta = "Asesino";

@@ -12,6 +12,7 @@ public class Alianza {
 
 	/**
 	 * Constructor de la clase Alianza
+	 *
 	 * @param nombre nombre de la Alianza
 	 */
 	public Alianza(final String nombre) {
@@ -19,15 +20,31 @@ public class Alianza {
 		this.aliados = new LinkedList<Personaje>();
 	}
 
+	/**
+	 * Devuelve la lista de aliados en la alianza
+	 *
+	 * @return LinkedList<Personaje> Lista de personajes aliados
+	 */
 	public LinkedList<Personaje> getAliados() {
 		return aliados;
 	}
 
+	/**
+	 * Carga la lista pasada como parámetros como los aliados de la alianza.
+	 * En caso de que ya haya una lista cargada, la sobreescribe.
+	 *
+	 * @param aliados lista de personajes
+	 */
 	public void setAliados(final LinkedList<Personaje> aliados) {
 		this.aliados = aliados;
 	}
 
-	public String obtenerNombre(){
+	/**
+	 * Devuelve el nombre de la alianza.
+	 *
+	 * @return nombre nombre de la alianza
+	 */
+	public String obtenerNombre() {
 		return nombre;
 	}
 
@@ -36,7 +53,7 @@ public class Alianza {
 	 *
 	 * @param pj Personaje a remover de la lista de aliados.
 	 */
-	public void eliminarPersonaje(final Personaje pj){
+	public void eliminarPersonaje(final Personaje pj) {
 		aliados.remove(pj);
 	}
 
@@ -45,7 +62,7 @@ public class Alianza {
 	 *
 	 * @param pj Personaje a agregar en la lista de aliados.
 	 */
-	public void añadirPersonaje(final Personaje pj){
+	public void añadirPersonaje(final Personaje pj) {
 		aliados.add(pj);
 	}
 }
