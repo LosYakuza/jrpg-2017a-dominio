@@ -222,32 +222,58 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return energia > 10;
 	}
 
+	/**
+	 * Calcula los puntos de ataque dependiendo de la fuerza del personaje.
+	 * @return
+	 */
 	public int calcularPuntosDeAtaque() {
 		return (int) (this.getFuerza() * 1.5);
 	}
 
+	/**
+	 * Calcula los puntos de defensa, dependen de la destreza del personaje.
+	 * @return
+	 */
 	public int calcularPuntosDeDefensa() {
 		return (int) (this.getDestreza());
 	}
 
+	/**
+	 * Calcula los puntos de magia dependiendo de la inteligencia del personaje.
+	 * @return
+	 */
 	public int calcularPuntosDeMagia() {
 		return (int) (this.getInteligencia() * 1.5);
 	}
 
+	/**
+	 * Le asigna al personaje su salud tope.
+	 */
 	public void restablecerSalud() {
 		setSalud(this.saludTope);
 	}
 
+	/**
+	 * Le asigna al personaje su energía tope.
+	 */
 	public void restablecerEnergia() {
 		this.energia = this.energiaTope;
 	}
 
+	/**
+	 * Modifica los atributos del personaje dependiendo de sus puntos.
+	 */
 	public void modificarAtributos() {
 		this.ataque = this.calcularPuntosDeAtaque();
 		setDefensa(this.calcularPuntosDeDefensa());
 		this.magia = this.calcularPuntosDeMagia();
 	}
 
+	/**
+	 * Quita salud al personaje, si el daño es mayor a la defensa.
+	 * @param daño
+	 * @return
+	 */
 	public int serRobadoSalud(int daño) {
 		daño -= getDefensa();
 		if (daño <= 0) {
@@ -262,6 +288,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return daño;
 	}
 
+	/**
+	 * Quita energía al personaje, si el daño es mayor a la defensa.
+	 * @param daño
+	 * @return
+	 */
 	public int serDesernegizado(int daño) {
 		daño -= getDefensa();
 		if (daño <= 0) {
@@ -276,6 +307,10 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return daño;
 	}
 
+	/**
+	 * Suma salud al personaje.
+	 * @param salud
+	 */
 	public void serCurado(final int salud) {
 		if ((getSalud() + salud) <= this.saludTope) {
 			setSalud(getSalud() + salud);
@@ -360,21 +395,40 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return false;
 	}
 
+	/**
+	 * Indica cuánto se va a multiplicar la experiencia.
+	 * @return
+	 */
 	@Override
 	protected int multiplicadorExperiencia() {
 		return 40;
 	}
 
+	/**
+	 * Devuelve la probabilidad de la casta de evitar daño en ataque.
+	 * @return
+	 */
 	@Override
 	protected double probabilidadEvitarDañoEnAtaque() {
 		return this.getCasta().getProbabilidadEvitarDaño();
 	}
 
+	/**
+	 * Devuelve la defensa involucrada al momento de ser atacado.
+	 * @return
+	 */
 	@Override
 	protected int defensaAlSerAtacado() {
 		return getDefensa();
 	}
 
+	/**
+	 * Disminuye la salid del personaje. El valor mínimo de la salud es cero.
+	 *
+	 * @param daño daño a quitar al personaje
+	 * @return     devuelve el daño causado si es mayor a cero;
+	 *             caso contrario devuelve 0.
+	 */
 	@Override
 	protected int quitarVidaSegunDaño(int daño) {
 		if (daño >= 0) {
