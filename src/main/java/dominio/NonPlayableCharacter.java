@@ -4,7 +4,7 @@ package dominio;
  * La clase NonPlayableCharacter representa a los personajes no no jugables (también llamados NPC o PNJ)
  */
 
-public class NonPlayableCharacter extends Peleador implements Peleable {
+public class NonPlayableCharacter extends Peleador {
 
 	private static final int dificultadAleatoria = -1;
 

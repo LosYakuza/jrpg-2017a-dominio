@@ -8,7 +8,7 @@ import java.io.Serializable;
  * de su nivel, experiencia y habilidades.
  */
 
-public abstract class Personaje extends Peleador implements Peleable, Serializable {
+public abstract class Personaje extends Peleador implements Serializable {
 
 	protected int energia;
 	protected int ataque;

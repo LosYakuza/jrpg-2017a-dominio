@@ -2,7 +2,7 @@ package dominio;
 
 import java.io.Serializable;
 
-public abstract class Peleador implements Peleable, Serializable {
+public abstract class Peleador implements Peleable {
 
 	private int salud;
 	private int fuerza;
@@ -82,6 +82,13 @@ public abstract class Peleador implements Peleable, Serializable {
 
 	protected abstract int defensaAlSerAtacado();
 
+	/**
+	 * Disminuye la salud según el daño. 
+	 *
+	 * @param daño daño a quitar al personaje
+	 * @return     devuelve el daño causado si es mayor a cero;
+	 *             caso contrario devuelve 0.
+	 */
 	protected int quitarVidaSegunDaño(int daño) {
 		if (daño > 0) {
 			salud -= daño;
