@@ -10,4 +10,6 @@ public interface Peleable {
 	public void setAtaque(int ataque);
 	public boolean estaVivo();
 	public String getNombre();
+	public boolean esAfectadoPorHechicero();
+	public boolean esAfectadoPorGuerrero();
 }

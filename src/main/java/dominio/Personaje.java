@@ -478,4 +478,14 @@ public abstract class Personaje extends Peleador implements Serializable {
 	public abstract boolean habilidadRaza1(Peleable atacado);
 
 	public abstract boolean habilidadRaza2(Peleable atacado);
+
+	@Override
+	public final boolean esAfectadoPorHechicero() {
+		return true;
+	}
+
+	@Override
+	public final boolean esAfectadoPorGuerrero() {
+		return true;
+	}
 }
