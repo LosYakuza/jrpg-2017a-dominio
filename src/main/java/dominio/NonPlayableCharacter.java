@@ -85,4 +85,14 @@ public class NonPlayableCharacter extends Peleador {
 		return 0.15;
 	}
 
+	@Override
+	public final boolean esAfectadoPorHechicero() {
+		return false;
+	}
+
+	@Override
+	public final boolean esAfectadoPorGuerrero() {
+		return false;
+	}
+
 }

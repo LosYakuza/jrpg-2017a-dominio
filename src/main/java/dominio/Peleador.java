@@ -123,4 +123,17 @@ public abstract class Peleador implements Peleable {
 		return true;
 	}
 
+	/**
+	 * Indica si es afectado por un hechicero.
+	 * @return true si es afectado;
+	 *         false en caso contrario.
+	 */
+	public abstract boolean esAfectadoPorHechicero();
+
+	/**
+	 * Indica si es afectado por un guerrero.
+	 * @return true si es afectado;
+	 *         false en caso contrario.
+	 */
+	public abstract boolean esAfectadoPorGuerrero();
 }
