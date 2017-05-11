@@ -1,4 +1,4 @@
-https://travis-ci.org/LosYakuza/jrpg-2017a-dominio.svg?branch=master
+[![Build Status](https://travis-ci.org/LosYakuza/jrpg-2017a-dominio.svg?branch=master)](https://travis-ci.org/LosYakuza/jrpg-2017a-dominio)
 
 # World Of Middle Earth (WOME) - dominio
 
