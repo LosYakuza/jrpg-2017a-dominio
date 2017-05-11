@@ -21,7 +21,7 @@ public class NonPlayableCharacter extends Peleador {
 		setNivel(nivel);
 		int dificultad;
 		if (dificultadNPC == dificultadAleatoria) {
-			dificultad = MyRandom.nextInt(3);
+			dificultad = rnd.nextInt(3);
 		} else {
 			dificultad = dificultadNPC;
 		}

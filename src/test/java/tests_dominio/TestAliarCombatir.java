@@ -65,7 +65,8 @@ public class TestAliarCombatir {
 	public void testDañar() {
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
 		Humano h2 = new Humano("Lautaro", new Asesino(), 1);
-
+		h.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
+		h2.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		Assert.assertEquals(105, h2.getSalud());
 		if (h.atacar(h2) != 0) {
 			Assert.assertTrue(h2.getSalud() < 105);
@@ -76,7 +77,7 @@ public class TestAliarCombatir {
 
 		NonPlayableCharacter npc = new NonPlayableCharacter("Agatha", 3, 1);
 		Elfo e = new Elfo("Bemille", new Guerrero(), 1);
-
+		e.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		Assert.assertEquals(80, npc.getSalud());
 		if (e.atacar(npc) != 0) {
 			Assert.assertTrue(npc.getSalud() < 80);
@@ -86,7 +87,7 @@ public class TestAliarCombatir {
 
 		NonPlayableCharacter npc2 = new NonPlayableCharacter("Nicolas", 3, 1);
 		Orco o = new Orco("Lautaro", new Hechicero(), 1);
-
+		npc2.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		Assert.assertEquals(110, o.getSalud());
 		if (npc2.atacar(o) != 0) {
 			Assert.assertTrue(o.getSalud() < 110);
@@ -109,7 +110,8 @@ public class TestAliarCombatir {
 	public void testSerDañado() {
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
 		NonPlayableCharacter npc = new NonPlayableCharacter("Agatha", 3, 1);
-		
+		npc.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
+		h.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		h.getCasta().setProbabilidadEvitarDaño(1);
 		Assert.assertEquals(0, h.serAtacado(30));
 		
