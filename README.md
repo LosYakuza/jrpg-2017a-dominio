@@ -1,3 +1,5 @@
+https://travis-ci.org/LosYakuza/jrpg-2017a-dominio.svg?branch=master
+
 # World Of Middle Earth (WOME) - dominio
 
 ## Sobre las personas
