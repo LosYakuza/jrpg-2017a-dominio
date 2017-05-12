@@ -26,17 +26,7 @@ public class Alianza {
 	 * @return LinkedList<Personaje> Lista de personajes aliados
 	 */
 	public LinkedList<Personaje> getAliados() {
-		return aliados;
-	}
-
-	/**
-	 * Carga la lista pasada como parámetros como los aliados de la alianza.
-	 * En caso de que ya haya una lista cargada, la sobreescribe.
-	 *
-	 * @param aliados lista de personajes
-	 */
-	public void setAliados(final LinkedList<Personaje> aliados) {
-		this.aliados = aliados;
+		return (LinkedList<Personaje>) aliados.clone();
 	}
 
 	/**
