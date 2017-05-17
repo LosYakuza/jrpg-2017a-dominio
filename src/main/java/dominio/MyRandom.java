@@ -1,27 +1,25 @@
 package dominio;
+import java.util.Random;
 
 /**
- * La clase MyRandom provee métodos estáticos que sirven para la generación de números.
+ * Devuelve valores random
  */
-public class MyRandom {
+public class MyRandom extends RandomGenerator{
 
-	/**
-	 * Método estático que devuelve un flotante fijo de valor 0.49
-	 *
-	 * @return 0.49
-	 */
-	public static double nextDouble() {
-		return 0.49;
+	private Random rnd;
+	
+	public MyRandom() {
+		rnd = new Random();
+	}
+	
+	@Override
+	public double nextDouble() {
+		return rnd.nextDouble();
 	}
 
-	/**
-	 * Método estático que recibe un valor entero por parámetro y como resultado lo devuelve decrementado en uno.
-	 *
-	 * @param val entero a decrementar.
-	 * @return    entero ingresado por parámetro decrementado en uno.
-	 */
-	public static int nextInt(final int val) {
-		return val - 1;
+	@Override
+	public int nextInt(int max) {
+		return rnd.nextInt(max);
 	}
 
 }

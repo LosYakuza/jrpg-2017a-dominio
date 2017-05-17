@@ -9,7 +9,17 @@ public abstract class Peleador implements Peleable {
 	private int defensa;
 	private String nombre;
 	private int nivel;
-
+	protected RandomGenerator rnd;
+	
+	
+	public Peleador() {
+		setRandomGenerator(new MyRandom());
+	}
+	
+	public void setRandomGenerator(RandomGenerator rg){
+		this.rnd = rg;
+	}
+	
 	public int getSalud() {
 		return salud;
 	}
@@ -70,7 +80,7 @@ public abstract class Peleador implements Peleable {
 	 * @return daño sufrido, es equivalente a cuánto disminuyó su salud
 	 */
 	public int serAtacado(int daño) {
-		if (MyRandom.nextDouble() >= probabilidadEvitarDañoEnAtaque()) {
+		if (rnd.nextDouble() >= probabilidadEvitarDañoEnAtaque()) {
 			daño -= defensaAlSerAtacado();
 			daño = quitarVidaSegunDaño(daño);
 			return daño;
@@ -106,7 +116,7 @@ public abstract class Peleador implements Peleable {
 	 */
 	public int atacar(final Peleable atacado) {
 		if (puedoAtacar(atacado.estaVivo())) {
-			if (MyRandom.nextDouble() <= probabilidadGolpeCritico()) {
+			if (rnd.nextDouble() <= probabilidadGolpeCritico()) {
 				return atacado.serAtacado(this.golpe_critico());
 			} else {
 				return atacado.serAtacado(getAtaque());

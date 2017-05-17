@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/LosYakuza/jrpg-2017a-dominio.svg?branch=master)](https://travis-ci.org/LosYakuza/jrpg-2017a-dominio)
+
 # World Of Middle Earth (WOME) - dominio
 
 ## Sobre las personas
@@ -21,7 +23,7 @@
 
 ### Herramientas utilizadas
 
-* Java 1.7
+* Java 1.8
 * JUnit 4
 
 ## Cómo hacer andar el proyecto
