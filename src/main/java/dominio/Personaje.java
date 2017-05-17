@@ -3,9 +3,10 @@ package dominio;
 import java.io.Serializable;
 
 /**
- * La clase Personaje está desarrollada para que las clases que la hereden posean todos los atributos y métodos 
- * necesarios para atacar y ser atacados dependiendo de sus atributos (salud, energía, defensa, etc.), de su casta,
- * de su nivel, experiencia y habilidades.
+ * La clase Personaje está desarrollada para que las clases que la hereden
+ * posean todos los atributos y métodos necesarios para atacar y ser atacados
+ * dependiendo de sus atributos (salud, energía, defensa, etc.), de su casta, de
+ * su nivel, experiencia y habilidades.
  */
 
 public abstract class Personaje extends Peleador implements Serializable {
@@ -55,51 +56,44 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	public Personaje(String nombre, Casta casta, int id) {
 		setNombre(nombre);
-		this.casta = casta;
-		this.idPersonaje = id;
-		nombreRaza = nombreRazaInicial();
+		setCasta(casta);
+		setIdPersonaje(id);
+		setNombreRaza(nombreRazaInicial());
 		inicializarHabilidadesSegunRaza();
-		experiencia = 0;
+		setExperiencia(0);
 		setNivel(1);
 		setFuerza(10 + casta.getFuerza());
-		inteligencia = 10 + casta.getInteligencia();
-		destreza = 10 + casta.getDestreza();
-		
+		setInteligencia(10 + casta.getInteligencia());
+		setDestreza(10 + casta.getDestreza());
 		x = 0;
 		y = 0;
-		saludTope = saludTopeInicial();
-		setSalud(saludTope);
-		energiaTope = energiaTopeInicial();
-		energia = energiaTope;
-
-		ataque = this.calcularPuntosDeAtaque();
-		setDefensa(this.calcularPuntosDeDefensa());
-		magia = this.calcularPuntosDeMagia();
+		setSaludTope(this.saludTopeInicial());
+		setSalud(getSaludTope());
+		setEnergiaTope(energiaTopeInicial());
+		setEnergia(getEnergiaTope());
+		setAtaque(calcularPuntosDeAtaque());
+		setDefensa(calcularPuntosDeDefensa());
+		setMagia(calcularPuntosDeMagia());
 
 	}
 
 	public Personaje(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
-			int experiencia, int nivel,
-			int idPersonaje) {
-
+			int experiencia, int nivel, int idPersonaje) {
 		setNombre(nombre);
 		setSalud(salud);
 		setEnergia(energia);
 		setFuerza(fuerza);
-		this.destreza = destreza;
-		this.inteligencia = inteligencia;
-		this.casta = casta;
-
-		this.experiencia = experiencia;
+		setDestreza(destreza);
+		setInteligencia(inteligencia);
+		setCasta(casta);
+		setExperiencia(experiencia);
 		setNivel(nivel);
-
-		this.saludTope = getSalud();
-		this.energiaTope = this.energia;
-
-		this.idPersonaje = idPersonaje;
-		setDefensa(this.calcularPuntosDeDefensa());
-		this.ataque = this.calcularPuntosDeAtaque();
-		this.magia = this.calcularPuntosDeMagia();
+		setSaludTope(getSalud());
+		setEnergiaTope(getEnergia());
+		setIdPersonaje(idPersonaje);
+		setDefensa(calcularPuntosDeDefensa());
+		setAtaque(calcularPuntosDeAtaque());
+		setMagia(calcularPuntosDeMagia());
 	}
 
 	protected abstract String nombreRazaInicial();
@@ -197,7 +191,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 		this.saludTope = saludTope;
 	}
 
-	protected int energiaTopeInicial(){
+	protected int energiaTopeInicial() {
 		return 100;
 	}
 
@@ -224,6 +218,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	/**
 	 * Calcula los puntos de ataque dependiendo de la fuerza del personaje.
+	 * 
 	 * @return
 	 */
 	public int calcularPuntosDeAtaque() {
@@ -232,6 +227,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	/**
 	 * Calcula los puntos de defensa, dependen de la destreza del personaje.
+	 * 
 	 * @return
 	 */
 	public int calcularPuntosDeDefensa() {
@@ -240,6 +236,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	/**
 	 * Calcula los puntos de magia dependiendo de la inteligencia del personaje.
+	 * 
 	 * @return
 	 */
 	public int calcularPuntosDeMagia() {
@@ -271,6 +268,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	/**
 	 * Quita salud al personaje, si el daño es mayor a la defensa.
+	 * 
 	 * @param daño
 	 * @return
 	 */
@@ -290,6 +288,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	/**
 	 * Quita energía al personaje, si el daño es mayor a la defensa.
+	 * 
 	 * @param daño
 	 * @return
 	 */
@@ -309,6 +308,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	/**
 	 * Suma salud al personaje.
+	 * 
 	 * @param salud
 	 */
 	public void serCurado(final int salud) {
@@ -375,8 +375,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 			return;
 		}
 		while (getNivel() != 100
-				&& (this.experiencia >= Personaje.tablaDeNiveles[getNivel()+1] + acumuladorExperiencia)) {
-			acumuladorExperiencia += Personaje.tablaDeNiveles[getNivel()+1];
+				&& (this.experiencia >= Personaje.tablaDeNiveles[getNivel() + 1] + acumuladorExperiencia)) {
+			acumuladorExperiencia += Personaje.tablaDeNiveles[getNivel() + 1];
 			setNivel(getNivel() + 1);
 			this.modificarAtributos();
 			this.saludTope += 25;
@@ -397,6 +397,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	/**
 	 * Indica cuánto se va a multiplicar la experiencia.
+	 * 
 	 * @return
 	 */
 	@Override
@@ -406,6 +407,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	/**
 	 * Devuelve la probabilidad de la casta de evitar daño en ataque.
+	 * 
 	 * @return
 	 */
 	@Override
@@ -415,6 +417,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	/**
 	 * Devuelve la defensa involucrada al momento de ser atacado.
+	 * 
 	 * @return
 	 */
 	@Override
@@ -425,9 +428,10 @@ public abstract class Personaje extends Peleador implements Serializable {
 	/**
 	 * Disminuye la salid del personaje. El valor mínimo de la salud es cero.
 	 *
-	 * @param daño daño a quitar al personaje
-	 * @return     devuelve el daño causado si es mayor a cero;
-	 *             caso contrario devuelve 0.
+	 * @param daño
+	 *            daño a quitar al personaje
+	 * @return devuelve el daño causado si es mayor a cero; caso contrario
+	 *         devuelve 0.
 	 */
 	@Override
 	protected int quitarVidaSegunDaño(int daño) {
@@ -450,7 +454,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	}
 
 	@Override
-	protected boolean puedoAtacar(final boolean atacadoEstaVivo){
+	protected boolean puedoAtacar(final boolean atacadoEstaVivo) {
 		return this.estaVivo() && atacadoEstaVivo;
 	}
 

@@ -11,7 +11,7 @@ sourceCompatibility = 1.7
 version = '0.1'
 test.ignoreFailures = true
 
-defaultTasks 'clean', 'compileJava', 'test', 'checkstyleMain', 'pmd', 'findbugsMain', 'jacocoTestReport'
+defaultTasks 'clean', 'compileJava', 'test','fatJar', 'checkstyleMain', 'pmd', 'findbugsMain', 'jacocoTestReport'
 
 repositories {
 	mavenCentral()
@@ -78,6 +78,17 @@ task pmd (dependsOn: compileJava) << {
             }
         }
     }
+}
+
+task fatJar(type: Jar) {
+	manifest { 
+    	attributes "Main-Class": "frames.MenuInicio"
+  	}
+
+    baseName = 'jrpg-dominio'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+ 	
+    with jar
 }
 
 findbugs {

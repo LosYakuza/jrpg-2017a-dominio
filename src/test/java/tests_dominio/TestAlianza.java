@@ -18,7 +18,8 @@ public class TestAlianza {
 		listaAliados.add(h);
 		listaAliados.add(h2);
 		
-		a1.setAliados(listaAliados);
+		a1.añadirPersonaje(h);
+		a1.añadirPersonaje(h2);
 		Assert.assertEquals(listaAliados, a1.getAliados());
 		
 		Assert.assertEquals(nomAlianza, a1.obtenerNombre());
