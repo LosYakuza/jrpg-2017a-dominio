@@ -1,4 +1,8 @@
+travis:
 [![Build Status](https://travis-ci.org/LosYakuza/jrpg-2017a-dominio.svg?branch=master)](https://travis-ci.org/LosYakuza/jrpg-2017a-dominio)
+
+jenkins:
+[![Build Status](https://jpas.com.ar/jenkins/buildStatus/icon?job=unlam-jrpg)](https://jpas.com.ar/jenkins/job/unlam-jrpg/)
 
 # World Of Middle Earth (WOME) - dominio
 
