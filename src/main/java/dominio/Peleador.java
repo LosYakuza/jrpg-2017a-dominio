@@ -19,7 +19,7 @@ public abstract class Peleador implements Peleable {
 	 * Actualizar datos desde hashmap
 	 * @param datos salud,fuerza,defensa,nombre,nivel
 	 */
-	protected void actualizar(final HashMap<String, Object> datos) {
+	public void actualizar(final HashMap<String, Object> datos) {
 		setSalud((Integer) datos.get("salud"));
 		setFuerza((Integer) datos.get("fuerza"));
 		setDefensa((Integer) datos.get("defensa"));
@@ -31,7 +31,7 @@ public abstract class Peleador implements Peleable {
 	 * Devuelve hashmap con datos.
 	 * @return datos en hashmap
 	 */
-	protected HashMap<String, Object> getTodo() {
+	public HashMap<String, Object> getTodo() {
 		HashMap<String, Object> datos = new HashMap<>();
 		datos.put("salud", getSalud());
 		datos.put("fuerza", getFuerza());
@@ -184,6 +184,7 @@ public abstract class Peleador implements Peleable {
 		if (rnd.nextDouble() >= probabilidadEvitarDanoEnAtaque()) {
 			danoCalc -= defensaAlSerAtacado();
 			danoCalc = quitarVidaSegunDano(danoCalc);
+			return danoCalc;
 		}
 		return 0;
 	}
