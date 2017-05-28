@@ -28,6 +28,20 @@ public abstract class Peleador implements Peleable {
 	}
 
 	/**
+	 * Devuelve hashmap con datos.
+	 * @return datos en hashmap
+	 */
+	protected HashMap<String, Object> getTodo() {
+		HashMap<String, Object> datos = new HashMap<>();
+		datos.put("salud", getSalud());
+		datos.put("fuerza", getFuerza());
+		datos.put("defensa", getDefensa());
+		datos.put("nombre", getNombre());
+		datos.put("nivel", getNivel());
+		return datos;
+	}
+
+	/**
 	 * Constructor por defecto
 	 * Carga myRamdom.
 	 */
