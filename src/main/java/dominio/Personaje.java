@@ -204,7 +204,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	}
 
 	@Override
-	public int golpe_critico() {
+	public int golpeCritico() {
 		return (int) (this.ataque * this.getCasta().getDañoCritico());
 	}
 
@@ -411,7 +411,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return
 	 */
 	@Override
-	protected double probabilidadEvitarDañoEnAtaque() {
+	protected double probabilidadEvitarDanoEnAtaque() {
 		return this.getCasta().getProbabilidadEvitarDaño();
 	}
 
@@ -434,13 +434,13 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 *         devuelve 0.
 	 */
 	@Override
-	protected int quitarVidaSegunDaño(int daño) {
+	protected int quitarVidaSegunDano(int daño) {
 		if (daño >= 0) {
 			if (getSalud() <= daño) {
 				daño = getSalud();
 				setSalud(0);
 			} else {
-				super.quitarVidaSegunDaño(daño);
+				super.quitarVidaSegunDano(daño);
 			}
 			return daño;
 		} else {
