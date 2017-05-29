@@ -21,7 +21,7 @@ public class NonPlayableCharacter extends Peleador {
 		setNivel(nivel);
 		int dificultad;
 		if (dificultadNPC == dificultadAleatoria) {
-			dificultad = rnd.nextInt(3);
+			dificultad = getRandomGenerator().nextInt(3);
 		} else {
 			dificultad = dificultadNPC;
 		}
@@ -66,7 +66,7 @@ public class NonPlayableCharacter extends Peleador {
 	public void ganarExperiencia(final int exp) {	}
 
 	@Override
-	protected double probabilidadEvitarDañoEnAtaque() {
+	protected double probabilidadEvitarDanoEnAtaque() {
 		return 0.15;
 	}
 
@@ -76,7 +76,7 @@ public class NonPlayableCharacter extends Peleador {
 	}
 
 	@Override
-	protected int golpe_critico() {
+	protected int golpeCritico() {
 		return (int) (getAtaque() * 1.5);
 	}
 
