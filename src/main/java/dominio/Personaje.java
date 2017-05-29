@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  * La clase Personaje está desarrollada para que las clases que la hereden
@@ -8,9 +9,21 @@ import java.io.Serializable;
  * dependiendo de sus atributos (salud, energía, defensa, etc.), de su casta, de
  * su nivel, experiencia y habilidades.
  */
-
 public abstract class Personaje extends Peleador implements Serializable {
 
+	/**
+	 * Atributos HASH
+	 */
+	public static final String ATTR_ENERGIA = "energia";
+	public static final String ATTR_DESTREZA = "destreza";
+	public static final String ATTR_INTELIGENCIA = "inteligencia";
+	public static final String ATTR_CASTA = "casta";
+	public static final String ATTR_EXPERIENCIA = "experiencia";
+	public static final String ATTR_IDPERSONAJE = "idpersonaje";
+	public static final String ATTR_ENERGIATOPE = "energiatope";
+	public static final String ATTR_SALUDTOPE = "saludtope";
+	
+	
 	protected int energia;
 	protected int ataque;
 	protected int magia;
@@ -96,6 +109,39 @@ public abstract class Personaje extends Peleador implements Serializable {
 		setMagia(calcularPuntosDeMagia());
 	}
 
+	/**
+	 * Actualizar datos desde hashmap
+	 * @param datos salud,fuerza,defensa,nombre,nivel
+	 */
+	public void actualizar(final HashMap<String, Object> datos) {
+		super.actualizar(datos);
+		setEnergia((Integer) datos.get(ATTR_ENERGIA));
+		setDestreza((Integer) datos.get(ATTR_DESTREZA));
+		setInteligencia((Integer) datos.get(ATTR_INTELIGENCIA));
+		setCasta((Casta) datos.get(ATTR_CASTA));
+		setExperiencia((Integer) datos.get(ATTR_EXPERIENCIA));
+		setIdPersonaje((Integer) datos.get(ATTR_IDPERSONAJE));
+		setEnergiaTope((Integer) datos.get(ATTR_ENERGIATOPE));
+		setSaludTope((Integer) datos.get(ATTR_SALUDTOPE));
+	}
+
+	/**
+	 * Devuelve hashmap con datos.
+	 * @return datos en hashmap
+	 */
+	public HashMap<String, Object> getTodo() {
+		HashMap<String, Object> datos = super.getTodo();
+		datos.put(ATTR_ENERGIA, getEnergia());
+		datos.put(ATTR_DESTREZA, getDestreza());
+		datos.put(ATTR_INTELIGENCIA, getInteligencia());
+		datos.put(ATTR_CASTA, getCasta());
+		datos.put(ATTR_EXPERIENCIA, getExperiencia());
+		datos.put(ATTR_IDPERSONAJE, getIdPersonaje());
+		datos.put(ATTR_ENERGIATOPE, getEnergiaTope());
+		datos.put(ATTR_SALUDTOPE, getSaludTope());
+		return datos;
+	}
+	
 	protected abstract String nombreRazaInicial();
 
 	public String getNombreRaza() {
@@ -135,7 +181,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return energia;
 	}
 
-	public void setEnergia(int energia) {
+	/**
+	 * Setter energia.
+	 * @param energia energia
+	 */
+	protected void setEnergia(final int energia) {
 		this.energia = energia;
 	}
 
@@ -143,7 +193,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return destreza;
 	}
 
-	public void setDestreza(int destreza) {
+	/**
+	 * Setter destreza.
+	 * @param destreza destreza
+	 */
+	protected void setDestreza(final int destreza) {
 		this.destreza = destreza;
 	}
 
@@ -151,7 +205,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return inteligencia;
 	}
 
-	public void setInteligencia(int inteligencia) {
+	/**
+	 * Setter inteligencia.
+	 * @param inteligencia inteligencia
+	 */
+	protected void setInteligencia(final int inteligencia) {
 		this.inteligencia = inteligencia;
 	}
 
@@ -159,7 +217,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return casta;
 	}
 
-	public void setCasta(Casta casta) {
+	/**
+	 * Setter Casta.
+	 * @param casta casta
+	 */
+	protected void setCasta(final Casta casta) {
 		this.casta = casta;
 	}
 
@@ -167,7 +229,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return experiencia;
 	}
 
-	public void setExperiencia(int experiencia) {
+	/**
+	 * Setter experiencia.
+	 * @param experiencia experiencia
+	 */
+	protected void setExperiencia(final int experiencia) {
 		this.experiencia = experiencia;
 	}
 
@@ -175,7 +241,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return idPersonaje;
 	}
 
-	public void setIdPersonaje(int idPersonaje) {
+	/**
+	 * Setter Id personaje
+	 * @param idPersonaje idpersonaje
+	 */
+	protected void setIdPersonaje(final int idPersonaje) {
 		this.idPersonaje = idPersonaje;
 	}
 
@@ -187,7 +257,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return saludTope;
 	}
 
-	public void setSaludTope(int saludTope) {
+	/**
+	 * Setter salud tope.
+	 * @param saludTope salud tope
+	 */
+	protected void setSaludTope(final int saludTope) {
 		this.saludTope = saludTope;
 	}
 
@@ -199,12 +273,16 @@ public abstract class Personaje extends Peleador implements Serializable {
 		return energiaTope;
 	}
 
-	public void setEnergiaTope(int energiaTope) {
+	/**
+	 * Setter energia tope.
+	 * @param energiaTope energia tope
+	 */
+	protected void setEnergiaTope(final int energiaTope) {
 		this.energiaTope = energiaTope;
 	}
 
 	@Override
-	public int golpe_critico() {
+	public int golpeCritico() {
 		return (int) (this.ataque * this.getCasta().getDañoCritico());
 	}
 
@@ -411,7 +489,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return
 	 */
 	@Override
-	protected double probabilidadEvitarDañoEnAtaque() {
+	protected double probabilidadEvitarDanoEnAtaque() {
 		return this.getCasta().getProbabilidadEvitarDaño();
 	}
 
@@ -434,13 +512,13 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 *         devuelve 0.
 	 */
 	@Override
-	protected int quitarVidaSegunDaño(int daño) {
+	protected int quitarVidaSegunDano(int daño) {
 		if (daño >= 0) {
 			if (getSalud() <= daño) {
 				daño = getSalud();
 				setSalud(0);
 			} else {
-				super.quitarVidaSegunDaño(daño);
+				super.quitarVidaSegunDano(daño);
 			}
 			return daño;
 		} else {

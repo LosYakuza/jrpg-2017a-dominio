@@ -1,5 +1,7 @@
 package tests_dominio;
 
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -7,6 +9,7 @@ import dominio.Asesino;
 import dominio.Elfo;
 import dominio.Hechicero;
 import dominio.Humano;
+import dominio.Personaje;
 
 public class TestHumano {
 
@@ -19,7 +22,10 @@ public class TestHumano {
 		h.habilidadRaza1(e);
 		Assert.assertTrue(e.getAtaque() > 37);
 		
-		h.setEnergia(5);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		h.actualizar(datos);
+		
 		Assert.assertFalse(h.habilidadRaza1(e));
 	}
 
@@ -38,7 +44,10 @@ public class TestHumano {
 			Assert.assertEquals(100, e.getSalud());
 		}
 		
-		h.setEnergia(5);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		h.actualizar(datos);
+		
 		Assert.assertFalse(h.habilidadRaza2(e));
 	}
 }

@@ -1,5 +1,7 @@
 package tests_dominio;
 
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,6 +11,7 @@ import dominio.Hechicero;
 import dominio.Humano;
 import dominio.MyRandomStub;
 import dominio.Orco;
+import dominio.Personaje;
 
 public class TestOrco {
 
@@ -25,7 +28,9 @@ public class TestOrco {
 			Assert.assertTrue(o.getSalud() == 105);
 		}
 		
-		o.setEnergia(5);
+		HashMap<String, Object> datos = o.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		o.actualizar(datos);
 		Assert.assertFalse(o.habilidadRaza1(h));
 	}
 
@@ -35,7 +40,10 @@ public class TestOrco {
 		Orco o = new Orco("Nico", 100, 100, 80, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 1, 1);
 		
 		Assert.assertEquals(100, h.getSalud());
-		o.setSalud(100);
+		HashMap<String, Object> datos = o.getTodo();
+		datos.put(Personaje.ATTR_SALUD, 100);
+		o.actualizar(datos);
+
 		if (o.habilidadRaza2(h)) {
 			Assert.assertEquals(40, h.getSalud());
 			Assert.assertEquals(100, o.getSalud());
@@ -44,7 +52,8 @@ public class TestOrco {
 			Assert.assertEquals(100, h.getSalud());
 		}
 		
-		o.setEnergia(0);
+		datos.put(Personaje.ATTR_ENERGIA, 0);
+		o.actualizar(datos);
 		Assert.assertFalse(o.habilidadRaza2(h));
 	}
 }

@@ -1,5 +1,7 @@
 package tests_dominio;
 
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -8,6 +10,7 @@ import dominio.Elfo;
 import dominio.Guerrero;
 import dominio.Humano;
 import dominio.NonPlayableCharacter;
+import dominio.Personaje;
 
 public class TestGuerrero {
 
@@ -23,7 +26,9 @@ public class TestGuerrero {
 			Assert.assertEquals(100, e.getSalud());
 		}
 		
-		h.setEnergia(5);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		h.actualizar(datos);
 		Assert.assertFalse(h.habilidadCasta1(e));
 	}
 
@@ -35,7 +40,9 @@ public class TestGuerrero {
 		h.habilidadCasta2(null);
 		Assert.assertEquals(65, h.getDefensa());
 		
-		h.setEnergia(5);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		h.actualizar(datos);
 		Assert.assertFalse(h.habilidadCasta2(null));
 	}
 
@@ -51,12 +58,16 @@ public class TestGuerrero {
 			Assert.assertEquals(100, e.getSalud());
 		}
 		
-		h.setEnergia(5);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		h.actualizar(datos);
 		Assert.assertFalse(h.habilidadCasta3(e));
 		
 		NonPlayableCharacter npc = new NonPlayableCharacter("Mica", 2, 1);
 		int salud = npc.getSalud();
-		h.setEnergia(15);
+		datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 15);
+		h.actualizar(datos);
 		Assert.assertFalse(h.habilidadCasta3(npc));
 		Assert.assertEquals(salud, npc.getSalud());
 		Assert.assertEquals(5, h.getEnergia());	

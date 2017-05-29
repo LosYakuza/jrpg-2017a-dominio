@@ -1,11 +1,14 @@
 package tests_dominio;
 
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import dominio.Asesino;
 import dominio.Hechicero;
 import dominio.Humano;
+import dominio.Personaje;
 
 public class TestAsesino {
 
@@ -27,8 +30,9 @@ public class TestAsesino {
 		} else {
 			Assert.assertEquals(105, h2.getSalud());
 		}
-		
-		h.setEnergia(5);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		h.actualizar(datos);
 		Assert.assertFalse(h.habilidadCasta1(h2));
 	}
 
@@ -42,7 +46,9 @@ public class TestAsesino {
 		h.habilidadCasta2(null);
 		Assert.assertEquals(0.5, h.getCasta().getProbabilidadEvitarDaño(), 0.01);
 		
-		h.setEnergia(5);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		h.actualizar(datos);
 		Assert.assertFalse(h.habilidadCasta2(null));
 	}
 }

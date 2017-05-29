@@ -1,5 +1,7 @@
 package tests_dominio;
 
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -8,6 +10,7 @@ import dominio.Elfo;
 import dominio.Hechicero;
 import dominio.Humano;
 import dominio.NonPlayableCharacter;
+import dominio.Personaje;
 
 public class TestHechicero {
 
@@ -17,17 +20,25 @@ public class TestHechicero {
 		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1);
 
 		Assert.assertEquals(100, e.getSalud());
-		e.setSalud(65);
+		
+		HashMap<String, Object> datos = e.getTodo();
+		datos.put(Personaje.ATTR_SALUD, 65);
+		e.actualizar(datos);
+		
 		Assert.assertEquals(65, e.getSalud());
 		h.habilidadCasta2(e);
 		Assert.assertTrue(e.getSalud() > 65);
 		
-		h.setEnergia(5);
+		datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		h.actualizar(datos);
+
 		Assert.assertFalse(h.habilidadCasta2(e));
 		
 		NonPlayableCharacter npc = new NonPlayableCharacter("Mica", 2, 1);
 		int salud = npc.getSalud();
-		h.setEnergia(15);
+		datos.put(Personaje.ATTR_ENERGIA, 15);
+		h.actualizar(datos);
 		Assert.assertFalse(h.habilidadCasta2(npc));
 		Assert.assertEquals(salud, npc.getSalud());
 		Assert.assertEquals(5, h.getEnergia());	
@@ -44,8 +55,11 @@ public class TestHechicero {
 		} else {
 			Assert.assertEquals(100, e.getSalud());
 		}
-		
-		h.setEnergia(5);
+
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		h.actualizar(datos);
+
 		Assert.assertFalse(h.habilidadCasta1(e));
 	}
 
@@ -55,8 +69,10 @@ public class TestHechicero {
 		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1);
 
 		Assert.assertEquals(100, e.getSalud());
-		h.setSalud(50);
-		h.setEnergia(50);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 50);
+		datos.put(Personaje.ATTR_SALUD, 50);
+		h.actualizar(datos);
 		if (h.habilidadCasta3(e)) {
 			Assert.assertTrue(e.getSalud() < 100);
 			Assert.assertTrue(h.getEnergia() > 50);
@@ -67,12 +83,14 @@ public class TestHechicero {
 			Assert.assertEquals(100, e.getSalud());
 		}
 		
-		h.setEnergia(5);
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		h.actualizar(datos);
 		Assert.assertFalse(h.habilidadCasta3(e));
 		
 		NonPlayableCharacter npc = new NonPlayableCharacter("Mica", 2, 1);
 		int salud = npc.getSalud();
-		h.setEnergia(15);
+		datos.put(Personaje.ATTR_ENERGIA, 15);
+		h.actualizar(datos);
 		Assert.assertFalse(h.habilidadCasta3(npc));
 		Assert.assertEquals(salud, npc.getSalud());
 		Assert.assertEquals(5, h.getEnergia());	
