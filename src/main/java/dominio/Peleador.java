@@ -8,6 +8,15 @@ import java.util.HashMap;
  */
 public abstract class Peleador implements Peleable {
 
+	/**
+	 * Atributos HASH
+	 */
+	public static final String ATTR_SALUD = "salud";
+	public static final String ATTR_FUERZA = "fuerza";
+	public static final String ATTR_DEFENSA = "defensa";
+	public static final String ATTR_NOMBRE = "nombre";
+	public static final String ATTR_NIVEL = "nivel";
+
 	private int salud;
 	private int fuerza;
 	private int defensa;
@@ -20,11 +29,11 @@ public abstract class Peleador implements Peleable {
 	 * @param datos salud,fuerza,defensa,nombre,nivel
 	 */
 	public void actualizar(final HashMap<String, Object> datos) {
-		setSalud((Integer) datos.get("salud"));
-		setFuerza((Integer) datos.get("fuerza"));
-		setDefensa((Integer) datos.get("defensa"));
-		setNombre((String) datos.get("nombre"));
-		setNivel((Integer) datos.get("nivel"));
+		setSalud((Integer) datos.get(ATTR_SALUD));
+		setFuerza((Integer) datos.get(ATTR_FUERZA));
+		setDefensa((Integer) datos.get(ATTR_DEFENSA));
+		setNombre((String) datos.get(ATTR_NOMBRE));
+		setNivel((Integer) datos.get(ATTR_NIVEL));
 	}
 
 	/**
@@ -33,11 +42,11 @@ public abstract class Peleador implements Peleable {
 	 */
 	public HashMap<String, Object> getTodo() {
 		HashMap<String, Object> datos = new HashMap<>();
-		datos.put("salud", getSalud());
-		datos.put("fuerza", getFuerza());
-		datos.put("defensa", getDefensa());
-		datos.put("nombre", getNombre());
-		datos.put("nivel", getNivel());
+		datos.put(ATTR_SALUD, getSalud());
+		datos.put(ATTR_FUERZA, getFuerza());
+		datos.put(ATTR_DEFENSA, getDefensa());
+		datos.put(ATTR_NOMBRE, getNombre());
+		datos.put(ATTR_NIVEL, getNivel());
 		return datos;
 	}
 

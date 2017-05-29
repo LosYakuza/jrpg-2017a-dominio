@@ -1,11 +1,15 @@
 package tests_dominio;
 
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import dominio.Asesino;
 import dominio.Elfo;
+import dominio.Guerrero;
 import dominio.Humano;
+import dominio.Personaje;
 
 public class TestElfo {
 
@@ -20,8 +24,11 @@ public class TestElfo {
 		} else {
 			Assert.assertTrue(h.getSalud() == 100);
 		}
-		
-		e.setEnergia(5);
+
+		HashMap<String, Object> datos = e.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		e.actualizar(datos);
+
 		Assert.assertFalse(e.habilidadRaza1(h));
 	}
 
@@ -36,8 +43,10 @@ public class TestElfo {
 		} else {
 			Assert.assertTrue(h.getSalud() == 100);
 		}
-		
-		e.setEnergia(5);
+
+		HashMap<String, Object> datos = e.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 5);
+		e.actualizar(datos);
 		Assert.assertFalse(e.habilidadRaza2(h));
 	}
 }

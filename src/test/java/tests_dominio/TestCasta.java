@@ -1,5 +1,7 @@
 package tests_dominio;
 
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,7 +30,9 @@ public class TestCasta {
 		
 		Personaje a1 = new Humano("Mica", new Asesino(), 1);
 		Assert.assertEquals("Asesino", a1.getCasta().getNombreCasta());
-		a1.setCasta(new Guerrero());
+		HashMap<String, Object> datos = a1.getTodo();
+		datos.put(Personaje.ATTR_CASTA, new Guerrero());
+		a1.actualizar(datos);
 		Assert.assertEquals("Guerrero", a1.getCasta().getNombreCasta());
 	}
 	

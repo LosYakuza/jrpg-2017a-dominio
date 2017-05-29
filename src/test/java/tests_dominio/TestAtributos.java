@@ -3,6 +3,9 @@ package tests_dominio;
 import org.junit.Test;
 
 import dominio.*;
+
+import java.util.HashMap;
+
 import org.junit.Assert;
 
 public class TestAtributos {
@@ -40,25 +43,29 @@ public class TestAtributos {
 		h.setNombreRaza("Ballena");
 		Assert.assertEquals("Ballena", h.getNombreRaza());
 		
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_EXPERIENCIA, 15);
+		datos.put(Personaje.ATTR_IDPERSONAJE, 4);
+		datos.put(Personaje.ATTR_SALUDTOPE, 400);
+		datos.put(Personaje.ATTR_SALUD, 200);
+		datos.put(Personaje.ATTR_ENERGIATOPE, 500);
+		datos.put(Personaje.ATTR_ENERGIA, 20);
+		h.actualizar(datos);
+		
 		h.setMagia(3);
 		Assert.assertEquals(3, h.getMagia());
 		
-		h.setExperiencia(15);
 		Assert.assertEquals(15, h.getExperiencia());
 		
-		h.setIdPersonaje(4);
 		Assert.assertEquals(4, h.getIdPersonaje());
 		
-		h.setSaludTope(400);
 		Assert.assertEquals(400, h.getSaludTope());
-		h.setSalud(200);
+
 		Assert.assertEquals(200, h.getSalud());
 		h.restablecerSalud();
 		Assert.assertEquals(400, h.getSalud());
 		
-		h.setEnergiaTope(500);
 		Assert.assertEquals(500, h.getEnergiaTope());
-		h.setEnergia(20);
 		Assert.assertEquals(20, h.getEnergia());
 		h.restablecerEnergia();
 		Assert.assertEquals(500, h.getEnergia());
@@ -67,20 +74,26 @@ public class TestAtributos {
 	@Test
 	public void testPuedeAtacar() {
 		Humano h = new Humano("Mica", new Guerrero(), 1);
-		h.setEnergia(12);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIA, 12);
+		h.actualizar(datos);
 		Assert.assertTrue(h.puedeAtacar());
-		h.setEnergia(8);
+		datos.put(Personaje.ATTR_ENERGIA, 8);
+		h.actualizar(datos);
 		Assert.assertFalse(h.puedeAtacar());
 	}
 	
 	@Test
 	public void testSerRobadoSalud() {
 		Humano h = new Humano("Mica", new Guerrero(), 1);
-		h.setSalud(10);
-		h.setDefensa(40);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_SALUD, 10);
+		datos.put(Personaje.ATTR_DEFENSA, 40);
+		h.actualizar(datos);
 		Assert.assertEquals(0, h.serRobadoSalud(30));
-		
-		h.setDefensa(10);
+		datos = h.getTodo();
+		datos.put(Personaje.ATTR_DEFENSA, 10);
+		h.actualizar(datos);
 		Assert.assertEquals(10, h.serRobadoSalud(30));
 		Assert.assertEquals(0, h.getSalud());
 	}
@@ -88,10 +101,12 @@ public class TestAtributos {
 	@Test
 	public void testSerDesernegizado() {
 		Humano h = new Humano("Mica", new Guerrero(), 1);
-		h.setDefensa(0);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_DEFENSA, 0);
+		h.actualizar(datos);
 		Assert.assertEquals(0, h.serDesernegizado(-1));
-		
-		h.setEnergia(10);
+		datos.put(Personaje.ATTR_ENERGIA, 10);
+		h.actualizar(datos);
 		Assert.assertEquals(10, h.serDesernegizado(20));
 		Assert.assertEquals(0, h.getEnergia());
 	}
@@ -99,8 +114,10 @@ public class TestAtributos {
 	@Test
 	public void testSerEnergizado() {
 		Humano h = new Humano("Mica", new Guerrero(), 1);
-		h.setEnergiaTope(200);
-		h.setEnergia(190);
+		HashMap<String, Object> datos = h.getTodo();
+		datos.put(Personaje.ATTR_ENERGIATOPE, 200);
+		datos.put(Personaje.ATTR_ENERGIA, 190);
+		h.actualizar(datos);
 		Assert.assertEquals(190, h.getEnergia());
 		h.serEnergizado(20);
 		Assert.assertEquals(200, h.getEnergia());

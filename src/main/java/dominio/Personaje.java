@@ -11,6 +11,19 @@ import java.util.HashMap;
  */
 public abstract class Personaje extends Peleador implements Serializable {
 
+	/**
+	 * Atributos HASH
+	 */
+	public static final String ATTR_ENERGIA = "energia";
+	public static final String ATTR_DESTREZA = "destreza";
+	public static final String ATTR_INTELIGENCIA = "inteligencia";
+	public static final String ATTR_CASTA = "casta";
+	public static final String ATTR_EXPERIENCIA = "experiencia";
+	public static final String ATTR_IDPERSONAJE = "idpersonaje";
+	public static final String ATTR_ENERGIATOPE = "energiatope";
+	public static final String ATTR_SALUDTOPE = "saludtope";
+	
+	
 	protected int energia;
 	protected int ataque;
 	protected int magia;
@@ -102,14 +115,14 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 */
 	public void actualizar(final HashMap<String, Object> datos) {
 		super.actualizar(datos);
-		setEnergia((Integer) datos.get("energia"));
-		setDestreza((Integer) datos.get("destreza"));
-		setInteligencia((Integer) datos.get("inteligencia"));
-		setCasta((Casta) datos.get("casta"));
-		setExperiencia((Integer) datos.get("experiencia"));
-		setIdPersonaje((Integer) datos.get("idpersonaje"));
-		setEnergiaTope((Integer) datos.get("energiatope"));
-		setSaludTope((Integer) datos.get("saludtope"));
+		setEnergia((Integer) datos.get(ATTR_ENERGIA));
+		setDestreza((Integer) datos.get(ATTR_DESTREZA));
+		setInteligencia((Integer) datos.get(ATTR_INTELIGENCIA));
+		setCasta((Casta) datos.get(ATTR_CASTA));
+		setExperiencia((Integer) datos.get(ATTR_EXPERIENCIA));
+		setIdPersonaje((Integer) datos.get(ATTR_IDPERSONAJE));
+		setEnergiaTope((Integer) datos.get(ATTR_ENERGIATOPE));
+		setSaludTope((Integer) datos.get(ATTR_SALUDTOPE));
 	}
 
 	/**
@@ -118,14 +131,14 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 */
 	public HashMap<String, Object> getTodo() {
 		HashMap<String, Object> datos = super.getTodo();
-		datos.put("energia", getEnergia());
-		datos.put("destreza", getDestreza());
-		datos.put("inteligencia", getInteligencia());
-		datos.put("casta", getCasta());
-		datos.put("experiencia", getExperiencia());
-		datos.put("idpersonaje", getIdPersonaje());
-		datos.put("energiatope", getEnergiaTope());
-		datos.put("saludtope", getSaludTope());
+		datos.put(ATTR_ENERGIA, getEnergia());
+		datos.put(ATTR_DESTREZA, getDestreza());
+		datos.put(ATTR_INTELIGENCIA, getInteligencia());
+		datos.put(ATTR_CASTA, getCasta());
+		datos.put(ATTR_EXPERIENCIA, getExperiencia());
+		datos.put(ATTR_IDPERSONAJE, getIdPersonaje());
+		datos.put(ATTR_ENERGIATOPE, getEnergiaTope());
+		datos.put(ATTR_SALUDTOPE, getSaludTope());
 		return datos;
 	}
 	
