@@ -1,6 +1,7 @@
 package dominio;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * Clase de todos los peleadores
@@ -22,6 +23,7 @@ public abstract class Peleador implements Peleable {
 	private int defensa;
 	private String nombre;
 	private int nivel;
+	private LinkedList<Item> inventario;
 	private RandomGenerator rnd;
 
 	/**
@@ -52,10 +54,11 @@ public abstract class Peleador implements Peleable {
 
 	/**
 	 * Constructor por defecto
-	 * Carga myRamdom.
+	 * Carga myRandom y crea el inventario.
 	 */
 	public Peleador() {
 		setRandomGenerator(new MyRandom());
+		setInventario(new LinkedList<Item>());
 	}
 
 	/**
@@ -79,7 +82,11 @@ public abstract class Peleador implements Peleable {
 	 * @return salud
 	 */
 	public int getSalud() {
-		return salud;
+		int acum = 0;
+		for (Item item : inventario) {
+			acum += item.getModifSalud(salud);
+		}
+		return salud + acum;
 	}
 
 	/**
@@ -95,7 +102,11 @@ public abstract class Peleador implements Peleable {
 	 * @return fuerza
 	 */
 	public int getFuerza() {
-		return fuerza;
+		int acum = 0;
+		for (Item item : inventario) {
+			acum += item.getModifFuerza(fuerza);
+		}
+		return fuerza + acum;
 	}
 
 	/**
@@ -139,7 +150,7 @@ public abstract class Peleador implements Peleable {
 	}
 
 	/**
-	 * Getter nivel.F
+	 * Getter nivel.
 	 * @return nivel
 	 */
 	public int getNivel() {
@@ -152,6 +163,22 @@ public abstract class Peleador implements Peleable {
 	 */
 	protected void setNivel(final int nivel) {
 		this.nivel = nivel;
+	}
+
+	/**
+	 * Getter inventario.
+	 * @return lista de items.
+	 */
+	protected LinkedList<Item> getInventario() {
+		return this.inventario;
+	}
+
+	/**
+	 * Setter inventario.
+	 * @param inventario lista de items
+	 */
+	protected void setInventario(final LinkedList<Item> inventario) {
+		this.inventario = inventario;
 	}
 
 	/**
@@ -276,4 +303,12 @@ public abstract class Peleador implements Peleable {
 	 *         false en caso contrario.
 	 */
 	public abstract boolean esAfectadoPorGuerrero();
+
+	/**
+	 * Guarda el item en el inventario.
+	 * @param item a guardar
+	 */
+	public void guardarItemEnInventario(final Item item) {
+		this.inventario.add(item);
+	}
 }
