@@ -107,6 +107,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 		setDefensa(calcularPuntosDeDefensa());
 		setAtaque(calcularPuntosDeAtaque());
 		setMagia(calcularPuntosDeMagia());
+		setNombreRaza(nombreRazaInicial());
+		inicializarHabilidadesSegunRaza();
 	}
 
 	/**
