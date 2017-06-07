@@ -2,6 +2,7 @@ package dominio;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * La clase Personaje está desarrollada para que las clases que la hereden
@@ -67,7 +68,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 			Personaje.tablaDeNiveles[i] = Personaje.tablaDeNiveles[i - 1] + 50;
 	}
 
-	public Personaje(String nombre, Casta casta, int id) {
+	public Personaje(String nombre, Casta casta, int id, LinkedList<Item> inventario) {
+		super(inventario);
 		setNombre(nombre);
 		setCasta(casta);
 		setIdPersonaje(id);
@@ -91,7 +93,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 	}
 
 	public Personaje(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
-			int experiencia, int nivel, int idPersonaje) {
+			int experiencia, int nivel, int idPersonaje, LinkedList<Item> inventario) {
+		super(inventario);
 		setNombre(nombre);
 		setSalud(salud);
 		setEnergia(energia);
@@ -143,7 +146,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 		datos.put(ATTR_SALUDTOPE, getSaludTope());
 		return datos;
 	}
-	
+
 	protected abstract String nombreRazaInicial();
 
 	public String getNombreRaza() {

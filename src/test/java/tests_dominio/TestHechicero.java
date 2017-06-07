@@ -1,6 +1,7 @@
 package tests_dominio;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import dominio.Asesino;
 import dominio.Elfo;
 import dominio.Hechicero;
 import dominio.Humano;
+import dominio.Item;
 import dominio.NonPlayableCharacter;
 import dominio.Personaje;
 
@@ -16,8 +18,8 @@ public class TestHechicero {
 
 	@Test
 	public void testCurar() {
-		Humano h = new Humano("Nico", 100, 100, 55, 20, 30, new Hechicero(0.2, 0.3, 1.5), 0, 1, 1);
-		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1);
+		Humano h = new Humano("Nico", 100, 100, 55, 20, 30, new Hechicero(0.2, 0.3, 1.5), 0, 1, 1, new LinkedList<Item>());
+		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1, new LinkedList<Item>());
 
 		Assert.assertEquals(100, e.getSalud());
 		
@@ -35,7 +37,7 @@ public class TestHechicero {
 
 		Assert.assertFalse(h.habilidadCasta2(e));
 		
-		NonPlayableCharacter npc = new NonPlayableCharacter("Mica", 2, 1);
+		NonPlayableCharacter npc = new NonPlayableCharacter("Mica", 2, 1, new LinkedList<Item>());
 		int salud = npc.getSalud();
 		datos.put(Personaje.ATTR_ENERGIA, 15);
 		h.actualizar(datos);
@@ -46,8 +48,8 @@ public class TestHechicero {
 
 	@Test
 	public void testBolaDeFuego() {
-		Humano h = new Humano("Nico", 100, 100, 55, 20, 30, new Hechicero(0.2, 0.3, 1.5), 0, 1, 1);
-		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1);
+		Humano h = new Humano("Nico", 100, 100, 55, 20, 30, new Hechicero(0.2, 0.3, 1.5), 0, 1, 1, new LinkedList<Item>());
+		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1, new LinkedList<Item>());
 
 		Assert.assertEquals(100, e.getSalud());
 		if (h.habilidadCasta1(e)) {
@@ -65,8 +67,8 @@ public class TestHechicero {
 
 	@Test
 	public void testRobarEnergia_y_Salud() {
-		Humano h = new Humano("Nico", 100, 100, 55, 20, 50, new Hechicero(0.2, 0.3, 1.5), 0, 1, 1);
-		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1);
+		Humano h = new Humano("Nico", 100, 100, 55, 20, 50, new Hechicero(0.2, 0.3, 1.5), 0, 1, 1, new LinkedList<Item>());
+		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1, new LinkedList<Item>());
 
 		Assert.assertEquals(100, e.getSalud());
 		HashMap<String, Object> datos = h.getTodo();
@@ -87,7 +89,7 @@ public class TestHechicero {
 		h.actualizar(datos);
 		Assert.assertFalse(h.habilidadCasta3(e));
 		
-		NonPlayableCharacter npc = new NonPlayableCharacter("Mica", 2, 1);
+		NonPlayableCharacter npc = new NonPlayableCharacter("Mica", 2, 1, new LinkedList<Item>());
 		int salud = npc.getSalud();
 		datos.put(Personaje.ATTR_ENERGIA, 15);
 		h.actualizar(datos);

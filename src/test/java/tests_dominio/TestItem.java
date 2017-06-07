@@ -1,5 +1,7 @@
 package tests_dominio;
 
+import java.util.LinkedList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +20,7 @@ public class TestItem {
 
 	@Test
 	public void testItem() {
-		Personaje a = new Humano("Mica", new Asesino(10,10,10), 1);
+		Personaje a = new Humano("Mica", new Asesino(10,10,10), 1, new LinkedList<Item>());
 
 		ModificadorSegunItem modSuma = new ModificadorSegunItem(10, Operacion.SUMA);
 		ModificadorSegunItem modMultiplicacion = new ModificadorSegunItem(2, Operacion.MULTIPLICACION);

@@ -54,11 +54,12 @@ public abstract class Peleador implements Peleable {
 
 	/**
 	 * Constructor por defecto
-	 * Carga myRandom y crea el inventario.
+	 * Carga myRandom.
+	 * @param inventario lista de ítems del peleador
 	 */
-	public Peleador() {
+	public Peleador(final LinkedList<Item> inventario) {
 		setRandomGenerator(new MyRandom());
-		setInventario(new LinkedList<Item>());
+		setInventario(inventario);
 	}
 
 	/**
