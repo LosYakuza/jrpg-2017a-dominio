@@ -5,36 +5,58 @@ package dominio;
  */
 
 public class Humano extends Personaje {
+	private final int energiaMinimaParaHabilidad = 10;
+	private final int adicionalTopeHumano = 5;
 
-	public Humano(String nombre, Casta casta, int id) {
+	/**
+	 * Constructor de la clase Humano.
+	 * @param nombre nombre del humano.
+	 * @param casta casta del humano.
+	 * @param id id del humano.
+	 */
+	public Humano(final String nombre, final Casta casta, final int id) {
 		super(nombre, casta, id);
 	}
-	
-	public Humano(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
-			int experiencia, int nivel, int idPersonaje) {
+
+	/**
+	 * Constructor de la clase Humano.
+	 * @param nombre nombre del humano.
+	 * @param salud salud del humano.
+	 * @param energia energia del humano.
+	 * @param fuerza fuerza del humano.
+	 * @param destreza destreza del humano.
+	 * @param inteligencia inteligencia del humano.
+	 * @param casta casta del humano.
+	 * @param experiencia experiencia del humano.
+	 * @param nivel nivel del humano.
+	 * @param idPersonaje id del humano.
+	 */
+	public Humano(final String nombre, final int salud, final int energia, final int fuerza, final int destreza,
+			final int inteligencia, final Casta casta, final int experiencia, final int nivel,
+			final int idPersonaje) {
 		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje);
 	}
-	
+
 	@Override
 	protected String nombreRazaInicial() {
 		return "Humano";
 	}
-	
+
 	@Override
 	protected void inicializarHabilidadesSegunRaza() {
 		habilidadesRaza = new String[2];
 		habilidadesRaza[0] = "Incentivar";
 		habilidadesRaza[1] = "Golpe Fatal";
 	}
-	
+
 	@Override
 	protected int saludTopeInicial() {
-		return super.saludTopeInicial() + 5;
+		return super.saludTopeInicial() + adicionalTopeHumano;
 	}
-	
+
 	@Override
 	protected int energiaTopeInicial() {
-		return super.energiaTopeInicial() + 5;
+		return super.energiaTopeInicial() + adicionalTopeHumano;
 	}
 
 
@@ -48,8 +70,8 @@ public class Humano extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza1(final Peleable atacado) {
-		if (this.getEnergia() > 10) {
-			this.setEnergia(this.getEnergia() - 10);
+		if (this.getEnergia() > energiaMinimaParaHabilidad) {
+			this.setEnergia(this.getEnergia() - energiaMinimaParaHabilidad);
 			atacado.setAtaque(atacado.getAtaque() + this.getMagia());
 			return true;
 		}
@@ -66,13 +88,13 @@ public class Humano extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza2(final Peleable atacado) {
-		if (this.getEnergia() > 10) {
+		if (this.getEnergia() > energiaMinimaParaHabilidad) {
 			if (atacado.serAtacado(atacado.getSalud() / 2) > 0) {
 				this.setEnergia(this.getEnergia() / 2);
 				return true;
 			}
 		}
-		this.setEnergia(this.getEnergia() - 10);
+		this.setEnergia(this.getEnergia() - energiaMinimaParaHabilidad);
 		return false;
 	}
 }

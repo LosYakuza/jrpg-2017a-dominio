@@ -6,7 +6,29 @@ package dominio;
 
 public class NonPlayableCharacter extends Peleador {
 
-	private static final int dificultadAleatoria = -1;
+	private final int dificultadAleatoria = -1;
+	private final int dificultades = 3;
+	private final int fuerzaInicial0 = 10;
+	private final int fuerzaInicial1 = 20;
+	private final int fuerzaInicial2 = 30;
+	private final int saludInicial0 = 30;
+	private final int saludInicial1 = 40;
+	private final int saludInicial2 = 50;
+	private final int defensaInicial0 = 2;
+	private final int defensaInicial1 = 5;
+	private final int defensaInicial2 = 4;
+	private final int fuerzaAdicionalPorNivel0 = 3;
+	private final int fuerzaAdicionalPorNivel1 = 6;
+	private final int fuerzaAdicionalPorNivel2 = 10;
+	private final int saludAdicionalPorNivel0 = 15;
+	private final int saludAdicionalPorNivel1 = 20;
+	private final int saludAdicionalPorNivel2 = 25;
+	private final int defensaAdicionalPorNivel0 = 1;
+	private final int defensaAdicionalPorNivel1 = 2;
+	private final int defensaAdicionalPorNivel2 = 4;
+	private final int multiplicadorDeExperiencia = 30;
+	private final double probabilidadPorDefecto = 0.15;
+	private final double golpeCriticoPorDefecto = 1.5;
 
 	/**
 	 * Constructor de la clase NonPlayableCharacter. La dificultad del NPC depende de si es aleatoria o no.
@@ -16,31 +38,31 @@ public class NonPlayableCharacter extends Peleador {
 	 * @param nivel nivel inicial del NPC
 	 * @param dificultadNPC dificultad asignada, de este valor depende la fuerza, salud y defensa del NPC
 	 */
-	public NonPlayableCharacter(String nombre, int nivel, int dificultadNPC) {
+	public NonPlayableCharacter(final String nombre, final int nivel, final int dificultadNPC) {
 		setNombre(nombre);
 		setNivel(nivel);
 		int dificultad;
 		if (dificultadNPC == dificultadAleatoria) {
-			dificultad = getRandomGenerator().nextInt(3);
+			dificultad = getRandomGenerator().nextInt(dificultades);
 		} else {
 			dificultad = dificultadNPC;
 		}
 
 		switch (dificultad) {
 		case 0:
-			setFuerza(10 + (nivel - 1) * 3);// 30%
-			setSalud(30 + (nivel - 1) * 15);
-			setDefensa(2 + (nivel - 1) * 1);
+			setFuerza(fuerzaInicial0 + (nivel - 1) * fuerzaAdicionalPorNivel0);
+			setSalud(saludInicial0 + (nivel - 1) * saludAdicionalPorNivel0);
+			setDefensa(defensaInicial0 + (nivel - 1) * defensaAdicionalPorNivel0);
 			break;
 		case 1:
-			setFuerza(20 + (nivel - 1) * 6);// 50%
-			setSalud(40 + (nivel - 1) * 20);
-			setDefensa(5 + (nivel - 1) * 2);
+			setFuerza(fuerzaInicial1 + (nivel - 1) * fuerzaAdicionalPorNivel1);
+			setSalud(saludInicial1 + (nivel - 1) * saludAdicionalPorNivel1);
+			setDefensa(defensaInicial1 + (nivel - 1) * defensaAdicionalPorNivel1);
 			break;
 		case 2:
-			setFuerza(30 + (nivel - 1) * 10);// 50%
-			setSalud(50 + (nivel - 1) * 25);
-			setDefensa(4 + (nivel - 1) * 4);
+			setFuerza(fuerzaInicial2 + (nivel - 1) * fuerzaAdicionalPorNivel2);
+			setSalud(saludInicial2 + (nivel - 1) * saludAdicionalPorNivel2);
+			setDefensa(defensaInicial2 + (nivel - 1) * defensaAdicionalPorNivel2);
 			break;
 		default:
 			break;
@@ -50,7 +72,7 @@ public class NonPlayableCharacter extends Peleador {
 
 	@Override
 	protected int multiplicadorExperiencia() {
-		return 30;
+		return multiplicadorDeExperiencia;
 	}
 
 	@Override
@@ -63,11 +85,15 @@ public class NonPlayableCharacter extends Peleador {
 		setFuerza(ataque);
 	}
 
+	/**
+	 * Funcion no desarrollada.
+	 * @param exp experiencia ganada
+	 */
 	public void ganarExperiencia(final int exp) {	}
 
 	@Override
 	protected double probabilidadEvitarDanoEnAtaque() {
-		return 0.15;
+		return probabilidadPorDefecto;
 	}
 
 	@Override
@@ -77,12 +103,12 @@ public class NonPlayableCharacter extends Peleador {
 
 	@Override
 	protected int golpeCritico() {
-		return (int) (getAtaque() * 1.5);
+		return (int) (getAtaque() * golpeCriticoPorDefecto);
 	}
 
 	@Override
 	protected double probabilidadGolpeCritico() {
-		return 0.15;
+		return probabilidadPorDefecto;
 	}
 
 	@Override
