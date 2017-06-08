@@ -15,11 +15,11 @@ public class TestCasta {
 		Casta g = new Guerrero();
 		Casta h = new Hechicero();
 
-		a.setDanioCritico(100);
-		Assert.assertEquals(100, a.getDanioCritico(), 0.01);
+		a.setDañoCritico(100);
+		Assert.assertEquals(100, a.getDañoCritico(), 0.01);
 		
-		g.setProbabilidadEvitarDanio(150);
-		Assert.assertEquals(150, g.getProbabilidadEvitarDanio(), 0.01);
+		g.setProbabilidadEvitarDaño(150);
+		Assert.assertEquals(150, g.getProbabilidadEvitarDaño(), 0.01);
 		
 		h.setProbabilidadGolpeCritico(160);
 		Assert.assertEquals(160, h.getProbabilidadGolpeCritico(), 0.01);

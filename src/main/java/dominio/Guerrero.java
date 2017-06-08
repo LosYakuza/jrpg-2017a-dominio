@@ -4,9 +4,9 @@ package dominio;
  * La clase Guerrero es una Casta que posee como habilidades Ataque Doble, Aumentar Defensa e Ignorar Defensa.
  */
 public class Guerrero extends Casta {
-	public static final int CANT_HABILIDADES = 3;
-	public static final int ENERGIA_MINIMA_PARA_HABILIDAD = 10;
-	public static final int FUERZA_GUERRERO = 5;
+	private final int cantHabilidades = 3;
+	private final int energiaMinimaParaHabilidad = 10;
+	private final int fuerzaGuerrero = 5;
 
 	/**
 	 * Constructor de la clase Guerrero pasando probabilidad de golpe critico, evasion y daño critico.
@@ -26,7 +26,7 @@ public class Guerrero extends Casta {
 		super();
 		this.nombreCasta = "Guerrero";
 
-		habilidadesCasta = new String[CANT_HABILIDADES];
+		habilidadesCasta = new String[cantHabilidades];
 		habilidadesCasta[0] = "Ataque Doble";
 		habilidadesCasta[1] = "Aumentar Defensa";
 		habilidadesCasta[2] = "Ignorar Defensa";
@@ -42,8 +42,8 @@ public class Guerrero extends Casta {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
-		if (caster.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
-			caster.setEnergia(caster.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
+		if (caster.getEnergia() > energiaMinimaParaHabilidad) {
+			caster.setEnergia(caster.getEnergia() - energiaMinimaParaHabilidad);
 			if (atacado.serAtacado(caster.ataque * 2) > 0) {
 				return true;
 			}
@@ -60,8 +60,8 @@ public class Guerrero extends Casta {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidad2(final Personaje caster, final Peleable atacado) {
-		if (caster.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
-			caster.setEnergia(caster.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
+		if (caster.getEnergia() > energiaMinimaParaHabilidad) {
+			caster.setEnergia(caster.getEnergia() - energiaMinimaParaHabilidad);
 			caster.setDefensa(caster.getDefensa() + caster.magia);
 			return true;
 		}
@@ -79,8 +79,8 @@ public class Guerrero extends Casta {
 	 *          false en caso contrario.
 	 */
 	public boolean habilidad3(final Personaje caster, final Peleable atacado) {
-		if (caster.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
-			caster.setEnergia(caster.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
+		if (caster.getEnergia() > energiaMinimaParaHabilidad) {
+			caster.setEnergia(caster.getEnergia() - energiaMinimaParaHabilidad);
 			if (atacado.esAfectadoPorGuerrero()) {
 				int defensaOriginal = ((Personaje) atacado).getDefensa();
 				((Personaje) atacado).setDefensa(0);
@@ -96,6 +96,6 @@ public class Guerrero extends Casta {
 
 	@Override
 	public int getFuerza() {
-		return super.getFuerza() + FUERZA_GUERRERO;
+		return super.getFuerza() + fuerzaGuerrero;
 	}
 }

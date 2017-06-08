@@ -5,9 +5,9 @@ package dominio;
  */
 
 public class Elfo extends Personaje {
-	public static final int ADICIONAL_ENERGIA_TOPE_ELFO = 10;
-	public static final int ENERGIA_MINIMA_PARA_HABILIDAD = 10;
-	public static final int MULTIPLICADOR_HABILIDAD1 = 10;
+	private final int adicionalEnergiaTopeElfo = 10;
+	private final int energiaMinimaParaHabilidad = 10;
+	private final int multiplicadorHabilidad1 = 10;
 
 	/**
 	 * Constructor de la clase Elfo.
@@ -52,12 +52,12 @@ public class Elfo extends Personaje {
 
 	@Override
 	protected int energiaTopeInicial() {
-		return super.energiaTopeInicial() + ADICIONAL_ENERGIA_TOPE_ELFO;
+		return super.energiaTopeInicial() + adicionalEnergiaTopeElfo;
 	}
 
 	/**
 	 * Se implementa la habilidad Golpe Level.
-	 * El personaje gasta energía para atacar con la intensidad de la fuerza 
+	 * El personaje gasta energía para atacar con la intensidad de la fuerza
 	 * y el nivel del personaje multiplicado por diez.
 	 *
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
@@ -65,9 +65,9 @@ public class Elfo extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza1(final Peleable atacado) {
-		if (this.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
-			this.setEnergia(this.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
-			if (atacado.serAtacado(getFuerza() + getNivel() * MULTIPLICADOR_HABILIDAD1) > 0) {
+		if (this.getEnergia() > energiaMinimaParaHabilidad) {
+			this.setEnergia(this.getEnergia() - energiaMinimaParaHabilidad);
+			if (atacado.serAtacado(getFuerza() + getNivel() * multiplicadorHabilidad1) > 0) {
 				return true;
 			}
 		}
@@ -83,8 +83,8 @@ public class Elfo extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza2(final Peleable atacado) {
-		if (this.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
-			this.setEnergia(this.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
+		if (this.getEnergia() > energiaMinimaParaHabilidad) {
+			this.setEnergia(this.getEnergia() - energiaMinimaParaHabilidad);
 			if (atacado.serAtacado((int) (this.magia)) > 0) {
 				return true;
 			}

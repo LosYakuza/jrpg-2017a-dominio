@@ -5,8 +5,8 @@ package dominio;
  */
 
 public class Humano extends Personaje {
-	public static final int ENERGIA_MINIMA_PARA_HABILIDAD = 10;
-	public static final int ADICIONAL_TOPE_HUMANO = 5;
+	private final int energiaMinimaParaHabilidad = 10;
+	private final int adicionalTopeHumano = 5;
 
 	/**
 	 * Constructor de la clase Humano.
@@ -51,12 +51,12 @@ public class Humano extends Personaje {
 
 	@Override
 	protected int saludTopeInicial() {
-		return super.saludTopeInicial() + ADICIONAL_TOPE_HUMANO;
+		return super.saludTopeInicial() + adicionalTopeHumano;
 	}
 
 	@Override
 	protected int energiaTopeInicial() {
-		return super.energiaTopeInicial() + ADICIONAL_TOPE_HUMANO;
+		return super.energiaTopeInicial() + adicionalTopeHumano;
 	}
 
 
@@ -70,8 +70,8 @@ public class Humano extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza1(final Peleable atacado) {
-		if (this.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
-			this.setEnergia(this.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
+		if (this.getEnergia() > energiaMinimaParaHabilidad) {
+			this.setEnergia(this.getEnergia() - energiaMinimaParaHabilidad);
 			atacado.setAtaque(atacado.getAtaque() + this.getMagia());
 			return true;
 		}
@@ -88,13 +88,13 @@ public class Humano extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza2(final Peleable atacado) {
-		if (this.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+		if (this.getEnergia() > energiaMinimaParaHabilidad) {
 			if (atacado.serAtacado(atacado.getSalud() / 2) > 0) {
 				this.setEnergia(this.getEnergia() / 2);
 				return true;
 			}
 		}
-		this.setEnergia(this.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
+		this.setEnergia(this.getEnergia() - energiaMinimaParaHabilidad);
 		return false;
 	}
 }

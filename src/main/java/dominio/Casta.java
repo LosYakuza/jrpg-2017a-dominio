@@ -8,8 +8,8 @@ import java.io.Serializable;
  */
 
 public abstract class Casta implements Serializable {
-	public static final double PROBABILIDAD_DEFECTO = 0.2;
-	public static final double GOLPE_CRITICO_DEFECTO = 1.5;
+	private final double probabilidadPorDefecto = 0.2;
+	private final double golpeCriticoPorDefecto = 1.5;
 
 	protected double probabilidadGolpeCritico;
 	protected double probabilidadEvitarDaño;
@@ -22,9 +22,9 @@ public abstract class Casta implements Serializable {
 	 * Constructor con valores defecto de la clase Casta
 	 */
 	public Casta() {
-		this.probabilidadGolpeCritico = PROBABILIDAD_DEFECTO;
-		this.probabilidadEvitarDaño = PROBABILIDAD_DEFECTO;
-		this.dañoCritico = GOLPE_CRITICO_DEFECTO;
+		this.probabilidadGolpeCritico = probabilidadPorDefecto;
+		this.probabilidadEvitarDaño = probabilidadPorDefecto;
+		this.dañoCritico = golpeCriticoPorDefecto;
 	}
 
 	/**
@@ -99,7 +99,7 @@ public abstract class Casta implements Serializable {
 	 * Devuelve la probabilidad de evitar daño.
 	 * @return probabilidadEvitarDaño probabilidad de evitar daño.
 	 */
-	public double getProbabilidadEvitarDanio() {
+	public double getProbabilidadEvitarDaño() {
 		return probabilidadEvitarDaño;
 	}
 
@@ -107,7 +107,7 @@ public abstract class Casta implements Serializable {
 	 * Carga en el atributo probabilidadEvitarDaño un double correspondiente al parametro.
 	 * @param probabilidadEvitarDanio probabilidad de evitar daño.
 	 */
-	public void setProbabilidadEvitarDanio(final double probabilidadEvitarDanio) {
+	public void setProbabilidadEvitarDaño(final double probabilidadEvitarDanio) {
 		this.probabilidadEvitarDaño = probabilidadEvitarDanio;
 	}
 
@@ -115,7 +115,7 @@ public abstract class Casta implements Serializable {
 	 * Devuelve el daño critico
 	 * @return dañoCritico daño critico.
 	 */
-	public double getDanioCritico() {
+	public double getDañoCritico() {
 		return dañoCritico;
 	}
 
@@ -123,7 +123,7 @@ public abstract class Casta implements Serializable {
 	 * Carga en el atributo dañoCritico un double correspondiente al parametro.
 	 * @param danioCritico daño critico.
 	 */
-	public void setDanioCritico(final double danioCritico) {
+	public void setDañoCritico(final double danioCritico) {
 		this.dañoCritico = danioCritico;
 	}
 

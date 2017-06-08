@@ -22,17 +22,18 @@ public abstract class Personaje extends Peleador implements Serializable {
 	public static final String ATTR_IDPERSONAJE = "idpersonaje";
 	public static final String ATTR_ENERGIATOPE = "energiatope";
 	public static final String ATTR_SALUDTOPE = "saludtope";
-	public static final int VALOR_POR_DEFECTO = 10;
-	public static final int NIVEL_MAXIMO = 101;
-	public static final int AGREGADO_EXPERIENCIA = 50;
-	public static final int VALOR_TOPE_INICIAL = 100;
-	public static final int ENERGIA_MINIMA_PARA_HABILIDAD = 10;
-	public static final double INCREMENTO_DE_PUNTOS = 1.5;
-	public static final int VALOR_MAXIMO = 200;
-	public static final int INC_SALUD_TOPE = 25;
-	public static final int INC_ENERGIA_TOPE = 20;
-	public static final int MULTIPLICADOR_DE_EXPERIENCIA = 40;
-	public static final int DIVISOR_DE_DESTREZA = 1000;
+
+	private static final int NIVEL_MAXIMO = 101;
+	private static final int AGREGADO_EXPERIENCIA = 50;
+	private final int valorPorDefecto = 10;
+	private final int valorTopeInicial = 100;
+	private final int energiaMinimaParaHabilidad = 10;
+	private final double incrementoDePuntos = 1.5;
+	private final int valorMaximo = 200;
+	private final int incSaludTope = 25;
+	private final int incEnergiaTope = 20;
+	private final int multiplicadorDeExperiencia = 40;
+	private final int divisorDeDestreza = 1000;
 
 
 	protected int energia;
@@ -107,9 +108,9 @@ public abstract class Personaje extends Peleador implements Serializable {
 		inicializarHabilidadesSegunRaza();
 		setExperiencia(0);
 		setNivel(1);
-		setFuerza(VALOR_POR_DEFECTO + casta.getFuerza());
-		setInteligencia(VALOR_POR_DEFECTO + casta.getInteligencia());
-		setDestreza(VALOR_POR_DEFECTO + casta.getDestreza());
+		setFuerza(valorPorDefecto + casta.getFuerza());
+		setInteligencia(valorPorDefecto + casta.getInteligencia());
+		setDestreza(valorPorDefecto + casta.getDestreza());
 		x = 0;
 		y = 0;
 		setSaludTope(this.saludTopeInicial());
@@ -256,7 +257,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 */
 	public void setClan(final Alianza clan) {
 		this.clan = clan;
-		clan.aniadirPersonaje(this);
+		clan.añadirPersonaje(this);
 	}
 
 	/**
@@ -360,7 +361,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return 100.
 	 */
 	protected int saludTopeInicial() {
-		return VALOR_TOPE_INICIAL;
+		return valorTopeInicial;
 	}
 
 	/**
@@ -384,7 +385,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return 100.
 	 */
 	protected int energiaTopeInicial() {
-		return VALOR_TOPE_INICIAL;
+		return valorTopeInicial;
 	}
 
 	/**
@@ -405,7 +406,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	@Override
 	public int golpeCritico() {
-		return (int) (this.ataque * this.getCasta().getDanioCritico());
+		return (int) (this.ataque * this.getCasta().getDañoCritico());
 	}
 
 	/**
@@ -421,7 +422,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * 			false si la energia es menor a la energia minima necesaria para atacar.
 	 */
 	public boolean puedeAtacar() {
-		return energia > ENERGIA_MINIMA_PARA_HABILIDAD;
+		return energia > energiaMinimaParaHabilidad;
 	}
 
 	/**
@@ -429,7 +430,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return el valor del ataque del personaje.
 	 */
 	public int calcularPuntosDeAtaque() {
-		return (int) (this.getFuerza() * INCREMENTO_DE_PUNTOS);
+		return (int) (this.getFuerza() * incrementoDePuntos);
 	}
 
 	/**
@@ -445,7 +446,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return el valor de la magia del personaje.
 	 */
 	public int calcularPuntosDeMagia() {
-		return (int) (this.getInteligencia() * INCREMENTO_DE_PUNTOS);
+		return (int) (this.getInteligencia() * incrementoDePuntos);
 	}
 
 	/**
@@ -539,7 +540,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 */
 	public void crearAlianza(final String nombreAlianza) {
 		this.clan = new Alianza(nombreAlianza);
-		this.clan.aniadirPersonaje(this);
+		this.clan.añadirPersonaje(this);
 	}
 
 	/**
@@ -563,12 +564,12 @@ public abstract class Personaje extends Peleador implements Serializable {
 		if (this.clan == null) {
 			Alianza a = new Alianza("Alianza 1");
 			this.clan = a;
-			a.aniadirPersonaje(this);
+			a.añadirPersonaje(this);
 		}
 
 		if (nuevoAliado.clan == null) {
 			nuevoAliado.clan = this.clan;
-			this.clan.aniadirPersonaje(nuevoAliado);
+			this.clan.añadirPersonaje(nuevoAliado);
 			return true;
 		} else {
 			return false;
@@ -582,13 +583,13 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @param inte inteligencia que se suma.
 	 */
 	public void asignarPuntosSkills(final int fuerza, final int dest, final int inte) {
-		if (getFuerza() + fuerza <= VALOR_MAXIMO) {
+		if (getFuerza() + fuerza <= valorMaximo) {
 			setFuerza(getFuerza() + fuerza);
 		}
-		if (getDestreza() + dest <= VALOR_MAXIMO) {
+		if (getDestreza() + dest <= valorMaximo) {
 			setDestreza(getDestreza() + dest);
 		}
-		if (getInteligencia() + inte <= VALOR_MAXIMO) {
+		if (getInteligencia() + inte <= valorMaximo) {
 			setInteligencia(getInteligencia() + inte);
 		}
 		this.modificarAtributos();
@@ -609,8 +610,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 			acumuladorExperiencia += Personaje.tablaDeNiveles[getNivel() + 1];
 			setNivel(getNivel() + 1);
 			this.modificarAtributos();
-			this.saludTope += INC_SALUD_TOPE;
-			this.energiaTope += INC_ENERGIA_TOPE;
+			this.saludTope += incSaludTope;
+			this.energiaTope += incEnergiaTope;
 		}
 		this.experiencia -= acumuladorExperiencia;
 	}
@@ -637,7 +638,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 */
 	@Override
 	protected int multiplicadorExperiencia() {
-		return MULTIPLICADOR_DE_EXPERIENCIA;
+		return multiplicadorDeExperiencia;
 	}
 
 	/**
@@ -646,7 +647,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 */
 	@Override
 	protected double probabilidadEvitarDanoEnAtaque() {
-		return this.getCasta().getProbabilidadEvitarDanio();
+		return this.getCasta().getProbabilidadEvitarDaño();
 	}
 
 	/**
@@ -681,7 +682,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 	@Override
 	protected double probabilidadGolpeCritico() {
-		return this.casta.getProbabilidadGolpeCritico() + this.destreza / DIVISOR_DE_DESTREZA;
+		return this.casta.getProbabilidadGolpeCritico() + this.destreza / divisorDeDestreza;
 	}
 
 	@Override
