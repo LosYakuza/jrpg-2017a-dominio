@@ -17,6 +17,10 @@ public class Item {
 	 */
 	public Item(final RandomGenerator rnd) {
 		modSalud = new ModificadorSegunItem(rnd, Operacion.randomOperacion(rnd));
+		modFuerza = new ModificadorSegunItem(rnd, Operacion.randomOperacion(rnd));
+		modDestreza = new ModificadorSegunItem(rnd, Operacion.randomOperacion(rnd));
+		modInteligencia = new ModificadorSegunItem(rnd, Operacion.randomOperacion(rnd));
+		modEnergia = new ModificadorSegunItem(rnd, Operacion.randomOperacion(rnd));
 	}
 
 	/**
