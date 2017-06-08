@@ -6,7 +6,29 @@ package dominio;
 
 public class NonPlayableCharacter extends Peleador {
 
-	private static final int dificultadAleatoria = -1;
+	private static final int DIFICULTAD_ALEATORIA = -1;
+	private static final int DIFICULTADES = 3;
+	private static final int FUERZA_INICIAL_0 = 10;
+	private static final int FUERZA_INICIAL_1 = 20;
+	private static final int FUERZA_INICIAL_2 = 30;
+	private static final int SALUD_INICIAL_0 = 30;
+	private static final int SALUD_INICIAL_1 = 40;
+	private static final int SALUD_INICIAL_2 = 50;
+	private static final int DEFENSA_INICIAL_0 = 2;
+	private static final int DEFENSA_INICIAL_1 = 5;
+	private static final int DEFENSA_INICIAL_2 = 4;
+	private static final int FUERZA_ADICIONAL_POR_NIVEL_0 = 3;
+	private static final int FUERZA_ADICIONAL_POR_NIVEL_1 = 6;
+	private static final int FUERZA_ADICIONAL_POR_NIVEL_2 = 10;
+	private static final int SALUD_ADICIONAL_POR_NIVEL_0 = 15;
+	private static final int SALUD_ADICIONAL_POR_NIVEL_1 = 20;
+	private static final int SALUD_ADICIONAL_POR_NIVEL_2 = 25;
+	private static final int DEFENSA_ADICIONAL_POR_NIVEL_0 = 1;
+	private static final int DEFENSA_ADICIONAL_POR_NIVEL_1 = 2;
+	private static final int DEFENSA_ADICIONAL_POR_NIVEL_2 = 4;
+	private static final int MULTIPLICADOR_DE_EXPERIENCIA = 30;
+	private static final double PROBABILIDAD_DEFECTO = 0.15;
+	private static final double GOLPE_CRITICO_DEFECTO = 1.5;
 
 	/**
 	 * Constructor de la clase NonPlayableCharacter. La dificultad del NPC depende de si es aleatoria o no.
@@ -16,31 +38,31 @@ public class NonPlayableCharacter extends Peleador {
 	 * @param nivel nivel inicial del NPC
 	 * @param dificultadNPC dificultad asignada, de este valor depende la fuerza, salud y defensa del NPC
 	 */
-	public NonPlayableCharacter(String nombre, int nivel, int dificultadNPC) {
+	public NonPlayableCharacter(final String nombre, final int nivel, final int dificultadNPC) {
 		setNombre(nombre);
 		setNivel(nivel);
 		int dificultad;
-		if (dificultadNPC == dificultadAleatoria) {
-			dificultad = getRandomGenerator().nextInt(3);
+		if (dificultadNPC == DIFICULTAD_ALEATORIA) {
+			dificultad = getRandomGenerator().nextInt(DIFICULTADES);
 		} else {
 			dificultad = dificultadNPC;
 		}
 
 		switch (dificultad) {
 		case 0:
-			setFuerza(10 + (nivel - 1) * 3);// 30%
-			setSalud(30 + (nivel - 1) * 15);
-			setDefensa(2 + (nivel - 1) * 1);
+			setFuerza(FUERZA_INICIAL_0 + (nivel - 1) * FUERZA_ADICIONAL_POR_NIVEL_0);
+			setSalud(SALUD_INICIAL_0 + (nivel - 1) * SALUD_ADICIONAL_POR_NIVEL_0);
+			setDefensa(DEFENSA_INICIAL_0 + (nivel - 1) * DEFENSA_ADICIONAL_POR_NIVEL_0);
 			break;
 		case 1:
-			setFuerza(20 + (nivel - 1) * 6);// 50%
-			setSalud(40 + (nivel - 1) * 20);
-			setDefensa(5 + (nivel - 1) * 2);
+			setFuerza(FUERZA_INICIAL_1 + (nivel - 1) * FUERZA_ADICIONAL_POR_NIVEL_1);
+			setSalud(SALUD_INICIAL_1 + (nivel - 1) * SALUD_ADICIONAL_POR_NIVEL_1);
+			setDefensa(DEFENSA_INICIAL_1 + (nivel - 1) * DEFENSA_ADICIONAL_POR_NIVEL_1);
 			break;
 		case 2:
-			setFuerza(30 + (nivel - 1) * 10);// 50%
-			setSalud(50 + (nivel - 1) * 25);
-			setDefensa(4 + (nivel - 1) * 4);
+			setFuerza(FUERZA_INICIAL_2 + (nivel - 1) * FUERZA_ADICIONAL_POR_NIVEL_2);
+			setSalud(SALUD_INICIAL_2 + (nivel - 1) * SALUD_ADICIONAL_POR_NIVEL_2);
+			setDefensa(DEFENSA_INICIAL_2 + (nivel - 1) * DEFENSA_ADICIONAL_POR_NIVEL_2);
 			break;
 		default:
 			break;
@@ -50,7 +72,7 @@ public class NonPlayableCharacter extends Peleador {
 
 	@Override
 	protected int multiplicadorExperiencia() {
-		return 30;
+		return MULTIPLICADOR_DE_EXPERIENCIA;
 	}
 
 	@Override
@@ -63,11 +85,15 @@ public class NonPlayableCharacter extends Peleador {
 		setFuerza(ataque);
 	}
 
+	/**
+	 * Funcion no desarrollada.
+	 * @param exp experiencia ganada
+	 */
 	public void ganarExperiencia(final int exp) {	}
 
 	@Override
 	protected double probabilidadEvitarDanoEnAtaque() {
-		return 0.15;
+		return PROBABILIDAD_DEFECTO;
 	}
 
 	@Override
@@ -77,12 +103,12 @@ public class NonPlayableCharacter extends Peleador {
 
 	@Override
 	protected int golpeCritico() {
-		return (int) (getAtaque() * 1.5);
+		return (int) (getAtaque() * GOLPE_CRITICO_DEFECTO);
 	}
 
 	@Override
 	protected double probabilidadGolpeCritico() {
-		return 0.15;
+		return PROBABILIDAD_DEFECTO;
 	}
 
 	@Override
