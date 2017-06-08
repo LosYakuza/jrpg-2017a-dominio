@@ -23,8 +23,14 @@ public class Item {
 	 * Constructor Item.
 	 * @param modifSalud modificador salud.
 	 */
-	public Item(final ModificadorSegunItem modifSalud) {
+	public Item(final ModificadorSegunItem modifSalud, final ModificadorSegunItem modifFuerza,
+			final ModificadorSegunItem modifDestreza, final ModificadorSegunItem modifInteligencia,
+			final ModificadorSegunItem modifEnergia) {
 		this.modSalud = modifSalud;
+		this.modFuerza = modifFuerza;
+		this.modDestreza = modifDestreza;
+		this.modInteligencia = modifInteligencia;
+		this.modEnergia = modifEnergia;
 	}
 
 	/**

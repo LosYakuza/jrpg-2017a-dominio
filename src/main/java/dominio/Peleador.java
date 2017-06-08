@@ -83,11 +83,7 @@ public abstract class Peleador implements Peleable {
 	 * @return salud
 	 */
 	public int getSalud() {
-		int acum = 0;
-		for (Item item : inventario) {
-			acum += item.getModifSalud(salud);
-		}
-		return salud + acum;
+		return salud;
 	}
 
 	/**
@@ -103,11 +99,7 @@ public abstract class Peleador implements Peleable {
 	 * @return fuerza
 	 */
 	public int getFuerza() {
-		int acum = 0;
-		for (Item item : inventario) {
-			acum += item.getModifFuerza(fuerza);
-		}
-		return fuerza + acum;
+		return fuerza;
 	}
 
 	/**
@@ -218,12 +210,48 @@ public abstract class Peleador implements Peleable {
 	 */
 	public int serAtacado(final int dano) {
 		int danoCalc = dano;
+		//addBonusSegunItems();
 		if (rnd.nextDouble() >= probabilidadEvitarDanoEnAtaque()) {
 			danoCalc -= defensaAlSerAtacado();
 			danoCalc = quitarVidaSegunDano(danoCalc);
-			return danoCalc;
+		} else {
+			danoCalc = 0;
 		}
-		return 0;
+		//removeBonusSegunItems();
+		return danoCalc;
+	}
+
+	/**
+	 * Modifica los atributos del Peleador según los ítems que lleve equipado.
+	 */
+	public void addBonusSegunItems() {
+		int acumSalud = 0;
+		int acumFuerza = 0;
+
+		for (Item item : inventario) {
+			acumSalud += item.getModifSalud(salud);
+			acumFuerza += item.getModifFuerza(fuerza);
+		}
+
+		salud += acumSalud;
+		fuerza += acumFuerza;
+	}
+
+	/**
+	 * Remueve los modificadores de los ítems.
+	 * Vuelve los atributos del Peleador a su estado original.
+	 */
+	public void removeBonusSegunItems() {
+		int acumSalud = 0;
+		int acumFuerza = 0;
+
+		for (Item item : inventario) {
+			acumSalud += item.getModifSalud(salud);
+			acumFuerza += item.getModifFuerza(fuerza);
+		}
+
+		salud -= acumSalud;
+		fuerza -= acumFuerza;
 	}
 
 	/**

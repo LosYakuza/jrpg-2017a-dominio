@@ -49,4 +49,22 @@ public enum Operacion {
 	public static Operacion randomOperacion(final RandomGenerator rnd)  {
 		return values()[rnd.nextInt(CANT_OPERACIONES)];
 	}
+
+	/**
+	 * Devuelve el enum operación según el id en la base de datos.
+	 * @param id id según base de datos
+	 * @return enum operación
+	 */
+	public static Operacion operacionSegunId(final int id) {
+		switch (id) {
+		case 1:
+			return Operacion.SUMA;
+		case 2:
+			return Operacion.PORCENTAJE;
+		case 3:
+			return Operacion.MULTIPLICACION;
+		default:
+			return Operacion.SUMA; //Sino hay que hacer throw e irlo manejando.
+		}
+	}
 }

@@ -595,4 +595,40 @@ public abstract class Personaje extends Peleador implements Serializable {
 	public final boolean esAfectadoPorGuerrero() {
 		return true;
 	}
+
+	@Override
+	public final void addBonusSegunItems() {
+		super.addBonusSegunItems();
+		int acumDestreza = 0;
+		int acumInteligencia = 0;
+		int acumEnergia = 0;
+
+		for (Item item : getInventario()) {
+			acumDestreza += item.getModifDestreza(destreza);
+			acumInteligencia += item.getModifInteligencia(inteligencia);
+			acumEnergia += item.getModifEnergia(energia);
+		}
+
+		destreza += acumDestreza;
+		inteligencia += acumInteligencia;
+		energia += acumEnergia;
+	}
+
+	@Override
+	public void removeBonusSegunItems() {
+		super.removeBonusSegunItems();
+		int acumDestreza = 0;
+		int acumInteligencia = 0;
+		int acumEnergia = 0;
+
+		for (Item item : getInventario()) {
+			acumDestreza += item.getModifDestreza(destreza);
+			acumInteligencia += item.getModifInteligencia(inteligencia);
+			acumEnergia += item.getModifEnergia(energia);
+		}
+
+		destreza -= acumDestreza;
+		inteligencia -= acumInteligencia;
+		energia -= acumEnergia;
+	}
 }
