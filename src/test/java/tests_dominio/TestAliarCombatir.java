@@ -117,12 +117,12 @@ public class TestAliarCombatir {
 		NonPlayableCharacter npc = new NonPlayableCharacter("Agatha", 3, 1);
 		npc.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		h.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
-		h.getCasta().setProbabilidadEvitarDaño(1);
+		h.getCasta().setProbabilidadEvitarDanio(1);
 		Assert.assertEquals(0, h.serAtacado(30));
 		HashMap<String,Object> datos = h.getTodo();
 		datos.put(Personaje.ATTR_DEFENSA, 200);
 		h.actualizar(datos);
-		h.getCasta().setProbabilidadEvitarDaño(0.1);
+		h.getCasta().setProbabilidadEvitarDanio(0.1);
 		Assert.assertEquals(0, h.serAtacado(100));
 		
 		datos.put(Personaje.ATTR_SALUD, 20);
