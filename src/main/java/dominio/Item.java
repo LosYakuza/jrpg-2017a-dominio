@@ -4,6 +4,7 @@ package dominio;
  * Items a ser equipados por un Personaje (jugable o no).
  */
 public class Item {
+	private int idItem;
 	private ModificadorSegunItem modSalud;
 	private ModificadorSegunItem modFuerza;
 	private ModificadorSegunItem modDestreza;
@@ -80,5 +81,21 @@ public class Item {
 	 */
 	int getModifSalud(final int saludOriginal) {
 		return modSalud.getValor(saludOriginal) - saludOriginal;
+	}
+
+	/**
+	 * Devuelve el id del item.
+	 * @return id
+	 */
+	public int getIdItem() {
+		return idItem;
+	}
+
+	/**
+	 * Setea el id del item.
+	 * @param idItem id
+	 */
+	public void setIdItem(int idItem) {
+		this.idItem = idItem;
 	}
 }
