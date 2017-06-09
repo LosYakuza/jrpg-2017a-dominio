@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.LinkedList;
+
 /**
  * La clase NonPlayableCharacter representa a los personajes no no jugables (también llamados NPC o PNJ)
  */
@@ -15,8 +17,11 @@ public class NonPlayableCharacter extends Peleador {
 	 * @param nombre nombre inicial del NPC
 	 * @param nivel nivel inicial del NPC
 	 * @param dificultadNPC dificultad asignada, de este valor depende la fuerza, salud y defensa del NPC
+	 * @param inventario lista de ítems del NPC
 	 */
-	public NonPlayableCharacter(String nombre, int nivel, int dificultadNPC) {
+	public NonPlayableCharacter(String nombre, int nivel, int dificultadNPC, 
+			LinkedList<Item> inventario) {
+		super(inventario);
 		setNombre(nombre);
 		setNivel(nivel);
 		int dificultad;

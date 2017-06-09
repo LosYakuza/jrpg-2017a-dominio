@@ -2,6 +2,7 @@ package dominio;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * La clase Personaje está desarrollada para que las clases que la hereden
@@ -22,8 +23,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 	public static final String ATTR_IDPERSONAJE = "idpersonaje";
 	public static final String ATTR_ENERGIATOPE = "energiatope";
 	public static final String ATTR_SALUDTOPE = "saludtope";
-	
-	
+
+
 	protected int energia;
 	protected int ataque;
 	protected int magia;
@@ -67,7 +68,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 			Personaje.tablaDeNiveles[i] = Personaje.tablaDeNiveles[i - 1] + 50;
 	}
 
-	public Personaje(String nombre, Casta casta, int id) {
+	public Personaje(String nombre, Casta casta, int id, LinkedList<Item> inventario) {
+		super(inventario);
 		setNombre(nombre);
 		setCasta(casta);
 		setIdPersonaje(id);
@@ -91,7 +93,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 	}
 
 	public Personaje(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
-			int experiencia, int nivel, int idPersonaje) {
+			int experiencia, int nivel, int idPersonaje, LinkedList<Item> inventario) {
+		super(inventario);
 		setNombre(nombre);
 		setSalud(salud);
 		setEnergia(energia);
@@ -107,6 +110,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 		setDefensa(calcularPuntosDeDefensa());
 		setAtaque(calcularPuntosDeAtaque());
 		setMagia(calcularPuntosDeMagia());
+		setNombreRaza(nombreRazaInicial());
+		inicializarHabilidadesSegunRaza();
 	}
 
 	/**
@@ -141,7 +146,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 		datos.put(ATTR_SALUDTOPE, getSaludTope());
 		return datos;
 	}
-	
+
 	protected abstract String nombreRazaInicial();
 
 	public String getNombreRaza() {
@@ -178,7 +183,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 	}
 
 	public int getEnergia() {
-		return energia;
+		int acum = 0;
+		for (Item item : getInventario()) {
+			acum += item.getModifEnergia(energia);
+		}
+		return energia + acum;
 	}
 
 	/**
@@ -189,8 +198,16 @@ public abstract class Personaje extends Peleador implements Serializable {
 		this.energia = energia;
 	}
 
+	/**
+	 * Getter destreza.
+	 * @return destreza
+	 */
 	public int getDestreza() {
-		return destreza;
+		int acum = 0;
+		for (Item item : getInventario()) {
+			acum += item.getModifDestreza(destreza);
+		}
+		return destreza + acum;
 	}
 
 	/**
@@ -201,8 +218,16 @@ public abstract class Personaje extends Peleador implements Serializable {
 		this.destreza = destreza;
 	}
 
+	/**
+	 * Getter inteligencia.
+	 * @return inteligencia
+	 */
 	public int getInteligencia() {
-		return inteligencia;
+		int acum = 0;
+		for (Item item : getInventario()) {
+			acum += item.getModifInteligencia(inteligencia);
+		}
+		return inteligencia + acum;
 	}
 
 	/**
@@ -569,5 +594,41 @@ public abstract class Personaje extends Peleador implements Serializable {
 	@Override
 	public final boolean esAfectadoPorGuerrero() {
 		return true;
+	}
+
+	@Override
+	public final void addBonusSegunItems() {
+		super.addBonusSegunItems();
+		int acumDestreza = 0;
+		int acumInteligencia = 0;
+		int acumEnergia = 0;
+
+		for (Item item : getInventario()) {
+			acumDestreza += item.getModifDestreza(destreza);
+			acumInteligencia += item.getModifInteligencia(inteligencia);
+			acumEnergia += item.getModifEnergia(energia);
+		}
+
+		destreza += acumDestreza;
+		inteligencia += acumInteligencia;
+		energia += acumEnergia;
+	}
+
+	@Override
+	public void removeBonusSegunItems() {
+		super.removeBonusSegunItems();
+		int acumDestreza = 0;
+		int acumInteligencia = 0;
+		int acumEnergia = 0;
+
+		for (Item item : getInventario()) {
+			acumDestreza += item.getModifDestreza(destreza);
+			acumInteligencia += item.getModifInteligencia(inteligencia);
+			acumEnergia += item.getModifEnergia(energia);
+		}
+
+		destreza -= acumDestreza;
+		inteligencia -= acumInteligencia;
+		energia -= acumEnergia;
 	}
 }

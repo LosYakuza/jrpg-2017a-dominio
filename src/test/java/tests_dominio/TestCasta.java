@@ -1,6 +1,7 @@
 package tests_dominio;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class TestCasta {
 		Assert.assertEquals("Guerrero", g.getNombreCasta());
 		Assert.assertEquals("Hechicero", h.getNombreCasta());
 		
-		Personaje a1 = new Humano("Mica", new Asesino(), 1);
+		Personaje a1 = new Humano("Mica", new Asesino(), 1, new LinkedList<Item>());
 		Assert.assertEquals("Asesino", a1.getCasta().getNombreCasta());
 		HashMap<String, Object> datos = a1.getTodo();
 		datos.put(Personaje.ATTR_CASTA, new Guerrero());
@@ -38,9 +39,9 @@ public class TestCasta {
 	
 	@Test
 	public void testArrayHabilidadesCasta() {
-		Personaje a = new Humano("Mica", new Asesino(), 1);
-		Personaje g = new Humano("Mica", new Guerrero(), 1);
-		Personaje h = new Humano("Mica", new Hechicero(), 1);
+		Personaje a = new Humano("Mica", new Asesino(), 1, new LinkedList<Item>());
+		Personaje g = new Humano("Mica", new Guerrero(), 1, new LinkedList<Item>());
+		Personaje h = new Humano("Mica", new Hechicero(), 1, new LinkedList<Item>());
 		
 		Assert.assertEquals(3, a.getHabilidadesCasta().length);
 		Assert.assertEquals("Golpe Critico", a.getHabilidadesCasta()[0]);

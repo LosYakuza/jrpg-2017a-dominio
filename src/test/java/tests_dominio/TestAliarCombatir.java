@@ -1,6 +1,7 @@
 package tests_dominio;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,9 +11,9 @@ public class TestAliarCombatir {
 
 	@Test
 	public void testCrearAlianza() {
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		Humano h2 = new Humano("Lautaro", new Guerrero(), 1);
-		Humano h3 = new Humano("Mica", new Guerrero(), 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
+		Humano h2 = new Humano("Lautaro", new Guerrero(), 1, new LinkedList<Item>());
+		Humano h3 = new Humano("Mica", new Guerrero(), 1, new LinkedList<Item>());
 
 		Assert.assertNull(h.getClan());
 		Assert.assertNull(h2.getClan());
@@ -26,9 +27,9 @@ public class TestAliarCombatir {
 
 	@Test
 	public void testAliar() {
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		Humano h2 = new Humano("Lautaro", new Guerrero(), 1);
-		Humano h3 = new Humano("Mica", new Guerrero(), 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
+		Humano h2 = new Humano("Lautaro", new Guerrero(), 1, new LinkedList<Item>());
+		Humano h3 = new Humano("Mica", new Guerrero(), 1, new LinkedList<Item>());
 		Alianza a1 = new Alianza("Los CacheFC");
 		
 		Assert.assertNull(h2.getClan());
@@ -45,9 +46,9 @@ public class TestAliarCombatir {
 
 	@Test
 	public void testSalirDeAlianza() {
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		Humano h2 = new Humano("Lautaro", new Guerrero(), 1);
-		Humano h3 = new Humano("Mica", new Guerrero(), 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
+		Humano h2 = new Humano("Lautaro", new Guerrero(), 1, new LinkedList<Item>());
+		Humano h3 = new Humano("Mica", new Guerrero(), 1, new LinkedList<Item>());
 		Alianza a1 = new Alianza("Los CacheFC");
 		
 		h.setClan(a1);
@@ -65,8 +66,8 @@ public class TestAliarCombatir {
 
 	@Test
 	public void testDañar() {
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		Humano h2 = new Humano("Lautaro", new Asesino(), 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
+		Humano h2 = new Humano("Lautaro", new Asesino(), 1, new LinkedList<Item>());
 		h.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		h2.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		Assert.assertEquals(105, h2.getSalud());
@@ -78,8 +79,8 @@ public class TestAliarCombatir {
 		}
 
 
-		NonPlayableCharacter npc = new NonPlayableCharacter("Agatha", 3, 1);
-		Elfo e = new Elfo("Bemille", new Guerrero(), 1);
+		NonPlayableCharacter npc = new NonPlayableCharacter("Agatha", 3, 1, new LinkedList<Item>());
+		Elfo e = new Elfo("Bemille", new Guerrero(), 1, new LinkedList<Item>());
 		e.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		Assert.assertEquals(80, npc.getSalud());
 		if (e.atacar(npc) != 0) {
@@ -88,8 +89,8 @@ public class TestAliarCombatir {
 			Assert.assertEquals(80, npc.getSalud());
 		}
 
-		NonPlayableCharacter npc2 = new NonPlayableCharacter("Nicolas", 3, 1);
-		Orco o = new Orco("Lautaro", new Hechicero(), 1);
+		NonPlayableCharacter npc2 = new NonPlayableCharacter("Nicolas", 3, 1, new LinkedList<Item>());
+		Orco o = new Orco("Lautaro", new Hechicero(), 1, new LinkedList<Item>());
 		npc2.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		Assert.assertEquals(110, o.getSalud());
 		if (npc2.atacar(o) != 0) {
@@ -113,8 +114,8 @@ public class TestAliarCombatir {
 
 	@Test
 	public void testSerDañado() {
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		NonPlayableCharacter npc = new NonPlayableCharacter("Agatha", 3, 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
+		NonPlayableCharacter npc = new NonPlayableCharacter("Agatha", 3, 1, new LinkedList<Item>());
 		npc.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		h.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
 		h.getCasta().setProbabilidadEvitarDaño(1);
