@@ -1,17 +1,19 @@
 package dominio;
 
+import java.util.LinkedList;
+
 /**
  * La clase Orco es un Personaje que posee dos habilidades de raza Golpe Defensa y Mordisco de Vida.
  */
 public class Orco extends Personaje {
 
-	public Orco(String nombre, Casta casta, int id) {
-		super(nombre, casta, id);
+	public Orco(String nombre, Casta casta, int id, LinkedList<Item> inventario) {
+		super(nombre, casta, id, inventario);
 	}
 
 	public Orco(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
-			int experiencia, int nivel, int idPersonaje) {
-		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje);
+			int experiencia, int nivel, int idPersonaje, LinkedList<Item> inventario) {
+		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje, inventario);
 	}
 
 	@Override
