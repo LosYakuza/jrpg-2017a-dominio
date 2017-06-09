@@ -8,6 +8,10 @@ public enum Operacion {
 	SUMA, PORCENTAJE, MULTIPLICACION;
 
 	private static final int CANT_OPERACIONES = 3;
+	private static final int ID_SUMA = 1;
+	private static final int ID_PORCENTAJE = 2;
+	private static final int ID_MULTIPLICACION = 3;
+	
 
 	@Override
 	public String toString() {
@@ -57,14 +61,28 @@ public enum Operacion {
 	 */
 	public static Operacion operacionSegunId(final int id) {
 		switch (id) {
-		case 1:
+		case ID_SUMA:
 			return Operacion.SUMA;
-		case 2:
+		case ID_PORCENTAJE:
 			return Operacion.PORCENTAJE;
-		case 3:
+		case ID_MULTIPLICACION:
 			return Operacion.MULTIPLICACION;
 		default:
 			return Operacion.SUMA; //Sino hay que hacer throw e irlo manejando.
 		}
 	}
+
+	public static int operacionId(Operacion operacion) {
+		switch (operacion) {
+		case SUMA:
+			return ID_SUMA;
+		case PORCENTAJE:
+			return ID_PORCENTAJE;
+		case MULTIPLICACION:
+			return ID_MULTIPLICACION;
+		default:
+			return 0;
+		}
+	}
+	
 }

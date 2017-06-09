@@ -98,4 +98,25 @@ public class Item {
 	public void setIdItem(int idItem) {
 		this.idItem = idItem;
 	}
+
+	public ModificadorSegunItem getModSalud() {
+		return modSalud;
+	}
+
+	public ModificadorSegunItem getModFuerza() {
+		return modFuerza;
+	}
+
+	public ModificadorSegunItem getModDestreza() {
+		return modDestreza;
+	}
+
+	public ModificadorSegunItem getModInteligencia() {
+		return modInteligencia;
+	}
+
+	public ModificadorSegunItem getModEnergia() {
+		return modEnergia;
+	}
+
 }

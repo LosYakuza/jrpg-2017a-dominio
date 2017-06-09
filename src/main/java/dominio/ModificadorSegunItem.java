@@ -52,4 +52,19 @@ public class ModificadorSegunItem {
 		this.operacion = operacion;
 	}
 
+	/**
+	 * Devuelve el valor del modificador.
+	 * @return valor
+	 */
+	public int getValor() {
+		return valor;
+	}
+
+	/**
+	 * Devuelve el id de la operacion.
+	 * @return id
+	 */
+	public int getIdOperacion() {
+		return Operacion.operacionId(this.operacion);
+	}
 }

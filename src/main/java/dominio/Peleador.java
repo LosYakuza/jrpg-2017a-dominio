@@ -162,7 +162,7 @@ public abstract class Peleador implements Peleable {
 	 * Getter inventario.
 	 * @return lista de items.
 	 */
-	protected LinkedList<Item> getInventario() {
+	public LinkedList<Item> getInventario() {
 		return this.inventario;
 	}
 
@@ -170,7 +170,7 @@ public abstract class Peleador implements Peleable {
 	 * Setter inventario.
 	 * @param inventario lista de items
 	 */
-	protected void setInventario(final LinkedList<Item> inventario) {
+	public void setInventario(final LinkedList<Item> inventario) {
 		this.inventario = inventario;
 	}
 
