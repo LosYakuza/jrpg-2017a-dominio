@@ -13,7 +13,7 @@ public class Item {
 	private ModificadorSegunItem modEnergia;
 
 	public static String[] nameItems = {"Amuleto1", "Amuleto2", "Anillo1", "Anillo2", "Anillo3",
-			"Piedra", "Cuchi", "Ojo", "Metal", "Papiro"};
+			"Piedra", "Cuchi", "Ojo", "Metalit", "Papiro"};
 
 	/**
 	 * Constructor Item.
