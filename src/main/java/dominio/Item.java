@@ -26,7 +26,7 @@ public class Item {
 		modInteligencia = new ModificadorSegunItem(rnd, Operacion.randomOperacion(rnd));
 		modEnergia = new ModificadorSegunItem(rnd, Operacion.randomOperacion(rnd));
 
-		nombre = nameItems[rnd.nextInt(10)];
+		nombre = nameItems[rnd.nextInt(nameItems.length-1)];
 	}
 
 	/**
