@@ -5,12 +5,15 @@ package dominio;
  */
 public class Item {
 	private int idItem;
+	private String nombre;
 	private ModificadorSegunItem modSalud;
 	private ModificadorSegunItem modFuerza;
 	private ModificadorSegunItem modDestreza;
 	private ModificadorSegunItem modInteligencia;
 	private ModificadorSegunItem modEnergia;
 
+	public static String[] nameItems = {"Amuleto1", "Amuleto2", "Anillo1", "Anillo2", "Anillo3",
+			"Piedra", "Cuchi", "Ojo", "Metalit", "Papiro"};
 
 	/**
 	 * Constructor Item.
@@ -22,15 +25,26 @@ public class Item {
 		modDestreza = new ModificadorSegunItem(rnd, Operacion.randomOperacion(rnd));
 		modInteligencia = new ModificadorSegunItem(rnd, Operacion.randomOperacion(rnd));
 		modEnergia = new ModificadorSegunItem(rnd, Operacion.randomOperacion(rnd));
+
+		nombre = nameItems[rnd.nextInt(10)];
 	}
 
 	/**
 	 * Constructor Item.
-	 * @param modifSalud modificador salud.
+	 * @param id id del item
+	 * @param nombre nombre del item
+	 * @param modifSalud modificador de salud
+	 * @param modifFuerza modificador de fuerza
+	 * @param modifDestreza modificador de destreza
+	 * @param modifInteligencia modificador de inteligencia
+	 * @param modifEnergia modificador de energía
 	 */
-	public Item(final ModificadorSegunItem modifSalud, final ModificadorSegunItem modifFuerza,
+	public Item(final int id, final String nombre,
+			final ModificadorSegunItem modifSalud, final ModificadorSegunItem modifFuerza,
 			final ModificadorSegunItem modifDestreza, final ModificadorSegunItem modifInteligencia,
 			final ModificadorSegunItem modifEnergia) {
+		this.idItem = id;
+		this.nombre = nombre;
 		this.modSalud = modifSalud;
 		this.modFuerza = modifFuerza;
 		this.modDestreza = modifDestreza;
@@ -119,4 +133,11 @@ public class Item {
 		return modEnergia;
 	}
 
+	/**
+	 * Getter nombre
+	 * @return nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
 }
