@@ -8,8 +8,8 @@ import java.io.Serializable;
  */
 
 public abstract class Casta implements Serializable {
-	private final double probabilidadPorDefecto = 0.2;
-	private final double golpeCriticoPorDefecto = 1.5;
+	private static final double PROBABILIDAD_POR_DEFECTO = 0.2;
+	private static final double GOLPE_CRITICO_POR_DEFECTO = 1.5;
 
 	protected double probabilidadGolpeCritico;
 	protected double probabilidadEvitarDaño;
@@ -22,9 +22,9 @@ public abstract class Casta implements Serializable {
 	 * Constructor con valores defecto de la clase Casta
 	 */
 	public Casta() {
-		this.probabilidadGolpeCritico = probabilidadPorDefecto;
-		this.probabilidadEvitarDaño = probabilidadPorDefecto;
-		this.dañoCritico = golpeCriticoPorDefecto;
+		this.probabilidadGolpeCritico = PROBABILIDAD_POR_DEFECTO;
+		this.probabilidadEvitarDaño = PROBABILIDAD_POR_DEFECTO;
+		this.dañoCritico = GOLPE_CRITICO_POR_DEFECTO;
 	}
 
 	/**

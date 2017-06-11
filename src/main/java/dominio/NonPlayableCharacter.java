@@ -6,29 +6,29 @@ package dominio;
 
 public class NonPlayableCharacter extends Peleador {
 
-	private final int dificultadAleatoria = -1;
-	private final int dificultades = 3;
-	private final int fuerzaInicial0 = 10;
-	private final int fuerzaInicial1 = 20;
-	private final int fuerzaInicial2 = 30;
-	private final int saludInicial0 = 30;
-	private final int saludInicial1 = 40;
-	private final int saludInicial2 = 50;
-	private final int defensaInicial0 = 2;
-	private final int defensaInicial1 = 5;
-	private final int defensaInicial2 = 4;
-	private final int fuerzaAdicionalPorNivel0 = 3;
-	private final int fuerzaAdicionalPorNivel1 = 6;
-	private final int fuerzaAdicionalPorNivel2 = 10;
-	private final int saludAdicionalPorNivel0 = 15;
-	private final int saludAdicionalPorNivel1 = 20;
-	private final int saludAdicionalPorNivel2 = 25;
-	private final int defensaAdicionalPorNivel0 = 1;
-	private final int defensaAdicionalPorNivel1 = 2;
-	private final int defensaAdicionalPorNivel2 = 4;
-	private final int multiplicadorDeExperiencia = 30;
-	private final double probabilidadPorDefecto = 0.15;
-	private final double golpeCriticoPorDefecto = 1.5;
+	private static final int DIFICULTAD_ALEATORIA = -1;
+	private static final int DIFICULTADES = 3;
+	private static final int FUERZA_INICIAL_0 = 10;
+	private static final int FUERZA_INICIAL_1 = 20;
+	private static final int FUERZA_INICIAL_2 = 30;
+	private static final int SALUD_INICIAL_0 = 30;
+	private static final int SALUD_INICIAL_1 = 40;
+	private static final int SALUD_INICIAL_2 = 50;
+	private static final int DEFENSA_INICIAL_0 = 2;
+	private static final int DEFENSA_INICIAL_1 = 5;
+	private static final int DEFENSA_INICIAL_2 = 4;
+	private static final int FUERZA_ADICIONAL_POR_NIVEL_0 = 3;
+	private static final int FUERZA_ADICIONAL_POR_NIVEL_1 = 6;
+	private static final int FUERZA_ADICIONAL_POR_NIVEL_2 = 10;
+	private static final int SALUD_ADICIONAL_POR_NIVEL_0 = 15;
+	private static final int SALUD_ADICIONAL_POR_NIVEL_1 = 20;
+	private static final int SALUD_ADICIONAL_POR_NIVEL_2 = 25;
+	private static final int DEFENSA_ADICIONAL_POR_NIVEL_0 = 1;
+	private static final int DEFENSA_ADICIONAL_POR_NIVEL_1 = 2;
+	private static final int DEFENSA_ADICIONAL_POR_NIVEL_2 = 4;
+	private static final int MULTIPLICADOR_DE_EXPERIENCIA = 30;
+	private static final double PROBABILIDAD_POR_DEFECTO = 0.15;
+	private static final double GOLPE_CRITICO_POR_DEFECTO = 1.5;
 
 	/**
 	 * Constructor de la clase NonPlayableCharacter. La dificultad del NPC depende de si es aleatoria o no.
@@ -42,27 +42,27 @@ public class NonPlayableCharacter extends Peleador {
 		setNombre(nombre);
 		setNivel(nivel);
 		int dificultad;
-		if (dificultadNPC == dificultadAleatoria) {
-			dificultad = getRandomGenerator().nextInt(dificultades);
+		if (dificultadNPC == DIFICULTAD_ALEATORIA) {
+			dificultad = getRandomGenerator().nextInt(DIFICULTADES);
 		} else {
 			dificultad = dificultadNPC;
 		}
 
 		switch (dificultad) {
 		case 0:
-			setFuerza(fuerzaInicial0 + (nivel - 1) * fuerzaAdicionalPorNivel0);
-			setSalud(saludInicial0 + (nivel - 1) * saludAdicionalPorNivel0);
-			setDefensa(defensaInicial0 + (nivel - 1) * defensaAdicionalPorNivel0);
+			setFuerza(FUERZA_INICIAL_0 + (nivel - 1) * FUERZA_ADICIONAL_POR_NIVEL_0);
+			setSalud(SALUD_INICIAL_0 + (nivel - 1) * SALUD_ADICIONAL_POR_NIVEL_0);
+			setDefensa(DEFENSA_INICIAL_0 + (nivel - 1) * DEFENSA_ADICIONAL_POR_NIVEL_0);
 			break;
 		case 1:
-			setFuerza(fuerzaInicial1 + (nivel - 1) * fuerzaAdicionalPorNivel1);
-			setSalud(saludInicial1 + (nivel - 1) * saludAdicionalPorNivel1);
-			setDefensa(defensaInicial1 + (nivel - 1) * defensaAdicionalPorNivel1);
+			setFuerza(FUERZA_INICIAL_1 + (nivel - 1) * FUERZA_ADICIONAL_POR_NIVEL_1);
+			setSalud(SALUD_INICIAL_1 + (nivel - 1) * SALUD_ADICIONAL_POR_NIVEL_1);
+			setDefensa(DEFENSA_INICIAL_1 + (nivel - 1) * DEFENSA_ADICIONAL_POR_NIVEL_1);
 			break;
 		case 2:
-			setFuerza(fuerzaInicial2 + (nivel - 1) * fuerzaAdicionalPorNivel2);
-			setSalud(saludInicial2 + (nivel - 1) * saludAdicionalPorNivel2);
-			setDefensa(defensaInicial2 + (nivel - 1) * defensaAdicionalPorNivel2);
+			setFuerza(FUERZA_INICIAL_2 + (nivel - 1) * FUERZA_ADICIONAL_POR_NIVEL_2);
+			setSalud(SALUD_INICIAL_2 + (nivel - 1) * SALUD_ADICIONAL_POR_NIVEL_2);
+			setDefensa(DEFENSA_INICIAL_2 + (nivel - 1) * DEFENSA_ADICIONAL_POR_NIVEL_2);
 			break;
 		default:
 			break;
@@ -72,7 +72,7 @@ public class NonPlayableCharacter extends Peleador {
 
 	@Override
 	protected int multiplicadorExperiencia() {
-		return multiplicadorDeExperiencia;
+		return MULTIPLICADOR_DE_EXPERIENCIA;
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class NonPlayableCharacter extends Peleador {
 
 	@Override
 	protected double probabilidadEvitarDanoEnAtaque() {
-		return probabilidadPorDefecto;
+		return PROBABILIDAD_POR_DEFECTO;
 	}
 
 	@Override
@@ -103,12 +103,12 @@ public class NonPlayableCharacter extends Peleador {
 
 	@Override
 	protected int golpeCritico() {
-		return (int) (getAtaque() * golpeCriticoPorDefecto);
+		return (int) (getAtaque() * GOLPE_CRITICO_POR_DEFECTO);
 	}
 
 	@Override
 	protected double probabilidadGolpeCritico() {
-		return probabilidadPorDefecto;
+		return PROBABILIDAD_POR_DEFECTO;
 	}
 
 	@Override

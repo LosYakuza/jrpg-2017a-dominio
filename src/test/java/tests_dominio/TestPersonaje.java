@@ -5,8 +5,15 @@ import org.junit.Test;
 
 import dominio.*;
 
+/**
+ * Test de la clase Personaje.
+ */
 public class TestPersonaje {
 
+	/**
+	 * Verifica que se pueda crear un humano de las castas asesino, guerrero y hechicero y que
+	 * se puedan cargar sus atributos.
+	 */
 	@Test
 	public void testHumano() {
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
@@ -43,6 +50,10 @@ public class TestPersonaje {
 		Assert.assertTrue(h3.getHabilidadesRaza()[1] == "Golpe Fatal");
 	}
 
+	/**
+	 * Verifica que se pueda crear un elfo de las castas asesino, guerrero y hechicero y que
+	 * se puedan cargar sus atributos.
+	 */
 	@Test
 	public void testElfo() {
 		Elfo e = new Elfo("Nicolas", new Guerrero(), 1);
@@ -79,6 +90,10 @@ public class TestPersonaje {
 		Assert.assertTrue(e3.getHabilidadesRaza()[1] == "Ataque Bosque");
 	}
 
+	/**
+	 * Verifica que se pueda crear un orco de las castas asesino, guerrero y hechicero y que
+	 * se puedan cargar sus atributos.
+	 */
 	@Test
 	public void testOrco() {
 		Orco o = new Orco("Nicolas", new Guerrero(), 1);

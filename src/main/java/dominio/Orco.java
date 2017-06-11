@@ -4,8 +4,8 @@ package dominio;
  * La clase Orco es un Personaje que posee dos habilidades de raza Golpe Defensa y Mordisco de Vida.
  */
 public class Orco extends Personaje {
-	private final int adicionalSaludTopeOrco = 10;
-	private final int energiaMinimaParaHabilidad = 10;
+	private static final int ADICIONAL_SALUD_TOPE_ORCO = 10;
+	private static final int ENERGIA_MINIMA_PARA_HABILIDAD = 10;
 
 	/**
 	 * Constructor de la clase Orco.
@@ -50,7 +50,7 @@ public class Orco extends Personaje {
 
 	@Override
 	protected int saludTopeInicial() {
-		return super.saludTopeInicial() + adicionalSaludTopeOrco;
+		return super.saludTopeInicial() + ADICIONAL_SALUD_TOPE_ORCO;
 	}
 
 	/**
@@ -62,8 +62,8 @@ public class Orco extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza1(final Peleable atacado) {
-		if (this.getEnergia() > energiaMinimaParaHabilidad) {
-			this.setEnergia(this.getEnergia() - energiaMinimaParaHabilidad);
+		if (this.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+			this.setEnergia(this.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
 			if (atacado.serAtacado(this.getDefensa() * 2) > 0) {
 				return true;
 			}
@@ -81,8 +81,8 @@ public class Orco extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza2(final Peleable atacado) {
-		if (this.getEnergia() > energiaMinimaParaHabilidad) {
-			this.setEnergia(this.getEnergia() - energiaMinimaParaHabilidad);
+		if (this.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+			this.setEnergia(this.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
 			int danioCausado = atacado.serAtacado(this.getFuerza());
 			if (danioCausado > 0) {
 				this.serCurado(danioCausado);

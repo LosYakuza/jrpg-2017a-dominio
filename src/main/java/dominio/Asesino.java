@@ -4,11 +4,11 @@ package dominio;
  * La clase Asesino es una Casta que implementa las habilidades Golpe Crítico, Aumentar Evasión y Robar.
  */
 public class Asesino extends Casta {
-	private final int cantHabilidades = 3;
-	private final int destrezaAsesino = 5;
-	private final int energiaMinimaParaHabilidad = 10;
-	private final double probEvitarDanioAdicional = 0.15;
-	private final double probEvitarDanioMax = 0.5;
+	private static final int CANT_HABILIDADES = 3;
+	private static final int DESTREZA_ASESINO = 5;
+	private static final int ENERGIA_MINIMA_PARA_HABILIDAD = 10;
+	private static final double PROB_EVITAR_DANIO_ADICIONAL = 0.15;
+	private static final double PORB_EVITAR_DANIO_MAX = 0.5;
 
 	/**
 	 * Constructor de la clase Asesino.
@@ -27,7 +27,7 @@ public class Asesino extends Casta {
 	public Asesino() {
 		super();
 		this.nombreCasta = "Asesino";
-		habilidadesCasta = new String[cantHabilidades];
+		habilidadesCasta = new String[CANT_HABILIDADES];
 		habilidadesCasta[0] = "Golpe Critico";
 		habilidadesCasta[1] = "Aumentar Evasion";
 		habilidadesCasta[2] = "Robar";
@@ -42,8 +42,8 @@ public class Asesino extends Casta {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
-		if (caster.getEnergia() > energiaMinimaParaHabilidad) {
-			caster.setEnergia(caster.getEnergia() - energiaMinimaParaHabilidad);
+		if (caster.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+			caster.setEnergia(caster.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
 			if (atacado.serAtacado((int) (caster.ataque * caster.getCasta().getDañoCritico())) > 0) {
 				return true;
 			}
@@ -60,12 +60,12 @@ public class Asesino extends Casta {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidad2(final Personaje caster, final Peleable atacado) {
-		if (caster.getEnergia() > energiaMinimaParaHabilidad) {
-			caster.setEnergia(caster.getEnergia() - energiaMinimaParaHabilidad);
-			if (this.getProbabilidadEvitarDaño() + probEvitarDanioAdicional < probEvitarDanioMax) {
-				this.probabilidadEvitarDaño += probEvitarDanioAdicional;
+		if (caster.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+			caster.setEnergia(caster.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
+			if (this.getProbabilidadEvitarDaño() + PROB_EVITAR_DANIO_ADICIONAL < PORB_EVITAR_DANIO_MAX) {
+				this.probabilidadEvitarDaño += PROB_EVITAR_DANIO_ADICIONAL;
 			} else {
-				this.probabilidadEvitarDaño = probEvitarDanioMax;
+				this.probabilidadEvitarDaño = PORB_EVITAR_DANIO_MAX;
 			}
 			return true;
 		}
@@ -84,6 +84,6 @@ public class Asesino extends Casta {
 
 	@Override
 	public int getDestreza() {
-		return super.getDestreza() + destrezaAsesino;
+		return super.getDestreza() + DESTREZA_ASESINO;
 	}
 }

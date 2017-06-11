@@ -7,8 +7,15 @@ import dominio.Guerrero;
 import dominio.Humano;
 import dominio.Orco;
 
-public class TestDaño {
+/**
+ * Test para los daños causados a un personaje.
+ */
+public class TestDanio {
 
+	/**
+	 * Verifica que por mas que se le cause un daño al personaje mayor que su
+	 * salud tope, la salud no baja de 0.
+	 */
 	@Test
 	public void testAtaqueComunYLaSaludNoBajeDe0() {
 		Humano h = new Humano("Nico", 100, 100, 100, 20, 30, new Guerrero(0.2, 0.3, 1.5), 0, 1, 1);
@@ -26,6 +33,9 @@ public class TestDaño {
 		}
 	}
 
+	/**
+	 * Verifica que un personaje sin salud no pueda atacar.
+	 */
 	@Test
 	public void testLosMuertosNoAtacan() {
 		Humano h = new Humano("Nico", 100, 100, 25, 0, 30, new Guerrero(0.2, 0, 1.5), 0, 1, 1);

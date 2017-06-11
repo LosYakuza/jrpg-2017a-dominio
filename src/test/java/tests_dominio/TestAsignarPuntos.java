@@ -2,45 +2,69 @@ package tests_dominio;
 
 import org.junit.Test;
 
-import dominio.*;
+import dominio.Guerrero;
+import dominio.Humano;
+import dominio.Personaje;
 
 import java.util.HashMap;
 
 import org.junit.Assert;
 
+/**
+ * Test de incremento de los puntos de un personaje.
+ */
 public class TestAsignarPuntos {
 
-	@Test
-	public void testAumentarSalud_tope() {
-		Personaje.cargarTablaNivel();
+	private static final int SALUD_HUMANO_NIVEL_1 = 105;
+	private static final int SALUD_HUMANO_NIVEL_2 = 130;
+	private static final int ENERGIA_HUMANO_NIVEL_1 = 105;
+	private static final int ENERGIA_HUMANO_NIVEL_2 = 125;
+	private static final int EXPERIENCIA_50 = 50;
+	private static final int PUNTOS_199 = 199;
 
-		Humano h = new Humano("Nicolas",new Guerrero(),1);
-		Assert.assertTrue(h.getSaludTope()==105);
-		h.ganarExperiencia(50);
-		Assert.assertTrue(h.getSaludTope()==130);
-		}
-
+	/**
+	 * Verifica que los puntos de salud aumenten cuando el personaje sube de
+	 * nivel.
+	 */
 	@Test
-	public void testAumentarEnergia_tope() {
+	public void testAumentarSaludTope() {
 		Personaje.cargarTablaNivel();
 
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		Assert.assertTrue(h.getEnergiaTope() == 105);
-		h.ganarExperiencia(50);
-		Assert.assertTrue(h.getEnergiaTope() == 125);
+		Assert.assertTrue(h.getSaludTope() == SALUD_HUMANO_NIVEL_1);
+		h.ganarExperiencia(EXPERIENCIA_50);
+		Assert.assertTrue(h.getSaludTope() == SALUD_HUMANO_NIVEL_2);
 	}
 
+	/**
+	 * Verifica que los puntos de energia aumenten cuando el personaje sube de
+	 * nivel.
+	 */
+	@Test
+	public void testAumentarEnergiaTope() {
+		Personaje.cargarTablaNivel();
+
+		Humano h = new Humano("Nicolas", new Guerrero(), 1);
+		Assert.assertTrue(h.getEnergiaTope() == ENERGIA_HUMANO_NIVEL_1);
+		h.ganarExperiencia(EXPERIENCIA_50);
+		Assert.assertTrue(h.getEnergiaTope() == ENERGIA_HUMANO_NIVEL_2);
+	}
+
+	/**
+	 * Verifica que los puntos de fuerza, destreza e inteligencia sean menores a
+	 * 200.
+	 */
 	@Test
 	public void testMasDe200Puntos() {
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
 		HashMap<String, Object> datos = h.getTodo();
-		datos.put(Personaje.ATTR_FUERZA, 199);
-		datos.put(Personaje.ATTR_DESTREZA, 199);
-		datos.put(Personaje.ATTR_INTELIGENCIA, 199);
+		datos.put(Personaje.ATTR_FUERZA, PUNTOS_199);
+		datos.put(Personaje.ATTR_DESTREZA, PUNTOS_199);
+		datos.put(Personaje.ATTR_INTELIGENCIA, PUNTOS_199);
 		h.actualizar(datos);
 		h.asignarPuntosSkills(2, 2, 2);
-		Assert.assertTrue(h.getFuerza() == 199);
-		Assert.assertTrue(h.getDestreza() == 199);
-		Assert.assertTrue(h.getInteligencia() == 199);
+		Assert.assertTrue(h.getFuerza() == PUNTOS_199);
+		Assert.assertTrue(h.getDestreza() == PUNTOS_199);
+		Assert.assertTrue(h.getInteligencia() == PUNTOS_199);
 	}
 }

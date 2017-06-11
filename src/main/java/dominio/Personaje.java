@@ -23,7 +23,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	public static final String ATTR_ENERGIATOPE = "energiatope";
 	public static final String ATTR_SALUDTOPE = "saludtope";
 
-	private static final int NIVEL_MAXIMO = 101;
+	private static final int NIVEL_MAXIMO = 100;
 	private static final int AGREGADO_EXPERIENCIA = 50;
 	private final int valorPorDefecto = 10;
 	private final int valorTopeInicial = 100;
@@ -86,10 +86,10 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * Inicializa la tabla del nivel del personaje en 0.
 	 */
 	public static void cargarTablaNivel() {
-		Personaje.tablaDeNiveles = new int[NIVEL_MAXIMO];
+		Personaje.tablaDeNiveles = new int[NIVEL_MAXIMO + 2];
 		Personaje.tablaDeNiveles[0] = 0;
 		Personaje.tablaDeNiveles[1] = 0;
-		for (int i = 2; i < NIVEL_MAXIMO; i++) {
+		for (int i = 2; i < NIVEL_MAXIMO + 1; i++) {
 			Personaje.tablaDeNiveles[i] = Personaje.tablaDeNiveles[i - 1] + AGREGADO_EXPERIENCIA;
 		}
 	}
@@ -154,6 +154,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 		setDefensa(calcularPuntosDeDefensa());
 		setAtaque(calcularPuntosDeAtaque());
 		setMagia(calcularPuntosDeMagia());
+		setNombreRaza(nombreRazaInicial());
+		inicializarHabilidadesSegunRaza();
 	}
 
 	/**
@@ -478,7 +480,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return danioMenosDefensa daño final recibido.
 	 */
 	public int serRobadoSalud(final int danio) {
-		int danioMenosDefensa = getDefensa() - danio;
+		int danioMenosDefensa = danio - getDefensa();
 		if (danioMenosDefensa <= 0) {
 			return 0;
 		}
@@ -497,7 +499,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return danio daño final recibido.
 	 */
 	public int serDesernegizado(final int danio) {
-		int danioMenosDefensa = getDefensa() - danio;
+		int danioMenosDefensa = danio - getDefensa();
 		if (danioMenosDefensa <= 0) {
 			return 0;
 		}
@@ -602,10 +604,10 @@ public abstract class Personaje extends Peleador implements Serializable {
 	public void subirNivel() {
 
 		int acumuladorExperiencia = 0;
-		if (getNivel() == NIVEL_MAXIMO - 1) {
+		if (getNivel() == NIVEL_MAXIMO) {
 			return;
 		}
-		while (getNivel() != NIVEL_MAXIMO - 1 & (this.experiencia >= Personaje.tablaDeNiveles[getNivel() + 1]
+		while (getNivel() != NIVEL_MAXIMO & (this.experiencia >= Personaje.tablaDeNiveles[getNivel() + 1]
 				+ acumuladorExperiencia)) {
 			acumuladorExperiencia += Personaje.tablaDeNiveles[getNivel() + 1];
 			setNivel(getNivel() + 1);
