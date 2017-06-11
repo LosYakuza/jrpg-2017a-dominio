@@ -1,10 +1,13 @@
 package tests_dominio;
 
+import java.util.LinkedList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import dominio.Guerrero;
 import dominio.Humano;
+import dominio.Item;
 import dominio.Personaje;
 
 /**
@@ -18,7 +21,7 @@ public class TestSubirNivel {
 	@Test
 	public void testSubirdeNivel() {
 		Personaje.cargarTablaNivel();
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
 		Assert.assertTrue(h.getNivel() == 1);
 		h.ganarExperiencia(50);
 		Assert.assertTrue(h.getNivel() == 2);
@@ -30,7 +33,7 @@ public class TestSubirNivel {
 	@Test
 	public void testNivel100() {
 		Personaje.cargarTablaNivel();
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
 		h.ganarExperiencia(300000);
 		Assert.assertTrue(h.getNivel() == 100);
 		h.subirNivel();
@@ -44,7 +47,7 @@ public class TestSubirNivel {
 	@Test
 	public void testGanarMuchaExp() {
 		Personaje.cargarTablaNivel();
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
 		Assert.assertTrue(h.getNivel() == 1);
 		h.ganarExperiencia(150);
 		Assert.assertTrue(h.getNivel() == 3);

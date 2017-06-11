@@ -4,9 +4,11 @@ import org.junit.Test;
 
 import dominio.Guerrero;
 import dominio.Humano;
+import dominio.Item;
 import dominio.Personaje;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import org.junit.Assert;
 
@@ -23,7 +25,7 @@ public class TestAtributos {
 	@Test
 	public void testIncrementarFuerza() {
 		final int ataqueHumano = 22;
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
 
 		Assert.assertTrue(h.getAtaque() == ataqueHumano);
 		h.asignarPuntosSkills(INCREMENTO, 0, 0);
@@ -38,8 +40,7 @@ public class TestAtributos {
 	public void testIncrementarDestreza() {
 		final int defensaHumano = 10;
 
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
 		Assert.assertTrue(h.getDefensa() == defensaHumano);
 		h.asignarPuntosSkills(0, INCREMENTO, 0);
 		Assert.assertTrue(h.getDefensa() > defensaHumano);
@@ -53,7 +54,7 @@ public class TestAtributos {
 	public void testIncrementarInteligencia() {
 		final int magiaHumano = 15;
 
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
 		Assert.assertTrue(h.getMagia() == magiaHumano);
 		h.asignarPuntosSkills(0, 0, INCREMENTO);
 		Assert.assertTrue(h.getMagia() > magiaHumano);
@@ -72,8 +73,7 @@ public class TestAtributos {
 		final int energiaPrueba = 20;
 		final int magiaSetPrueba = 3;
 
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
 		h.setNombreRaza("Ballena");
 		Assert.assertEquals("Ballena", h.getNombreRaza());
 
@@ -114,7 +114,7 @@ public class TestAtributos {
 		final int energiaPrueba12 = 12;
 		final int energiaPrueba8 = 8;
 
-		Humano h = new Humano("Mica", new Guerrero(), 1);
+		Humano h = new Humano("Mica", new Guerrero(), 1, new LinkedList<Item>());
 		HashMap<String, Object> datos = h.getTodo();
 		datos.put(Personaje.ATTR_ENERGIA, energiaPrueba12);
 		h.actualizar(datos);
@@ -136,7 +136,7 @@ public class TestAtributos {
 		final int defensaPrueba2 = 10;
 		final int resultado = 10;
 
-		Humano h = new Humano("Mica", new Guerrero(), 1);
+		Humano h = new Humano("Mica", new Guerrero(), 1, new LinkedList<Item>());
 		HashMap<String, Object> datos = h.getTodo();
 		datos.put(Personaje.ATTR_SALUD, saludPrueba);
 		datos.put(Personaje.ATTR_DEFENSA, defensaPrueba);
@@ -157,7 +157,7 @@ public class TestAtributos {
 	public void testSerDesernegizado() {
 		final int energiaPrueba = 10;
 		final int desernegiza = 20;
-		Humano h = new Humano("Mica", new Guerrero(), 1);
+		Humano h = new Humano("Mica", new Guerrero(), 1, new LinkedList<Item>());
 		HashMap<String, Object> datos = h.getTodo();
 		datos.put(Personaje.ATTR_DEFENSA, 0);
 		h.actualizar(datos);
@@ -177,7 +177,7 @@ public class TestAtributos {
 		final int energiaTopePrueba = 200;
 		final int energiaPrueba = 190;
 		final int masEnergia = 20;
-		Humano h = new Humano("Mica", new Guerrero(), 1);
+		Humano h = new Humano("Mica", new Guerrero(), 1, new LinkedList<Item>());
 		HashMap<String, Object> datos = h.getTodo();
 		datos.put(Personaje.ATTR_ENERGIATOPE, energiaTopePrueba);
 		datos.put(Personaje.ATTR_ENERGIA, energiaPrueba);

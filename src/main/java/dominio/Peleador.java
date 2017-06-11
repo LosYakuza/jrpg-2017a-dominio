@@ -1,6 +1,7 @@
 package dominio;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * Clase de todos los peleadores
@@ -22,6 +23,7 @@ public abstract class Peleador implements Peleable {
 	private int defensa;
 	private String nombre;
 	private int nivel;
+	private LinkedList<Item> inventario;
 	private RandomGenerator rnd;
 
 	/**
@@ -52,10 +54,12 @@ public abstract class Peleador implements Peleable {
 
 	/**
 	 * Constructor por defecto
-	 * Carga myRamdom.
+	 * Carga myRandom.
+	 * @param inventario lista de ítems del peleador
 	 */
-	public Peleador() {
+	public Peleador(final LinkedList<Item> inventario) {
 		setRandomGenerator(new MyRandom());
+		setInventario(inventario);
 	}
 
 	/**
@@ -139,7 +143,7 @@ public abstract class Peleador implements Peleable {
 	}
 
 	/**
-	 * Getter nivel.F
+	 * Getter nivel.
 	 * @return nivel
 	 */
 	public int getNivel() {
@@ -152,6 +156,22 @@ public abstract class Peleador implements Peleable {
 	 */
 	protected void setNivel(final int nivel) {
 		this.nivel = nivel;
+	}
+
+	/**
+	 * Getter inventario.
+	 * @return lista de items.
+	 */
+	public LinkedList<Item> getInventario() {
+		return this.inventario;
+	}
+
+	/**
+	 * Setter inventario.
+	 * @param inventario lista de items
+	 */
+	public void setInventario(final LinkedList<Item> inventario) {
+		this.inventario = inventario;
 	}
 
 	/**
@@ -190,12 +210,48 @@ public abstract class Peleador implements Peleable {
 	 */
 	public int serAtacado(final int dano) {
 		int danoCalc = dano;
+		//addBonusSegunItems();
 		if (rnd.nextDouble() >= probabilidadEvitarDanoEnAtaque()) {
 			danoCalc -= defensaAlSerAtacado();
 			danoCalc = quitarVidaSegunDano(danoCalc);
-			return danoCalc;
+		} else {
+			danoCalc = 0;
 		}
-		return 0;
+		//removeBonusSegunItems();
+		return danoCalc;
+	}
+
+	/**
+	 * Modifica los atributos del Peleador según los ítems que lleve equipado.
+	 */
+	public void addBonusSegunItems() {
+		int acumSalud = 0;
+		int acumFuerza = 0;
+
+		for (Item item : inventario) {
+			acumSalud += item.getModifSalud(salud);
+			acumFuerza += item.getModifFuerza(fuerza);
+		}
+
+		salud += acumSalud;
+		fuerza += acumFuerza;
+	}
+
+	/**
+	 * Remueve los modificadores de los ítems.
+	 * Vuelve los atributos del Peleador a su estado original.
+	 */
+	public void removeBonusSegunItems() {
+		int acumSalud = 0;
+		int acumFuerza = 0;
+
+		for (Item item : inventario) {
+			acumSalud += item.getModifSalud(salud);
+			acumFuerza += item.getModifFuerza(fuerza);
+		}
+
+		salud -= acumSalud;
+		fuerza -= acumFuerza;
 	}
 
 	/**
@@ -276,4 +332,12 @@ public abstract class Peleador implements Peleable {
 	 *         false en caso contrario.
 	 */
 	public abstract boolean esAfectadoPorGuerrero();
+
+	/**
+	 * Guarda el item en el inventario.
+	 * @param item a guardar
+	 */
+	public void guardarItemEnInventario(final Item item) {
+		this.inventario.add(item);
+	}
 }

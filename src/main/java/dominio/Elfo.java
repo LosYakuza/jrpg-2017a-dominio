@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.LinkedList;
+
 /**
  * La clase Elfo es un Personaje que posee las habilidades Golpe Level y Ataque Bosque.
  */
@@ -14,9 +16,10 @@ public class Elfo extends Personaje {
 	 * @param nombre nombre del elfo.
 	 * @param casta casta del elfo.
 	 * @param id id del elfo.
+	 * @param inventario inventario del elfo.
 	 */
-	public Elfo(final String nombre, final Casta casta, final int id) {
-		super(nombre, casta, id);
+	public Elfo(final String nombre, final Casta casta, final int id, final LinkedList<Item> inventario) {
+		super(nombre, casta, id, inventario);
 	}
 
 	/**
@@ -31,11 +34,13 @@ public class Elfo extends Personaje {
 	 * @param experiencia experiencia del elfo.
 	 * @param nivel nivel del elfo.
 	 * @param idPersonaje id del elfo.
+	 * @param inventario inventario del elfo.
 	 */
 	public Elfo(final String nombre, final int salud, final int energia, final int fuerza, final int destreza,
 			final int inteligencia, final Casta casta, final int experiencia, final int nivel,
-			final int idPersonaje) {
-		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje);
+			final int idPersonaje, final LinkedList<Item> inventario) {
+		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel,
+				idPersonaje, inventario);
 	}
 
 	@Override

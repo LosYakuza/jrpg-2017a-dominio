@@ -5,6 +5,7 @@ import org.junit.Test;
 import dominio.Alianza;
 import dominio.Guerrero;
 import dominio.Humano;
+import dominio.Item;
 import dominio.Personaje;
 
 import java.util.LinkedList;
@@ -21,8 +22,8 @@ public class TestAlianza {
 	 */
 	@Test
 	public void testAlianza() {
-		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		Humano h2 = new Humano("Lautaro", new Guerrero(), 1);
+		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
+		Humano h2 = new Humano("Lautaro", new Guerrero(), 1, new LinkedList<Item>());
 		String nomAlianza = "La ballena azul";
 		Alianza a1 = new Alianza(nomAlianza);
 

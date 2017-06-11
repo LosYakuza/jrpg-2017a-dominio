@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.LinkedList;
+
 /**
  * La clase Humano es un Personaje que posee las habilidades Incentivar y Golpe Fatal.
  */
@@ -13,9 +15,10 @@ public class Humano extends Personaje {
 	 * @param nombre nombre del humano.
 	 * @param casta casta del humano.
 	 * @param id id del humano.
+	 * @param inventario inventario del humano.
 	 */
-	public Humano(final String nombre, final Casta casta, final int id) {
-		super(nombre, casta, id);
+	public Humano(final String nombre, final Casta casta, final int id, final LinkedList<Item> inventario) {
+		super(nombre, casta, id, inventario);
 	}
 
 	/**
@@ -30,11 +33,13 @@ public class Humano extends Personaje {
 	 * @param experiencia experiencia del humano.
 	 * @param nivel nivel del humano.
 	 * @param idPersonaje id del humano.
+	 * @param inventario inventario del humano.
 	 */
 	public Humano(final String nombre, final int salud, final int energia, final int fuerza, final int destreza,
 			final int inteligencia, final Casta casta, final int experiencia, final int nivel,
-			final int idPersonaje) {
-		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje);
+			final int idPersonaje, final LinkedList<Item> inventario) {
+		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel,
+				idPersonaje, inventario);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package dominio;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * La clase Personaje está desarrollada para que las clases que la hereden
@@ -34,7 +35,6 @@ public abstract class Personaje extends Peleador implements Serializable {
 	private final int incEnergiaTope = 20;
 	private final int multiplicadorDeExperiencia = 40;
 	private final int divisorDeDestreza = 1000;
-
 
 	protected int energia;
 	protected int ataque;
@@ -99,8 +99,10 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @param nombre nombre del personaje.
 	 * @param casta casta del personaje.
 	 * @param id id del personaje.
+	 * @param inventario inventario del personaje.
 	 */
-	public Personaje(final String nombre, final Casta casta, final int id) {
+	public Personaje(final String nombre, final Casta casta, final int id, final LinkedList<Item> inventario) {
+		super(inventario);
 		setNombre(nombre);
 		setCasta(casta);
 		setIdPersonaje(id);
@@ -135,10 +137,12 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @param experiencia experiencia del personaje.
 	 * @param nivel nivel del personaje.
 	 * @param idPersonaje id del personaje.
+	 * @param inventario inventario del personaje.
 	 */
 	public Personaje(final String nombre, final int salud, final int energia, final int fuerza, final int destreza,
-			final int inteligencia, final Casta casta, final int experiencia,
-			final int nivel, final int idPersonaje) {
+			final int inteligencia, final Casta casta, final int experiencia, final int nivel,
+			final int idPersonaje, final LinkedList<Item> inventario) {
+		super(inventario);
 		setNombre(nombre);
 		setSalud(salud);
 		setEnergia(energia);
@@ -267,7 +271,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return energia energia del personaje.
 	 */
 	public int getEnergia() {
-		return energia;
+		int acum = 0;
+		for (Item item : getInventario()) {
+			acum += item.getModifEnergia(energia);
+		}
+		return energia + acum;
 	}
 
 	/**
@@ -283,7 +291,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return destreza destreza del personaje.
 	 */
 	public int getDestreza() {
-		return destreza;
+		int acum = 0;
+		for (Item item : getInventario()) {
+			acum += item.getModifDestreza(destreza);
+		}
+		return destreza + acum;
 	}
 
 	/**
@@ -299,7 +311,11 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return inteligencia inteligencia del personaje
 	 */
 	public int getInteligencia() {
-		return inteligencia;
+		int acum = 0;
+		for (Item item : getInventario()) {
+			acum += item.getModifInteligencia(inteligencia);
+		}
+		return inteligencia + acum;
 	}
 
 	/**
@@ -607,7 +623,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 		if (getNivel() == NIVEL_MAXIMO) {
 			return;
 		}
-		while (getNivel() != NIVEL_MAXIMO & (this.experiencia >= Personaje.tablaDeNiveles[getNivel() + 1]
+		while (getNivel() != NIVEL_MAXIMO && (this.experiencia >= Personaje.tablaDeNiveles[getNivel() + 1]
 				+ acumuladorExperiencia)) {
 			acumuladorExperiencia += Personaje.tablaDeNiveles[getNivel() + 1];
 			setNivel(getNivel() + 1);
@@ -760,5 +776,41 @@ public abstract class Personaje extends Peleador implements Serializable {
 	@Override
 	public final boolean esAfectadoPorGuerrero() {
 		return true;
+	}
+
+	@Override
+	public final void addBonusSegunItems() {
+		super.addBonusSegunItems();
+		int acumDestreza = 0;
+		int acumInteligencia = 0;
+		int acumEnergia = 0;
+
+		for (Item item : getInventario()) {
+			acumDestreza += item.getModifDestreza(destreza);
+			acumInteligencia += item.getModifInteligencia(inteligencia);
+			acumEnergia += item.getModifEnergia(energia);
+		}
+
+		destreza += acumDestreza;
+		inteligencia += acumInteligencia;
+		energia += acumEnergia;
+	}
+
+	@Override
+	public void removeBonusSegunItems() {
+		super.removeBonusSegunItems();
+		int acumDestreza = 0;
+		int acumInteligencia = 0;
+		int acumEnergia = 0;
+
+		for (Item item : getInventario()) {
+			acumDestreza += item.getModifDestreza(destreza);
+			acumInteligencia += item.getModifInteligencia(inteligencia);
+			acumEnergia += item.getModifEnergia(energia);
+		}
+
+		destreza -= acumDestreza;
+		inteligencia -= acumInteligencia;
+		energia -= acumEnergia;
 	}
 }

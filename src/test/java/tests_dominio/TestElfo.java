@@ -1,6 +1,7 @@
 package tests_dominio;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.junit.Test;
 import dominio.Asesino;
 import dominio.Elfo;
 import dominio.Humano;
+import dominio.Item;
 import dominio.Personaje;
 
 /**
@@ -23,8 +25,10 @@ public class TestElfo {
 	 */
 	@Test
 	public void testGolpeLevel() {
-		Elfo e = new Elfo("Nico", SALUD_PRUEBA, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1);
-		Humano h = new Humano("Nico", SALUD_PRUEBA, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 1, 1);
+		Elfo e = new Elfo("Nico", SALUD_PRUEBA, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1,
+				new LinkedList<Item>());
+		Humano h = new Humano("Nico", SALUD_PRUEBA, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 1, 1,
+				new LinkedList<Item>());
 
 		Assert.assertTrue(h.getSalud() == SALUD_PRUEBA);
 		if (e.habilidadRaza1(h)) {
@@ -46,8 +50,10 @@ public class TestElfo {
 	 */
 	@Test
 	public void testAtaqueBosque() {
-		Elfo e = new Elfo("Nico", SALUD_PRUEBA, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1);
-		Humano h = new Humano("Nico", SALUD_PRUEBA, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 1, 1);
+		Elfo e = new Elfo("Nico", SALUD_PRUEBA, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1,
+				new LinkedList<Item>());
+		Humano h = new Humano("Nico", SALUD_PRUEBA, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 1, 1,
+				new LinkedList<Item>());
 
 		Assert.assertTrue(h.getSalud() == SALUD_PRUEBA);
 		if (e.habilidadRaza2(h)) {
