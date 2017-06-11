@@ -284,8 +284,8 @@ public abstract class Peleador implements Peleable {
 	/**
 	 * Causar daño al atacado evaluando la probabilidad de golpe crítico y su ataque.
 	 *
-	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
-	 * @return        daño causado.
+	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado.
+	 * @return daño causado.
 	 */
 	public int atacar(final Peleable atacado) {
 		if (puedoAtacar(atacado.estaVivo())) {

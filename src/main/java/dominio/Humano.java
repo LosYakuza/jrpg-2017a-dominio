@@ -7,36 +7,61 @@ import java.util.LinkedList;
  */
 
 public class Humano extends Personaje {
+	private static final int ENERGIA_MINIMA_PARA_HABILIDAD = 10;
+	private static final int ADICIONAL_TOPE_HUMANO = 5;
 
-	public Humano(String nombre, Casta casta, int id, LinkedList<Item> inventario) {
+	/**
+	 * Constructor de la clase Humano.
+	 * @param nombre nombre del humano.
+	 * @param casta casta del humano.
+	 * @param id id del humano.
+	 * @param inventario inventario del humano.
+	 */
+	public Humano(final String nombre, final Casta casta, final int id, final LinkedList<Item> inventario) {
 		super(nombre, casta, id, inventario);
 	}
-	
-	public Humano(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
-			int experiencia, int nivel, int idPersonaje, LinkedList<Item> inventario) {
-		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje, inventario);
+
+	/**
+	 * Constructor de la clase Humano.
+	 * @param nombre nombre del humano.
+	 * @param salud salud del humano.
+	 * @param energia energia del humano.
+	 * @param fuerza fuerza del humano.
+	 * @param destreza destreza del humano.
+	 * @param inteligencia inteligencia del humano.
+	 * @param casta casta del humano.
+	 * @param experiencia experiencia del humano.
+	 * @param nivel nivel del humano.
+	 * @param idPersonaje id del humano.
+	 * @param inventario inventario del humano.
+	 */
+	public Humano(final String nombre, final int salud, final int energia, final int fuerza, final int destreza,
+			final int inteligencia, final Casta casta, final int experiencia, final int nivel,
+			final int idPersonaje, final LinkedList<Item> inventario) {
+		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel,
+				idPersonaje, inventario);
 	}
-	
+
 	@Override
 	protected String nombreRazaInicial() {
 		return "Humano";
 	}
-	
+
 	@Override
 	protected void inicializarHabilidadesSegunRaza() {
 		habilidadesRaza = new String[2];
 		habilidadesRaza[0] = "Incentivar";
 		habilidadesRaza[1] = "Golpe Fatal";
 	}
-	
+
 	@Override
 	protected int saludTopeInicial() {
-		return super.saludTopeInicial() + 5;
+		return super.saludTopeInicial() + ADICIONAL_TOPE_HUMANO;
 	}
-	
+
 	@Override
 	protected int energiaTopeInicial() {
-		return super.energiaTopeInicial() + 5;
+		return super.energiaTopeInicial() + ADICIONAL_TOPE_HUMANO;
 	}
 
 
@@ -50,8 +75,8 @@ public class Humano extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza1(final Peleable atacado) {
-		if (this.getEnergia() > 10) {
-			this.setEnergia(this.getEnergia() - 10);
+		if (this.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+			this.setEnergia(this.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
 			atacado.setAtaque(atacado.getAtaque() + this.getMagia());
 			return true;
 		}
@@ -68,13 +93,13 @@ public class Humano extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza2(final Peleable atacado) {
-		if (this.getEnergia() > 10) {
+		if (this.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
 			if (atacado.serAtacado(atacado.getSalud() / 2) > 0) {
 				this.setEnergia(this.getEnergia() / 2);
 				return true;
 			}
 		}
-		this.setEnergia(this.getEnergia() - 10);
+		this.setEnergia(this.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
 		return false;
 	}
 }

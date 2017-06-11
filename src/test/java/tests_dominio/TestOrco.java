@@ -15,8 +15,16 @@ import dominio.MyRandomStub;
 import dominio.Orco;
 import dominio.Personaje;
 
+/**
+ * Test de la clase Orco.
+ */
 public class TestOrco {
+	private static final int SALUD_PRUEBA = 100;
+	private static final int ENERGIA_PRUEBA = 5;
 
+	/**
+	 * Test de la habilidad Golpe Defensivo.
+	 */
 	@Test
 	public void testGolpeDefensivo() {
 		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
@@ -29,21 +37,25 @@ public class TestOrco {
 		} else {
 			Assert.assertTrue(o.getSalud() == 105);
 		}
-		
+
 		HashMap<String, Object> datos = o.getTodo();
-		datos.put(Personaje.ATTR_ENERGIA, 5);
+		datos.put(Personaje.ATTR_ENERGIA, ENERGIA_PRUEBA);
 		o.actualizar(datos);
 		Assert.assertFalse(o.habilidadRaza1(h));
 	}
 
+	/**
+	 * Test de la habilidad Mordisco de Vida.
+	 */
 	@Test
 	public void testMordiscoDeVida() {
-		Humano h = new Humano("Nico", 100, 100, 55, 20, 30, new Hechicero(0.2, 0.3, 1.5), 0, 1, 1, new LinkedList<Item>());
-		Orco o = new Orco("Nico", 100, 100, 80, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 1, 1, new LinkedList<Item>());
-		
-		Assert.assertEquals(100, h.getSalud());
+		Humano h = new Humano("Nico", SALUD_PRUEBA, 100, 55, 20, 30, new Hechicero(0.2, 0.3, 1.5), 0, 1, 1,
+				new LinkedList<Item>());
+		Orco o = new Orco("Nico", SALUD_PRUEBA, 100, 80, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 1, 1,
+				new LinkedList<Item>());
+		Assert.assertEquals(SALUD_PRUEBA, h.getSalud());
 		HashMap<String, Object> datos = o.getTodo();
-		datos.put(Personaje.ATTR_SALUD, 100);
+		datos.put(Personaje.ATTR_SALUD, SALUD_PRUEBA);
 		o.actualizar(datos);
 
 		if (o.habilidadRaza2(h)) {
@@ -53,7 +65,7 @@ public class TestOrco {
 			Assert.assertEquals(100, o.getSalud());
 			Assert.assertEquals(100, h.getSalud());
 		}
-		
+
 		datos.put(Personaje.ATTR_ENERGIA, 0);
 		o.actualizar(datos);
 		Assert.assertFalse(o.habilidadRaza2(h));

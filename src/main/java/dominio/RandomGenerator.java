@@ -5,16 +5,14 @@ package dominio;
  */
 public abstract class RandomGenerator {
 	/**
-	 * Flotante al azar
-	 *
-	 * @return
+	 * Flotante al azar.
+	 * @return devuelve un flotante al azar.
 	 */
 	public abstract double nextDouble();
 
 	/**
-	 * Devuelve un entero al azar menor al maximo
-	 *
-	 * @param max entero maximo
+	 * Devuelve un entero al azar menor al maximo.
+	 * @param max entero maximo.
 	 * @return    entero ingresado por parámetro decrementado en uno.
 	 */
 	public abstract int nextInt(final int max);

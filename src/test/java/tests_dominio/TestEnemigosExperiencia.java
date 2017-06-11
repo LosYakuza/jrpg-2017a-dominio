@@ -2,17 +2,29 @@ package tests_dominio;
 
 import org.junit.Test;
 
-import dominio.*;
+import dominio.Guerrero;
+import dominio.Humano;
+import dominio.Item;
+import dominio.NonPlayableCharacter;
+import dominio.Personaje;
 
 import java.util.LinkedList;
 
 import org.junit.Assert;
 
+/**
+ * Test para verificar que los personajes y NPC's den la experiencia correcta
+ * despues de morir.
+ */
 public class TestEnemigosExperiencia {
 
+	/**
+	 * Verifica que el NPC de la experiencia que corresponde cuando el personaje
+	 * lo mata.
+	 */
 	@Test
 	public void testPjvsNPC() {
-
+		final int experienciaNPC = 30;
 		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
 		NonPlayableCharacter npc = new NonPlayableCharacter("Gigante", 1, 0, new LinkedList<Item>());
 		Personaje.cargarTablaNivel();
@@ -21,9 +33,12 @@ public class TestEnemigosExperiencia {
 			h.atacar(npc);
 		}
 		h.ganarExperiencia(npc.otorgarExp());
-		Assert.assertTrue(h.getExperiencia() == 30);
+		Assert.assertTrue(h.getExperiencia() == experienciaNPC);
 	}
 
+	/**
+	 * Verifica que un NPC con mayor nivel de mayor experiencia.
+	 */
 	@Test
 	public void testMasFuerteMasExperiencia() {
 		NonPlayableCharacter npc = new NonPlayableCharacter("Gigante", 1, 0, new LinkedList<Item>());
@@ -32,8 +47,12 @@ public class TestEnemigosExperiencia {
 		Assert.assertTrue(npc.otorgarExp() < npc2.otorgarExp());
 	}
 
+	/**
+	 * Verifica que un personaje le de experiencia a otro si es derrotado.
+	 */
 	@Test
 	public void testPjvsPj() {
+		final int experienciaPj = 40;
 		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
 		Humano h2 = new Humano("Lautaro", new Guerrero(), 2, new LinkedList<Item>());
 		Personaje.cargarTablaNivel();
@@ -45,7 +64,7 @@ public class TestEnemigosExperiencia {
 		}
 
 		h.ganarExperiencia(h2.otorgarExp());
-		Assert.assertTrue(h.getExperiencia() == 40);
+		Assert.assertTrue(h.getExperiencia() == experienciaPj);
 		Assert.assertTrue(h2.getExperiencia() == 0);
 
 	}

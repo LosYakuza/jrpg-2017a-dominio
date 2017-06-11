@@ -7,14 +7,40 @@ import java.util.LinkedList;
  */
 
 public class Elfo extends Personaje {
+	private static final int ADICIONAL_ENERGIA_TOPE_ELFO = 10;
+	private static final int ENERGIA_MINIMA_PARA_HABILIDAD = 10;
+	private static final int MULTIPLICADOR_HABILIDAD = 10;
 
-	public Elfo(String nombre, Casta casta, int id, LinkedList<Item> inventario) {
+	/**
+	 * Constructor de la clase Elfo.
+	 * @param nombre nombre del elfo.
+	 * @param casta casta del elfo.
+	 * @param id id del elfo.
+	 * @param inventario inventario del elfo.
+	 */
+	public Elfo(final String nombre, final Casta casta, final int id, final LinkedList<Item> inventario) {
 		super(nombre, casta, id, inventario);
 	}
 
-	public Elfo(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
-			int experiencia, int nivel, int idPersonaje, LinkedList<Item> inventario) {
-		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje, inventario);
+	/**
+	 * Constructor de la clase Elfo.
+	 * @param nombre nombre del elfo.
+	 * @param salud salud del elfo.
+	 * @param energia energia del elfo.
+	 * @param fuerza fuerza del elfo.
+	 * @param destreza destreza del elfo.
+	 * @param inteligencia inteligencia del elfo.
+	 * @param casta casta del elfo.
+	 * @param experiencia experiencia del elfo.
+	 * @param nivel nivel del elfo.
+	 * @param idPersonaje id del elfo.
+	 * @param inventario inventario del elfo.
+	 */
+	public Elfo(final String nombre, final int salud, final int energia, final int fuerza, final int destreza,
+			final int inteligencia, final Casta casta, final int experiencia, final int nivel,
+			final int idPersonaje, final LinkedList<Item> inventario) {
+		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel,
+				idPersonaje, inventario);
 	}
 
 	@Override
@@ -31,21 +57,22 @@ public class Elfo extends Personaje {
 
 	@Override
 	protected int energiaTopeInicial() {
-		return super.energiaTopeInicial() + 10;
+		return super.energiaTopeInicial() + ADICIONAL_ENERGIA_TOPE_ELFO;
 	}
 
 	/**
 	 * Se implementa la habilidad Golpe Level.
-	 * El personaje gasta energía para atacar con la intensidad de la fuerza y el nivel del personaje multiplicado por diez.
+	 * El personaje gasta energía para atacar con la intensidad de la fuerza
+	 * y el nivel del personaje multiplicado por diez.
 	 *
 	 * @param atacado un objeto que implementa la interfaz Peleable, es aquel a ser atacado
 	 * @return        true si el Elfo tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza1(final Peleable atacado) {
-		if (this.getEnergia() > 10) {
-			this.setEnergia(this.getEnergia() - 10);
-			if (atacado.serAtacado(getFuerza() + getNivel() * 10) > 0) {
+		if (this.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+			this.setEnergia(this.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
+			if (atacado.serAtacado(getFuerza() + getNivel() * MULTIPLICADOR_HABILIDAD) > 0) {
 				return true;
 			}
 		}
@@ -61,8 +88,8 @@ public class Elfo extends Personaje {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidadRaza2(final Peleable atacado) {
-		if (this.getEnergia() > 10) {
-			this.setEnergia(this.getEnergia() - 10);
+		if (this.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+			this.setEnergia(this.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
 			if (atacado.serAtacado((int) (this.magia)) > 0) {
 				return true;
 			}

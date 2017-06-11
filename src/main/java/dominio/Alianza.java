@@ -12,7 +12,6 @@ public class Alianza {
 
 	/**
 	 * Constructor de la clase Alianza
-	 *
 	 * @param nombre nombre de la Alianza
 	 */
 	public Alianza(final String nombre) {
@@ -22,7 +21,6 @@ public class Alianza {
 
 	/**
 	 * Devuelve la lista de aliados en la alianza
-	 *
 	 * @return LinkedList<Personaje> Lista de personajes aliados
 	 */
 	public LinkedList<Personaje> getAliados() {
@@ -31,7 +29,6 @@ public class Alianza {
 
 	/**
 	 * Devuelve el nombre de la alianza.
-	 *
 	 * @return nombre nombre de la alianza
 	 */
 	public String obtenerNombre() {

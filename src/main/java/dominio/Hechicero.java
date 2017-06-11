@@ -5,16 +5,29 @@ package dominio;
  *
  */
 public class Hechicero extends Casta {
+	private static final int CANT_HABILIDADES = 3;
+	private static final int ENERGIA_MINIMA_PARA_HABILIDAD = 10;
+	private static final int INTELIGENCIA_HECHICERO = 5;
+	private static final double INCREMENTO_MAGICO = 1.5;
 
-	public Hechicero(double prob_crit, double evasion, double daño_crit) {
-		super(prob_crit, evasion, daño_crit);
+	/**
+	 * Constructor de la clase Hechicero pasando probabilidad de gompe critico, evasion y daño critico.
+	 * @param probCrit probabilidad de golpe critico.
+	 * @param evasion probabilidad de evadir golpe.
+	 * @param danioCrit daño critico.
+	 */
+	public Hechicero(final double probCrit, final double evasion, final double danioCrit) {
+		super(probCrit, evasion, danioCrit);
 		this.nombreCasta = "Hechicero";
 	}
 
+	/**
+	 * Constructor de la clase Hechicero.
+	 */
 	public Hechicero() {
 		super();
 		this.nombreCasta = "Hechicero";
-		habilidadesCasta = new String[3];
+		habilidadesCasta = new String[CANT_HABILIDADES];
 		habilidadesCasta[0] = "Bola de Fuego";
 		habilidadesCasta[1] = "Curar Aliado";
 		habilidadesCasta[2] = "Robar Energia y Salud";
@@ -29,11 +42,12 @@ public class Hechicero extends Casta {
 	 * @return        true si el Personaje tiene energía mayor a diez y el daño causado es mayor a cero;
 	 *                false en caso contrario.
 	 */
-	public boolean habilidad1(Personaje caster, Peleable atacado) {
-		if (caster.getEnergia() > 10) {
-			caster.setEnergia(caster.getEnergia() - 10);
-			if (atacado.serAtacado((int) (caster.calcularPuntosDeMagia() * 1.5)) > 0)
+	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
+		if (caster.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+			caster.setEnergia(caster.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
+			if (atacado.serAtacado((int) (caster.calcularPuntosDeMagia() * INCREMENTO_MAGICO)) > 0) {
 				return true;
+			}
 		}
 		return false;
 	}
@@ -48,8 +62,8 @@ public class Hechicero extends Casta {
 	 *               false en caso contrario.
 	 */
 	public boolean habilidad2(final Personaje caster, final Peleable aliado) {
-		if (caster.getEnergia() > 10) {
-			caster.setEnergia(caster.getEnergia() - 10);
+		if (caster.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+			caster.setEnergia(caster.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
 			if (aliado.esAfectadoPorHechicero()) {
 				((Personaje) aliado).serCurado(caster.calcularPuntosDeMagia());
 				return true;
@@ -60,7 +74,7 @@ public class Hechicero extends Casta {
 
 	/**
 	 * Se implementa la habilidad Robar Energía y Salud.
-	 * El personaje gasta energía para reducir la energía y la salud del personaje atacado según sus puntos de magia.
+	 * El personaje gasta energía para reducir la energía y la salud del personaje atacado según sus puntos de magia
 	 * La energía y la salud quitada, la toma el Hechicero.
 	 *
 	 * @param caster Personaje que va a robar energía y salud
@@ -69,22 +83,22 @@ public class Hechicero extends Casta {
 	 *                false en caso contrario.
 	 */
 	public boolean habilidad3(final Personaje caster, final Peleable atacado) {
-		if (caster.getEnergia() > 10) {
-			caster.setEnergia(caster.getEnergia() - 10);
+		if (caster.getEnergia() > ENERGIA_MINIMA_PARA_HABILIDAD) {
+			caster.setEnergia(caster.getEnergia() - ENERGIA_MINIMA_PARA_HABILIDAD);
 			if (atacado.esAfectadoPorHechicero()) {
-				int energia_robada = ((Personaje) atacado).serDesernegizado(caster.calcularPuntosDeMagia());
-				int salud_robada = ((Personaje) atacado).serRobadoSalud(caster.calcularPuntosDeMagia() / 2);
-				caster.serEnergizado(energia_robada);
-				caster.serCurado(salud_robada);
+				int eRobada = ((Personaje) atacado).serDesernegizado(caster.calcularPuntosDeMagia());
+				int sRobada = ((Personaje) atacado).serRobadoSalud(caster.calcularPuntosDeMagia() / 2);
+				caster.serEnergizado(eRobada);
+				caster.serCurado(sRobada);
 				return true;
 			}
 
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int getInteligencia() {
-		return super.getInteligencia() + 5;
+		return super.getInteligencia() + INTELIGENCIA_HECHICERO;
 	}
 }
