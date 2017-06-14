@@ -4,9 +4,9 @@ package dominio;
  * Clase para el manejo de operaciones.
  */
 public class ModificadorSegunItem {
-	private final int maxValorSuma = 50;
-	private final int maxValorPorcentaje = 70;
-	private final int maxValorMultiplicacion = 3;
+	private final int maxValorSuma = 5;
+	private final int maxValorPorcentaje = 20;
+	private final int maxValorMultiplicacion = 2;
 
 	private int valor;
 	private Operacion operacion;
