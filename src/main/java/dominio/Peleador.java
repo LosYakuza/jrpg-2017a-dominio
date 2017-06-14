@@ -26,6 +26,7 @@ public abstract class Peleador implements Peleable {
 	private LinkedList<Item> inventario;
 	private RandomGenerator rnd;
 
+	public static final int CANT_MAX_ITEMS = 9;
 	/**
 	 * Actualizar datos desde hashmap
 	 * @param datos salud,fuerza,defensa,nombre,nivel
@@ -336,6 +337,8 @@ public abstract class Peleador implements Peleable {
 	 * @param item a guardar
 	 */
 	public void guardarItemEnInventario(final Item item) {
-		this.inventario.add(item);
+		if (inventario.size() != CANT_MAX_ITEMS) {
+			this.inventario.add(item);
+		}
 	}
 }
