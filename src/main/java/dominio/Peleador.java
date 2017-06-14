@@ -210,14 +210,12 @@ public abstract class Peleador implements Peleable {
 	 */
 	public int serAtacado(final int dano) {
 		int danoCalc = dano;
-		//addBonusSegunItems();
 		if (rnd.nextDouble() >= probabilidadEvitarDanoEnAtaque()) {
 			danoCalc -= defensaAlSerAtacado();
 			danoCalc = quitarVidaSegunDano(danoCalc);
 		} else {
 			danoCalc = 0;
 		}
-		//removeBonusSegunItems();
 		return danoCalc;
 	}
 

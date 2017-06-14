@@ -271,11 +271,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return energia energia del personaje.
 	 */
 	public int getEnergia() {
-		int acum = 0;
-		for (Item item : getInventario()) {
-			acum += item.getModifEnergia(energia);
-		}
-		return energia + acum;
+		return energia;
 	}
 
 	/**
@@ -291,11 +287,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return destreza destreza del personaje.
 	 */
 	public int getDestreza() {
-		int acum = 0;
-		for (Item item : getInventario()) {
-			acum += item.getModifDestreza(destreza);
-		}
-		return destreza + acum;
+		return destreza;
 	}
 
 	/**
@@ -311,11 +303,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return inteligencia inteligencia del personaje
 	 */
 	public int getInteligencia() {
-		int acum = 0;
-		for (Item item : getInventario()) {
-			acum += item.getModifInteligencia(inteligencia);
-		}
-		return inteligencia + acum;
+		return inteligencia;
 	}
 
 	/**
@@ -794,6 +782,9 @@ public abstract class Personaje extends Peleador implements Serializable {
 		destreza += acumDestreza;
 		inteligencia += acumInteligencia;
 		energia += acumEnergia;
+
+		saludTope = getSalud();
+		energiaTope = getEnergia();
 	}
 
 	@Override
@@ -812,5 +803,8 @@ public abstract class Personaje extends Peleador implements Serializable {
 		destreza -= acumDestreza;
 		inteligencia -= acumInteligencia;
 		energia -= acumEnergia;
+
+		energiaTope = getEnergia();
+		saludTope = getSalud();
 	}
 }
