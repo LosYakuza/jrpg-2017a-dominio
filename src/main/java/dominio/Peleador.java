@@ -18,6 +18,12 @@ public abstract class Peleador implements Peleable {
 	public static final String ATTR_NOMBRE = "nombre";
 	public static final String ATTR_NIVEL = "nivel";
 
+	/**
+	 * Atributos base para diferenciar aquellos afectados por los ítems.
+	 */
+	private int saludTopeBase;
+	private int fuerzaBase;
+
 	private int salud;
 	private int fuerza;
 	private int defensa;
@@ -26,6 +32,7 @@ public abstract class Peleador implements Peleable {
 	private LinkedList<Item> inventario;
 	private RandomGenerator rnd;
 
+	public static final int CANT_MAX_ITEMS = 9;
 	/**
 	 * Actualizar datos desde hashmap
 	 * @param datos salud,fuerza,defensa,nombre,nivel
@@ -175,6 +182,38 @@ public abstract class Peleador implements Peleable {
 	}
 
 	/**
+	 * Getter salud tope base.
+	 * @return salud tope.
+	 */
+	public int getSaludTopeBase() {
+		return saludTopeBase;
+	}
+
+	/**
+	 * Setter salud tope base.
+	 * @param saludTopeBase salud tope.
+	 */
+	public void setSaludTopeBase(final int saludTopeBase) {
+		this.saludTopeBase = saludTopeBase;
+	}
+
+	/**
+	 * Getter fuerza base.
+	 * @return fuerza.
+	 */
+	public int getFuerzaBase() {
+		return fuerzaBase;
+	}
+
+	/**
+	 * Setter fuerza base.
+	 * @param fuerzaBase fuerza.
+	 */
+	public void setFuerzaBase(final int fuerzaBase) {
+		this.fuerzaBase = fuerzaBase;
+	}
+
+	/**
 	 * Esta vivo.
 	 * @return true si esta vivo
 	 */
@@ -210,14 +249,12 @@ public abstract class Peleador implements Peleable {
 	 */
 	public int serAtacado(final int dano) {
 		int danoCalc = dano;
-		//addBonusSegunItems();
 		if (rnd.nextDouble() >= probabilidadEvitarDanoEnAtaque()) {
 			danoCalc -= defensaAlSerAtacado();
 			danoCalc = quitarVidaSegunDano(danoCalc);
 		} else {
 			danoCalc = 0;
 		}
-		//removeBonusSegunItems();
 		return danoCalc;
 	}
 
@@ -338,6 +375,8 @@ public abstract class Peleador implements Peleable {
 	 * @param item a guardar
 	 */
 	public void guardarItemEnInventario(final Item item) {
-		this.inventario.add(item);
+		if (inventario.size() != CANT_MAX_ITEMS) {
+			this.inventario.add(item);
+		}
 	}
 }

@@ -7,8 +7,8 @@ public class Asesino extends Casta {
 	private static final int CANT_HABILIDADES = 3;
 	private static final int DESTREZA_ASESINO = 5;
 	private static final int ENERGIA_MINIMA_PARA_HABILIDAD = 10;
-	private static final double PROB_EVITAR_DANIO_ADICIONAL = 0.15;
-	private static final double PORB_EVITAR_DANIO_MAX = 0.5;
+	private static final double PROB_EVITAR_DANIO_ADICIONAL = 0.05;
+	private static final double PORB_EVITAR_DANIO_MAX = 0.2;
 
 	/**
 	 * Constructor de la clase Asesino.

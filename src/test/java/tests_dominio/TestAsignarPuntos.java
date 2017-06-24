@@ -32,9 +32,9 @@ public class TestAsignarPuntos {
 	public void testAumentarSaludTope() {
 		Personaje.cargarTablaNivel();
 		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
-		Assert.assertTrue(h.getSaludTope() == SALUD_HUMANO_NIVEL_1);
+		Assert.assertTrue(h.getSaludTopeBase() == SALUD_HUMANO_NIVEL_1);
 		h.ganarExperiencia(EXPERIENCIA_50);
-		Assert.assertTrue(h.getSaludTope() == SALUD_HUMANO_NIVEL_2);
+		Assert.assertTrue(h.getSaludTopeBase() == SALUD_HUMANO_NIVEL_2);
 	}
 
 	/**
@@ -45,9 +45,9 @@ public class TestAsignarPuntos {
 	public void testAumentarEnergiaTope() {
 		Personaje.cargarTablaNivel();
 		Humano h = new Humano("Nicolas", new Guerrero(), 1, new LinkedList<Item>());
-		Assert.assertTrue(h.getEnergiaTope() == ENERGIA_HUMANO_NIVEL_1);
+		Assert.assertTrue(h.getEnergiaTopeBase() == ENERGIA_HUMANO_NIVEL_1);
 		h.ganarExperiencia(EXPERIENCIA_50);
-		Assert.assertTrue(h.getEnergiaTope() == ENERGIA_HUMANO_NIVEL_2);
+		Assert.assertTrue(h.getEnergiaTopeBase() == ENERGIA_HUMANO_NIVEL_2);
 	}
 
 	/**
