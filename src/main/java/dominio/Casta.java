@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 
 public abstract class Casta implements Serializable {
-	private static final double PROBABILIDAD_POR_DEFECTO = 0.2;
+	private static final double PROBABILIDAD_POR_DEFECTO = 0.1;
 	private static final double GOLPE_CRITICO_POR_DEFECTO = 1.5;
 
 	protected double probabilidadGolpeCritico;
