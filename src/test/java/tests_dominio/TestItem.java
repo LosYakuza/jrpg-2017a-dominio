@@ -89,7 +89,7 @@ public class TestItem {
 		Assert.assertEquals(salud + cinco + 1, elfo.getSaludTope());
 		Assert.assertEquals(salud + cinco + 1, elfo.getSalud());
 		Assert.assertEquals(fuerza * 2 + 1, elfo.getFuerza());
-		Assert.assertEquals(destreza + 1 + 1, elfo.getDestreza());
+		Assert.assertEquals(destreza + 1 + 2, elfo.getDestreza());
 		Assert.assertEquals(inteligencia + 1, elfo.getInteligencia());
 		Assert.assertEquals(energia + 1 + 1, elfo.getEnergiaTope());
 		Assert.assertEquals(energia + 1 + 1, elfo.getEnergia());

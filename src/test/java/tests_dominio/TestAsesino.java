@@ -61,9 +61,9 @@ public class TestAsesino {
 
 		Assert.assertEquals(0.3, h.getCasta().getProbabilidadEvitarDaño(), 0.01);
 		h.habilidadCasta2(null);
-		Assert.assertEquals(0.45, h.getCasta().getProbabilidadEvitarDaño(), 0.01);
+		Assert.assertEquals(0.2, h.getCasta().getProbabilidadEvitarDaño(), 0.01);
 		h.habilidadCasta2(null);
-		Assert.assertEquals(0.5, h.getCasta().getProbabilidadEvitarDaño(), 0.01);
+		Assert.assertEquals(0.2, h.getCasta().getProbabilidadEvitarDaño(), 0.01);
 
 		HashMap<String, Object> datos = h.getTodo();
 		datos.put(Personaje.ATTR_ENERGIA, ENERGIA_PRUEBA);
