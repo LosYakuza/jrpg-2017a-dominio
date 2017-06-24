@@ -93,7 +93,7 @@ public class Item {
 	 * @param saludOriginal salud del Peleador
 	 * @return salud extra
 	 */
-	int getModifSalud(final int saludOriginal) {
+	public int getModifSalud(final int saludOriginal) {
 		return modSalud.getValor(saludOriginal) - saludOriginal;
 	}
 

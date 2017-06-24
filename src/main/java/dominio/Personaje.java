@@ -36,6 +36,13 @@ public abstract class Personaje extends Peleador implements Serializable {
 	private final int multiplicadorDeExperiencia = 40;
 	private final int divisorDeDestreza = 1000;
 
+	/**
+	 * Atributos base para diferenciar aquellos afectados por los ítems.
+	 */
+	private int energiaTopeBase;
+	private int destrezaBase;
+	private int inteligenciaBase;
+
 	protected int energia;
 	protected int ataque;
 	protected int magia;
@@ -119,10 +126,17 @@ public abstract class Personaje extends Peleador implements Serializable {
 		setSalud(getSaludTope());
 		setEnergiaTope(energiaTopeInicial());
 		setEnergia(getEnergiaTope());
+
+		setAtributosBase(getSaludTope(),
+				getFuerza(),
+				getEnergiaTope(),
+				getDestreza(),
+				getInteligencia());
+
 		setAtaque(calcularPuntosDeAtaque());
 		setDefensa(calcularPuntosDeDefensa());
 		setMagia(calcularPuntosDeMagia());
-
+		addBonusSegunItems();
 	}
 
 	/**
@@ -155,11 +169,19 @@ public abstract class Personaje extends Peleador implements Serializable {
 		setSaludTope(getSalud());
 		setEnergiaTope(getEnergia());
 		setIdPersonaje(idPersonaje);
+
+		setAtributosBase(getSaludTope(),
+				getFuerza(),
+				getEnergiaTope(),
+				getDestreza(),
+				getInteligencia());
+
 		setDefensa(calcularPuntosDeDefensa());
 		setAtaque(calcularPuntosDeAtaque());
 		setMagia(calcularPuntosDeMagia());
 		setNombreRaza(nombreRazaInicial());
 		inicializarHabilidadesSegunRaza();
+		addBonusSegunItems();
 	}
 
 	/**
@@ -363,6 +385,54 @@ public abstract class Personaje extends Peleador implements Serializable {
 	}
 
 	/**
+	 * Getter energía tope base.
+	 * @return energía tope.
+	 */
+	public int getEnergiaTopeBase() {
+		return energiaTopeBase;
+	}
+
+	/**
+	 * Setter energía tope base.
+	 * @param energiaTopeBase energía tope.
+	 */
+	public void setEnergiaTopeBase(final int energiaTopeBase) {
+		this.energiaTopeBase = energiaTopeBase;
+	}
+
+	/**
+	 * Getter destreza base.
+	 * @return destreza.
+	 */
+	public int getDestrezaBase() {
+		return destrezaBase;
+	}
+
+	/**
+	 * Setter destreza base.
+	 * @param destrezaBase destreza.
+	 */
+	public void setDestrezaBase(final int destrezaBase) {
+		this.destrezaBase = destrezaBase;
+	}
+
+	/**
+	 * Getter inteligencia base.
+	 * @return inteligencia.
+	 */
+	public int getInteligenciaBase() {
+		return inteligenciaBase;
+	}
+
+	/**
+	 * Setter inteligencia base.
+	 * @param inteligenciaBase inteligencia.
+	 */
+	public void setInteligenciaBase(final int inteligenciaBase) {
+		this.inteligenciaBase = inteligenciaBase;
+	}
+
+	/**
 	 * Devuelve 100 como salud tope inicial
 	 * @return 100.
 	 */
@@ -436,7 +506,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return el valor del ataque del personaje.
 	 */
 	public int calcularPuntosDeAtaque() {
-		return (int) (this.getFuerza() * incrementoDePuntos);
+		return (int) (this.getFuerzaBase() * incrementoDePuntos);
 	}
 
 	/**
@@ -444,7 +514,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return el valor de la defensa del personaje.
 	 */
 	public int calcularPuntosDeDefensa() {
-		return (int) (this.getDestreza());
+		return (int) (this.getDestrezaBase());
 	}
 
 	/**
@@ -452,7 +522,7 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @return el valor de la magia del personaje.
 	 */
 	public int calcularPuntosDeMagia() {
-		return (int) (this.getInteligencia() * incrementoDePuntos);
+		return (int) (this.getInteligenciaBase() * incrementoDePuntos);
 	}
 
 	/**
@@ -473,9 +543,9 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * Modifica los atributos del personaje dependiendo de sus puntos.
 	 */
 	public void modificarAtributos() {
-		this.ataque = this.calcularPuntosDeAtaque();
+		setAtaque(this.calcularPuntosDeAtaque());
 		setDefensa(this.calcularPuntosDeDefensa());
-		this.magia = this.calcularPuntosDeMagia();
+		setMagia(this.calcularPuntosDeMagia());
 	}
 
 	/**
@@ -589,14 +659,14 @@ public abstract class Personaje extends Peleador implements Serializable {
 	 * @param inte inteligencia que se suma.
 	 */
 	public void asignarPuntosSkills(final int fuerza, final int dest, final int inte) {
-		if (getFuerza() + fuerza <= valorMaximo) {
-			setFuerza(getFuerza() + fuerza);
+		if (getFuerzaBase() + fuerza <= valorMaximo) {
+			setFuerzaBase(getFuerzaBase() + fuerza); 
 		}
-		if (getDestreza() + dest <= valorMaximo) {
-			setDestreza(getDestreza() + dest);
+		if (getDestrezaBase() + dest <= valorMaximo) {
+			setDestrezaBase(getDestrezaBase() + dest);
 		}
-		if (getInteligencia() + inte <= valorMaximo) {
-			setInteligencia(getInteligencia() + inte);
+		if (getInteligenciaBase() + inte <= valorMaximo) {
+			setInteligenciaBase(getInteligenciaBase() + inte);
 		}
 		this.modificarAtributos();
 	}
@@ -615,9 +685,9 @@ public abstract class Personaje extends Peleador implements Serializable {
 				+ acumuladorExperiencia)) {
 			acumuladorExperiencia += Personaje.tablaDeNiveles[getNivel() + 1];
 			setNivel(getNivel() + 1);
-			this.modificarAtributos();
-			this.saludTope += incSaludTope;
-			this.energiaTope += incEnergiaTope;
+			modificarAtributos();
+			setSaludTopeBase(getSaludTopeBase() + incSaludTope); 
+			setEnergiaTopeBase(getEnergiaTopeBase() + incEnergiaTope);
 		}
 		this.experiencia -= acumuladorExperiencia;
 	}
@@ -806,5 +876,22 @@ public abstract class Personaje extends Peleador implements Serializable {
 
 		energiaTope = getEnergia();
 		saludTope = getSalud();
+	}
+
+	/**
+	 * Setear atributos base.
+	 * @param salud salud base.
+	 * @param fuerza fuerza base.
+	 * @param energ energia base.
+	 * @param destr destreza base.
+	 * @param intelig inteligencia base.
+	 */
+	private void setAtributosBase(final int salud, final int fuerza, final int energ,
+			final int destr, final int intelig) {
+		setSaludTopeBase(salud);
+		setFuerzaBase(fuerza);
+		setEnergiaTopeBase(energ);
+		setDestrezaBase(destr);
+		setInteligenciaBase(intelig);
 	}
 }

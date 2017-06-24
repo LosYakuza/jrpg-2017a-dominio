@@ -18,6 +18,12 @@ public abstract class Peleador implements Peleable {
 	public static final String ATTR_NOMBRE = "nombre";
 	public static final String ATTR_NIVEL = "nivel";
 
+	/**
+	 * Atributos base para diferenciar aquellos afectados por los ítems.
+	 */
+	private int saludTopeBase;
+	private int fuerzaBase;
+
 	private int salud;
 	private int fuerza;
 	private int defensa;
@@ -173,6 +179,38 @@ public abstract class Peleador implements Peleable {
 	 */
 	public void setInventario(final LinkedList<Item> inventario) {
 		this.inventario = inventario;
+	}
+
+	/**
+	 * Getter salud tope base.
+	 * @return salud tope.
+	 */
+	public int getSaludTopeBase() {
+		return saludTopeBase;
+	}
+
+	/**
+	 * Setter salud tope base.
+	 * @param saludTopeBase salud tope.
+	 */
+	public void setSaludTopeBase(final int saludTopeBase) {
+		this.saludTopeBase = saludTopeBase;
+	}
+
+	/**
+	 * Getter fuerza base.
+	 * @return fuerza.
+	 */
+	public int getFuerzaBase() {
+		return fuerzaBase;
+	}
+
+	/**
+	 * Setter fuerza base.
+	 * @param fuerzaBase fuerza.
+	 */
+	public void setFuerzaBase(final int fuerzaBase) {
+		this.fuerzaBase = fuerzaBase;
 	}
 
 	/**
