@@ -10,6 +10,7 @@ import dominio.Asesino;
 import dominio.Elfo;
 import dominio.Humano;
 import dominio.Item;
+import dominio.MyRandomStub;
 import dominio.Personaje;
 
 /**
@@ -17,6 +18,7 @@ import dominio.Personaje;
  */
 public class TestElfo {
 	private static final int SALUD_PRUEBA = 100;
+	private static final int SALUD_RESULT = 65;
 	private static final int ENERGIA_PRUEBA = 5;
 
 	/**
@@ -29,13 +31,11 @@ public class TestElfo {
 				new LinkedList<Item>());
 		Humano h = new Humano("Nico", SALUD_PRUEBA, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 1, 1,
 				new LinkedList<Item>());
+		h.setRandomGenerator(new MyRandomStub(MyRandomStub.HDOUBLE));
+		Assert.assertEquals(SALUD_PRUEBA, h.getSalud());
 
-		Assert.assertTrue(h.getSalud() == SALUD_PRUEBA);
-		if (e.habilidadRaza1(h)) {
-			Assert.assertTrue(h.getSalud() < SALUD_PRUEBA);
-		} else {
-			Assert.assertTrue(h.getSalud() == SALUD_PRUEBA);
-		}
+		Assert.assertTrue(e.habilidadRaza1(h));
+		Assert.assertEquals(SALUD_RESULT, h.getSalud());
 
 		HashMap<String, Object> datos = e.getTodo();
 		datos.put(Personaje.ATTR_ENERGIA, ENERGIA_PRUEBA);
@@ -55,7 +55,7 @@ public class TestElfo {
 		Humano h = new Humano("Nico", SALUD_PRUEBA, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 1, 1,
 				new LinkedList<Item>());
 
-		Assert.assertTrue(h.getSalud() == SALUD_PRUEBA);
+		Assert.assertEquals(SALUD_PRUEBA, h.getSalud());
 		if (e.habilidadRaza2(h)) {
 			Assert.assertTrue(h.getSalud() < SALUD_PRUEBA);
 		} else {

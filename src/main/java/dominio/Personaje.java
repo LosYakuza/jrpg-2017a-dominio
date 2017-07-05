@@ -857,27 +857,6 @@ public abstract class Personaje extends Peleador implements Serializable {
 		energiaTope = getEnergia();
 	}
 
-	@Override
-	public void removeBonusSegunItems() {
-		super.removeBonusSegunItems();
-		int acumDestreza = 0;
-		int acumInteligencia = 0;
-		int acumEnergia = 0;
-
-		for (Item item : getInventario()) {
-			acumDestreza += item.getModifDestreza(destreza);
-			acumInteligencia += item.getModifInteligencia(inteligencia);
-			acumEnergia += item.getModifEnergia(energia);
-		}
-
-		destreza -= acumDestreza;
-		inteligencia -= acumInteligencia;
-		energia -= acumEnergia;
-
-		energiaTope = getEnergia();
-		saludTope = getSalud();
-	}
-
 	/**
 	 * Setear atributos base.
 	 * @param salud salud base.
