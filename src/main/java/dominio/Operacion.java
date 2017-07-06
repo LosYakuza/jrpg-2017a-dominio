@@ -11,13 +11,6 @@ public enum Operacion {
 	private static final int ID_SUMA = 1;
 	private static final int ID_PORCENTAJE = 2;
 	private static final int ID_MULTIPLICACION = 3;
-	
-
-	@Override
-	public String toString() {
-		// podria overridear para que devuelve x, +, % y ver si se puede usar gráficamente
-		return super.toString();
-	}
 
 	/**
 	 * Hace la operación.
@@ -39,7 +32,6 @@ public enum Operacion {
 			result = a * b;
 			break;
 		default:
-			result = 0;
 			break;
 		}
 		return result;

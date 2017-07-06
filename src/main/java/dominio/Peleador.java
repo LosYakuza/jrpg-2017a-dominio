@@ -275,23 +275,6 @@ public abstract class Peleador implements Peleable {
 	}
 
 	/**
-	 * Remueve los modificadores de los ítems.
-	 * Vuelve los atributos del Peleador a su estado original.
-	 */
-	public void removeBonusSegunItems() {
-		int acumSalud = 0;
-		int acumFuerza = 0;
-
-		for (Item item : inventario) {
-			acumSalud += item.getModifSalud(salud);
-			acumFuerza += item.getModifFuerza(fuerza);
-		}
-
-		salud -= acumSalud;
-		fuerza -= acumFuerza;
-	}
-
-	/**
 	 * Cacula probabilidad de evitar daño.
 	 * @return probabilidad resultante.
 	 */

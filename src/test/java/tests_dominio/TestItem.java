@@ -138,4 +138,19 @@ public class TestItem {
 		elfo.guardarItemEnInventario(item10);
 		Assert.assertEquals(Personaje.CANT_MAX_ITEMS, elfo.getInventario().size());
 	}
+
+	/**
+	 * Test metodos relacionados con el id de la operacion.
+	 */
+	@Test
+	public void testOperacionId() {
+		Assert.assertEquals(1, Operacion.operacionId(Operacion.SUMA));
+		Assert.assertEquals(2 + 1, Operacion.operacionId(Operacion.MULTIPLICACION));
+		Assert.assertEquals(2, Operacion.operacionId(Operacion.PORCENTAJE));
+
+		Assert.assertEquals(Operacion.SUMA, Operacion.operacionSegunId(1));
+		Assert.assertEquals(Operacion.MULTIPLICACION, Operacion.operacionSegunId(2 + 1));
+		Assert.assertEquals(Operacion.PORCENTAJE, Operacion.operacionSegunId(2));
+		Assert.assertEquals(Operacion.SUMA, Operacion.operacionSegunId(0)); // Default
+	}
 }
