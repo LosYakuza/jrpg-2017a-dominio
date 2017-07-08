@@ -8,6 +8,7 @@ public class OfertaMercado {
 	private int idItem;
 	private int idPersonaje;
 	private String nameItemRequerido;
+	private String nameItemOfrecido;
 
 	/**
 	 * Constructor parametrizado.
@@ -16,10 +17,12 @@ public class OfertaMercado {
 	 * @param nameItemRequerido nombre del objeto que se quiere
 	 * @param idPersonaje id del personaje que publicó la oferta
 	 */
-	public OfertaMercado(final int id, final int idItem, final String nameItemRequerido, final int idPersonaje) {
+	public OfertaMercado(final int id, final int idItem, final String nameItemRequerido,
+			final String nameItemOfrecido, final int idPersonaje) {
 		this.idOferta = id;
 		this.idItem = idItem;
 		this.nameItemRequerido = nameItemRequerido;
+		this.nameItemOfrecido = nameItemOfrecido;
 		this.idPersonaje = idPersonaje;
 	}
 
@@ -80,4 +83,19 @@ public class OfertaMercado {
 		this.nameItemRequerido = nameItemRequerido;
 	}
 
+	/**
+	 * Getter name item ofrecido
+	 * @return name item ofrecido
+	 */
+	public String getNameItemOfrecido() {
+		return nameItemOfrecido;
+	}
+
+	/**
+	 * Setter name item ofrecido
+	 * @param nameItemOfrecido nombre del item
+	 */
+	public void setNameItemOfrecido(final String nameItemOfrecido) {
+		this.nameItemOfrecido = nameItemOfrecido;
+	}
 }
