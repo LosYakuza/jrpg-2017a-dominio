@@ -16,14 +16,16 @@ public class TestOfertaMercado {
 	 */
 	@Test
 	public void test() {
-		OfertaMercado om = new OfertaMercado(1, 1, Item.nameItems[0], 1);
+		OfertaMercado om = new OfertaMercado(1, 1, Item.nameItems[0], Item.nameItems[1], 1);
 		om.setIdItem(1);
 		om.setIdOferta(1);
 		om.setIdPersonaje(1);
 		om.setNameItemRequerido(Item.nameItems[0]);
+		om.setNameItemOfrecido(Item.nameItems[1]);
 		Assert.assertEquals(1, om.getIdItem());
 		Assert.assertEquals(1, om.getIdOferta());
 		Assert.assertEquals(1, om.getIdPersonaje());
 		Assert.assertEquals(Item.nameItems[0], om.getNameItemRequerido());
+		Assert.assertEquals(Item.nameItems[1], om.getNameItemOfrecido());
 	}
 }
